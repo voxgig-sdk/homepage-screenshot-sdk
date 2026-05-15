@@ -1,0 +1,34 @@
+{
+  "existing": {
+    "get_screenshot_by_domain": {
+      "GET_SCREENSHOT_BY_DOMAIN00": {
+        "domain": "s28",
+        "screenshot_url": "s29",
+        "size": "s2a",
+        "timestamp": "s2b"
+      },
+      "GET_SCREENSHOT_BY_DOMAIN01": {
+        "domain": "s50",
+        "screenshot_url": "s51",
+        "size": "s52",
+        "timestamp": "s53"
+      },
+      "GET_SCREENSHOT_BY_DOMAIN02": {
+        "domain": "s78",
+        "screenshot_url": "s79",
+        "size": "s7a",
+        "timestamp": "s7b"
+      }
+    }
+  },
+  "new": {
+    "get_screenshot_by_domain": {
+      "get_screenshot_by_domain_ref01": {
+        "domain": "sa0",
+        "screenshot_url": "sa1",
+        "size": "sa2",
+        "timestamp": "sa3"
+      }
+    }
+  }
+}

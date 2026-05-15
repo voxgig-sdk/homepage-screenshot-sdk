@@ -1,0 +1,33 @@
+# BasicGetScreenshotByDomainAndDateFlow
+
+main: kit: flow: BasicGetScreenshotByDomainAndDateFlow:
+{
+  entity: "get_screenshot_by_domain_and_date",
+  kind: "basic",
+  name: "BasicGetScreenshotByDomainAndDateFlow",
+  step: [
+    {
+      input: {
+        ref: "get_screenshot_by_domain_and_date_ref01",
+        srcdatavar: "get_screenshot_by_domain_and_date_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        domain: "domain01",
+        id: "get_screenshot_by_domain_and_date01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-get_screenshot_by_domain_and_date_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicGetScreenshotByDomainAndDateFlow"
+}

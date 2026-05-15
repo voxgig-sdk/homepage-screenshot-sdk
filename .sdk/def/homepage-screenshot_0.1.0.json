@@ -1,0 +1,247 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Homepage Screenshot API",
+    "description": "This API provides fast and efficient screenshots of specified web pages. Users can request screenshots for various dates, sizes, and formats, making it ideal for web monitoring and analysis. Screenshots of homepages not in the top ~1 million websites will be generated on demand and may take a few seconds. Free tier allows up to 1,000 requests per day without an API key.",
+    "version": "0.2",
+    "contact": {
+      "email": "support@urlbox.com"
+    },
+    "termsOfService": "https://screenshotof.com"
+  },
+  "servers": [
+    {
+      "url": "https://screenshotof.com",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/{domain}": {
+      "get": {
+        "summary": "Get screenshot of a domain's homepage",
+        "description": "Returns a screenshot of the specified domain's homepage. Defaults to the most recent available screenshot in PNG format at 2048px width.",
+        "operationId": "getScreenshotByDomain",
+        "parameters": [
+          {
+            "name": "domain",
+            "in": "path",
+            "description": "The domain name to capture (e.g., bbc.co.uk)",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "bbc.co.uk"
+            }
+          },
+          {
+            "name": "s",
+            "in": "query",
+            "description": "Size of the screenshot in pixels (width)",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "enum": [
+                128,
+                256,
+                512,
+                2048
+              ],
+              "default": 2048
+            }
+          },
+          {
+            "name": "f",
+            "in": "query",
+            "description": "Format of the response",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "png",
+                "md",
+                "json"
+              ],
+              "default": "png"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with screenshot",
+            "content": {
+              "image/png": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              },
+              "text/markdown": {
+                "schema": {
+                  "type": "string",
+                  "description": "Markdown representation of the screenshot information"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "domain": {
+                      "type": "string",
+                      "description": "The requested domain"
+                    },
+                    "screenshot_url": {
+                      "type": "string",
+                      "description": "URL to the screenshot image"
+                    },
+                    "size": {
+                      "type": "integer",
+                      "description": "Size of the screenshot"
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "description": "When the screenshot was taken"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Domain not found or screenshot not available"
+          },
+          "429": {
+            "description": "Rate limit exceeded (1,000 requests per day without API key)"
+          }
+        },
+        "tags": [
+          "Screenshots"
+        ]
+      }
+    },
+    "/{domain}/{date}": {
+      "get": {
+        "summary": "Get screenshot of a domain's homepage for a specific date",
+        "description": "Returns a screenshot of the specified domain's homepage from a specific year and month. Screenshots are available for dates from 2024-01 onwards.",
+        "operationId": "getScreenshotByDomainAndDate",
+        "parameters": [
+          {
+            "name": "domain",
+            "in": "path",
+            "description": "The domain name to capture (e.g., bbc.co.uk)",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "bbc.co.uk"
+            }
+          },
+          {
+            "name": "date",
+            "in": "path",
+            "description": "Date in YYYY-MM format (e.g., 2024-01, 2026-02)",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^\\d{4}-(0[1-9]|1[0-2])$",
+              "example": "2026-02"
+            }
+          },
+          {
+            "name": "s",
+            "in": "query",
+            "description": "Size of the screenshot in pixels (width)",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "enum": [
+                128,
+                256,
+                512,
+                2048
+              ],
+              "default": 2048
+            }
+          },
+          {
+            "name": "f",
+            "in": "query",
+            "description": "Format of the response",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "png",
+                "md",
+                "json"
+              ],
+              "default": "png"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with screenshot from the specified date",
+            "content": {
+              "image/png": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              },
+              "text/markdown": {
+                "schema": {
+                  "type": "string",
+                  "description": "Markdown representation of the screenshot information"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "domain": {
+                      "type": "string",
+                      "description": "The requested domain"
+                    },
+                    "date": {
+                      "type": "string",
+                      "description": "The date of the screenshot in YYYY-MM format"
+                    },
+                    "screenshot_url": {
+                      "type": "string",
+                      "description": "URL to the screenshot image"
+                    },
+                    "size": {
+                      "type": "integer",
+                      "description": "Size of the screenshot"
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "description": "When the screenshot was taken"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Domain not found or screenshot not available for the specified date"
+          },
+          "429": {
+            "description": "Rate limit exceeded (1,000 requests per day without API key)"
+          }
+        },
+        "tags": [
+          "Screenshots"
+        ]
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Screenshots",
+      "description": "Operations for retrieving website homepage screenshots"
+    }
+  ],
+  "externalDocs": {
+    "description": "Homepage Screenshot API Documentation",
+    "url": "https://screenshotof.com"
+  }
+}

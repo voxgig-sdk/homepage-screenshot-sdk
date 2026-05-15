@@ -1,0 +1,104 @@
+# Entity: get_screenshot_by_domain_and_date
+
+main: kit: entity: get_screenshot_by_domain_and_date: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "date"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "domain"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "screenshot_url"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "size"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "timestamp"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "get_screenshot_by_domain_and_date"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "2026-02"
+                kind: "param"
+                name: "date"
+                orig: "date"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "bbc.co.uk"
+                kind: "param"
+                name: "domain"
+                orig: "domain"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "png"
+                kind: "query"
+                name: "f"
+                orig: "f"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: 2048
+                kind: "query"
+                name: "s"
+                orig: "s"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/{domain}/{date}"
+          parts: [
+            "{domain}"
+            "{date}"
+          ]
+          select: {
+            exist: [
+              "date"
+              "domain"
+              "f"
+              "s"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

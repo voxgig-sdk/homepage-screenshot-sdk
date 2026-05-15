@@ -1,0 +1,21 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 2
+  metrics: count: path: 2
+  metrics: count: method: 2
+
+  entity: get_screenshot_by_domain: {
+    path: "/{domain}": {
+      rename: param: "domain": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: get_screenshot_by_domain_and_date: {
+    path: "/{domain}/{date}": {
+      op: load: method: *GET
+    }
+  }
+
+}

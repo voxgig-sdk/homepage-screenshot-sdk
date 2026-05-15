@@ -1,0 +1,94 @@
+# Entity: get_screenshot_by_domain
+
+main: kit: entity: get_screenshot_by_domain: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "domain"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "screenshot_url"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "size"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "timestamp"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "get_screenshot_by_domain"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "bbc.co.uk"
+                kind: "param"
+                name: "id"
+                orig: "domain"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "png"
+                kind: "query"
+                name: "f"
+                orig: "f"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: 2048
+                kind: "query"
+                name: "s"
+                orig: "s"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/{domain}"
+          parts: [
+            "{id}"
+          ]
+          rename: {
+            param: {
+              domain: "id"
+            }
+          }
+          select: {
+            exist: [
+              "f"
+              "id"
+              "s"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

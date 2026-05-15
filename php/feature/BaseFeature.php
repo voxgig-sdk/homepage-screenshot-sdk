@@ -1,0 +1,37 @@
+<?php
+declare(strict_types=1);
+
+// HomepageScreenshot SDK base feature
+
+class HomepageScreenshotBaseFeature
+{
+    public string $version;
+    public string $name;
+    public bool $active;
+
+    public function __construct()
+    {
+        $this->version = '0.0.1';
+        $this->name = 'base';
+        $this->active = true;
+    }
+
+    public function get_version(): string { return $this->version; }
+    public function get_name(): string { return $this->name; }
+    public function get_active(): bool { return $this->active; }
+
+    public function init(HomepageScreenshotContext $ctx, array $options): void {}
+    public function PostConstruct(HomepageScreenshotContext $ctx): void {}
+    public function PostConstructEntity(HomepageScreenshotContext $ctx): void {}
+    public function SetData(HomepageScreenshotContext $ctx): void {}
+    public function GetData(HomepageScreenshotContext $ctx): void {}
+    public function GetMatch(HomepageScreenshotContext $ctx): void {}
+    public function SetMatch(HomepageScreenshotContext $ctx): void {}
+    public function PrePoint(HomepageScreenshotContext $ctx): void {}
+    public function PreSpec(HomepageScreenshotContext $ctx): void {}
+    public function PreRequest(HomepageScreenshotContext $ctx): void {}
+    public function PreResponse(HomepageScreenshotContext $ctx): void {}
+    public function PreResult(HomepageScreenshotContext $ctx): void {}
+    public function PreDone(HomepageScreenshotContext $ctx): void {}
+    public function PreUnexpected(HomepageScreenshotContext $ctx): void {}
+}

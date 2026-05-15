@@ -1,0 +1,38 @@
+{
+  "existing": {
+    "get_screenshot_by_domain_and_date": {
+      "GET_SCREENSHOT_BY_DOMAIN_AND_DATE00": {
+        "date": "s32",
+        "domain": "s33",
+        "screenshot_url": "s34",
+        "size": "s35",
+        "timestamp": "s36"
+      },
+      "GET_SCREENSHOT_BY_DOMAIN_AND_DATE01": {
+        "date": "s64",
+        "domain": "s65",
+        "screenshot_url": "s66",
+        "size": "s67",
+        "timestamp": "s68"
+      },
+      "GET_SCREENSHOT_BY_DOMAIN_AND_DATE02": {
+        "date": "s96",
+        "domain": "s97",
+        "screenshot_url": "s98",
+        "size": "s99",
+        "timestamp": "s9a"
+      }
+    }
+  },
+  "new": {
+    "get_screenshot_by_domain_and_date": {
+      "get_screenshot_by_domain_and_date_ref01": {
+        "date": "sc8",
+        "domain": "sc9",
+        "screenshot_url": "sca",
+        "size": "scb",
+        "timestamp": "scc"
+      }
+    }
+  }
+}
