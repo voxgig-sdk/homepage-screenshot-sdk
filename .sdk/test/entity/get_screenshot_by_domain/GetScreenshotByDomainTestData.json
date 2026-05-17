@@ -5,19 +5,22 @@
         "domain": "s28",
         "screenshot_url": "s29",
         "size": "s2a",
-        "timestamp": "s2b"
+        "timestamp": "s2b",
+        "id": "GET_SCREENSHOT_BY_DOMAIN00"
       },
       "GET_SCREENSHOT_BY_DOMAIN01": {
         "domain": "s50",
         "screenshot_url": "s51",
         "size": "s52",
-        "timestamp": "s53"
+        "timestamp": "s53",
+        "id": "GET_SCREENSHOT_BY_DOMAIN01"
       },
       "GET_SCREENSHOT_BY_DOMAIN02": {
         "domain": "s78",
         "screenshot_url": "s79",
         "size": "s7a",
-        "timestamp": "s7b"
+        "timestamp": "s7b",
+        "id": "GET_SCREENSHOT_BY_DOMAIN02"
       }
     }
   },

@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/homepage-screenshot-sdk"
-	"github.com/voxgig-sdk/homepage-screenshot-sdk/core"
+	sdk "github.com/voxgig-sdk/homepage-screenshot-sdk/go"
+	"github.com/voxgig-sdk/homepage-screenshot-sdk/go/core"
 )
 
 func TestGetScreenshotByDomainAndDateDirect(t *testing.T) {

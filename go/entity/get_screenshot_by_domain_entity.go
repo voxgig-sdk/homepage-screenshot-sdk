@@ -1,9 +1,9 @@
 package entity
 
 import (
-	"github.com/voxgig-sdk/homepage-screenshot-sdk/core"
+	"github.com/voxgig-sdk/homepage-screenshot-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/homepage-screenshot-sdk/go/utility/struct"
 )
 
 type GetScreenshotByDomainEntity struct {

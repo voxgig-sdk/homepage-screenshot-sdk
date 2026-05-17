@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/homepage-screenshot-sdk"
-	"github.com/voxgig-sdk/homepage-screenshot-sdk/core"
+	sdk "github.com/voxgig-sdk/homepage-screenshot-sdk/go"
+	"github.com/voxgig-sdk/homepage-screenshot-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/homepage-screenshot-sdk/go/utility/struct"
 )
 
 func TestGetScreenshotByDomainEntity(t *testing.T) {
