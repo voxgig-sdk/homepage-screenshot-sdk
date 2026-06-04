@@ -111,7 +111,6 @@ function basicSetup(extra?: any) {
     'HOMEPAGE_SCREENSHOT_TEST_GET_SCREENSHOT_BY_DOMAIN_ENTID': idmap,
     'HOMEPAGE_SCREENSHOT_TEST_LIVE': 'FALSE',
     'HOMEPAGE_SCREENSHOT_TEST_EXPLAIN': 'FALSE',
-    'HOMEPAGE_SCREENSHOT_APIKEY': 'NONE',
   })
 
   idmap = env['HOMEPAGE_SCREENSHOT_TEST_GET_SCREENSHOT_BY_DOMAIN_ENTID']
@@ -121,7 +120,6 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new HomepageScreenshotSDK(merge([
       {
-        apikey: env.HOMEPAGE_SCREENSHOT_APIKEY,
       },
       extra
     ]))

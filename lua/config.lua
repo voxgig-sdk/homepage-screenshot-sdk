@@ -14,9 +14,6 @@ local function make_config()
     },
     options = {
       base = "https://screenshotof.com",
-      auth = {
-        prefix = "Bearer",
-      },
       headers = {
         ["content-type"] = "application/json",
       },

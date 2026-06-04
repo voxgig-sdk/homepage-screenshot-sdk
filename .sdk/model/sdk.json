@@ -17,7 +17,18 @@
         ],
         "termsOfService": "https://screenshotof.com",
         "title": "Homepage Screenshot API",
-        "version": "0.2"
+        "version": "0.2",
+        "tagline": "Capture homepage screenshots and favicons for any domain, with monthly historical snapshots back to January 2024",
+        "homepage": "https://screenshotof.com",
+        "docs_url": "https://screenshotof.com",
+        "license_short": "Free for up to 1,000 requests per day; no API key required.",
+        "license_md": "- Free tier: up to 1,000 requests per day without an API key\n- Higher limits available by contacting support@urlbox.com\n- No explicit licence terms are published; use is governed by the operator's standard terms\n- Powered by Urlbox as a byproduct of their screenshot infrastructure",
+        "about_md": "Homepage Screenshot API is a free public endpoint provided by [screenshotof.com](https://screenshotof.com), powered by [Urlbox](https://urlbox.com). It captures and serves homepage screenshots and favicons for arbitrary domains, and maintains an archive of monthly snapshots dating back to January 2024 for over a million popular sites.\n\nWhat you get from the API:\n\n- Current homepage screenshots in PNG, with optional sizes of 128, 256, 512 or 2048 pixels (`s` query parameter)\n- Historical snapshots addressable by month (`YYYY-MM`)\n- Alternative response formats via the `f` parameter: `png` (default), `json` (metadata), or `md` (extracted markdown content)\n- Favicons and site icons at multiple resolutions (`/icon/`, `/icon-lg/`, `/icon-best/`)\n\nThe API is unauthenticated, CORS-enabled, and aimed at web monitoring, link previews, directory listings, and similar lightweight integrations. Default request quota is 1,000/day; contact support@urlbox.com for higher limits.",
+        "entity_desc": {
+          "get_screenshot_by_domain": "Returns the most recent screenshot (or JSON metadata / markdown) for a given domain via `GET /{domain}`, with optional `s` size and `f` format query parameters.",
+          "get_screenshot_by_domain_and_date": "Returns the archived monthly snapshot for a given domain and `YYYY-MM` date via `GET /{domain}/{date}`, useful for historical comparisons back to January 2024."
+        },
+        "auth": false
       },
       "config": {
         "auth": {
@@ -25,7 +36,15 @@
         },
         "headers": {
           "content-type": "application/json"
-        }
+        },
+        "docs_order": [
+          "ts",
+          "py",
+          "php",
+          "go",
+          "rb",
+          "lua"
+        ]
       },
       "entity": {
         "get_screenshot_by_domain": {

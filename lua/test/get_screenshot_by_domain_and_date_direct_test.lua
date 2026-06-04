@@ -72,14 +72,12 @@ function get_screenshot_by_domain_and_date_direct_setup(mockres)
   local env = runner.env_override({
     ["HOMEPAGESCREENSHOT_TEST_GET_SCREENSHOT_BY_DOMAIN_AND_DATE_ENTID"] = {},
     ["HOMEPAGESCREENSHOT_TEST_LIVE"] = "FALSE",
-    ["HOMEPAGESCREENSHOT_APIKEY"] = "NONE",
   })
 
   local live = env["HOMEPAGESCREENSHOT_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
-      apikey = env["HOMEPAGESCREENSHOT_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

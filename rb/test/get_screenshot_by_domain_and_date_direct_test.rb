@@ -71,14 +71,12 @@ def get_screenshot_by_domain_and_date_direct_setup(mockres)
   env = Runner.env_override({
     "HOMEPAGESCREENSHOT_TEST_GET_SCREENSHOT_BY_DOMAIN_AND_DATE_ENTID" => {},
     "HOMEPAGESCREENSHOT_TEST_LIVE" => "FALSE",
-    "HOMEPAGESCREENSHOT_APIKEY" => "NONE",
   })
 
   live = env["HOMEPAGESCREENSHOT_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
-      "apikey" => env["HOMEPAGESCREENSHOT_APIKEY"],
     }
     client = HomepageScreenshotSDK.new(merged_opts)
     return {

@@ -110,14 +110,12 @@ func get_screenshot_by_domainDirectSetup(mockres any) *get_screenshot_by_domainD
 	env := envOverride(map[string]any{
 		"HOMEPAGESCREENSHOT_TEST_GET_SCREENSHOT_BY_DOMAIN_ENTID": map[string]any{},
 		"HOMEPAGESCREENSHOT_TEST_LIVE":    "FALSE",
-		"HOMEPAGESCREENSHOT_APIKEY":       "NONE",
 	})
 
 	live := env["HOMEPAGESCREENSHOT_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["HOMEPAGESCREENSHOT_APIKEY"],
 		}
 		client := sdk.NewHomepageScreenshotSDK(mergedOpts)
 
