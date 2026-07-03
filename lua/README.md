@@ -10,7 +10,7 @@ The Lua SDK for the HomepageScreenshot API — an entity-oriented client using L
 
 ## Install
 ```bash
-luarocks install homepage-screenshot-sdk
+luarocks install voxgig-sdk-homepage-screenshot
 ```
 
 If the module is not yet published, add the source directory to

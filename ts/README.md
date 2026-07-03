@@ -10,7 +10,7 @@ The TypeScript SDK for the HomepageScreenshot API — a type-safe, entity-orient
 
 ## Install
 ```bash
-npm install homepage-screenshot
+npm install @voxgig-sdk/homepage-screenshot
 ```
 ## Tutorial: your first API call
 

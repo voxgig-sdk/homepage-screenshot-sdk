@@ -10,7 +10,7 @@ The PHP SDK for the HomepageScreenshot API — an entity-oriented client using P
 
 ## Install
 ```bash
-composer require voxgig/homepage-screenshot-sdk
+composer require voxgig-sdk/homepage-screenshot
 ```
 
 

@@ -2,9 +2,17 @@ Gem::Specification.new do |spec|
   spec.name          = "voxgig-sdk-homepage-screenshot"
   spec.version       = "0.0.1"
   spec.authors       = ["Voxgig"]
-  spec.summary       = "HomepageScreenshot SDK for Ruby"
+  spec.summary       = "Unofficial generated Ruby SDK for the Homepage Screenshot public API. Not affiliated with or endorsed by the upstream API provider."
+  spec.description   = "Unofficial generated Ruby SDK for the Homepage Screenshot public API. Not affiliated with or endorsed by the upstream API provider."
   spec.license       = "MIT"
   spec.homepage      = "https://github.com/voxgig-sdk/homepage-screenshot-sdk"
+  spec.metadata      = {
+    "homepage_uri"          => "https://github.com/voxgig-sdk/homepage-screenshot-sdk",
+    "source_code_uri"       => "https://github.com/voxgig-sdk/homepage-screenshot-sdk",
+    "bug_tracker_uri"       => "https://github.com/voxgig-sdk/homepage-screenshot-sdk/issues",
+    "changelog_uri"         => "https://github.com/voxgig-sdk/homepage-screenshot-sdk/blob/main/CHANGELOG.md",
+    "rubygems_mfa_required" => "true"
+  }
 
   spec.files         = Dir["lib/**/*.rb", "*.rb"]
   spec.require_paths = ["."]

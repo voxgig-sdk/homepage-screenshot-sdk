@@ -10,13 +10,13 @@ The Ruby SDK for the HomepageScreenshot API — an entity-oriented client using 
 
 ## Install
 ```bash
-gem install homepage-screenshot-sdk
+gem install voxgig-sdk-homepage-screenshot
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "homepage-screenshot-sdk"
+gem "voxgig-sdk-homepage-screenshot"
 ```
 
 Then run:

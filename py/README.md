@@ -10,7 +10,7 @@ The Python SDK for the HomepageScreenshot API — an entity-oriented client foll
 
 ## Install
 ```bash
-pip install homepage-screenshot-sdk
+pip install voxgig-sdk-homepage-screenshot
 ```
 
 Or install from source:
