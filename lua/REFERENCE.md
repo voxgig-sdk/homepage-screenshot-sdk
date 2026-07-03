@@ -30,12 +30,12 @@ Create a new SDK client instance.
 
 ### Static Methods
 
-#### `sdk.test(testopts, sdkopts)`
+#### `sdk.test(testopts?, sdkopts?)`
 
-Create a test client with mock features active. Both arguments may be `nil`.
+Create a test client with mock features active. Both arguments are optional.
 
 ```lua
-local client = sdk.test(nil, nil)
+local client = sdk.test()
 ```
 
 
@@ -107,7 +107,7 @@ local get_screenshot_by_domain = client:GetScreenshotByDomain(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:GetScreenshotByDomain(nil):load({ id = "get_screenshot_by_domain_id" }, nil)
+local result, err = client:GetScreenshotByDomain():load({ id = "get_screenshot_by_domain_id" })
 ```
 
 ### Common Methods
@@ -163,7 +163,7 @@ local get_screenshot_by_domain_and_date = client:GetScreenshotByDomainAndDate(ni
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:GetScreenshotByDomainAndDate(nil):load({ id = "get_screenshot_by_domain_and_date_id" }, nil)
+local result, err = client:GetScreenshotByDomainAndDate():load({ id = "get_screenshot_by_domain_and_date_id" })
 ```
 
 ### Common Methods

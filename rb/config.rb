@@ -15,6 +15,9 @@ module HomepageScreenshotConfig
       },
       "options" => {
         "base" => "https://screenshotof.com",
+        "auth" => {
+          "prefix" => "Bearer",
+        },
         "headers" => {
           "content-type" => "application/json",
         },
@@ -27,70 +30,72 @@ module HomepageScreenshotConfig
         "get_screenshot_by_domain" => {
           "fields" => [
             {
+              "active" => true,
               "name" => "domain",
               "req" => false,
               "type" => "`$STRING`",
-              "active" => true,
               "index$" => 0,
             },
             {
+              "active" => true,
               "name" => "screenshot_url",
               "req" => false,
               "type" => "`$STRING`",
-              "active" => true,
               "index$" => 1,
             },
             {
+              "active" => true,
               "name" => "size",
               "req" => false,
               "type" => "`$INTEGER`",
-              "active" => true,
               "index$" => 2,
             },
             {
+              "active" => true,
               "name" => "timestamp",
               "req" => false,
               "type" => "`$STRING`",
-              "active" => true,
               "index$" => 3,
             },
           ],
           "name" => "get_screenshot_by_domain",
           "op" => {
             "load" => {
+              "input" => "data",
               "name" => "load",
               "points" => [
                 {
+                  "active" => true,
                   "args" => {
                     "params" => [
                       {
+                        "active" => true,
                         "example" => "bbc.co.uk",
                         "kind" => "param",
                         "name" => "id",
                         "orig" => "domain",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "active" => true,
                       },
                     ],
                     "query" => [
                       {
+                        "active" => true,
                         "example" => "png",
                         "kind" => "query",
                         "name" => "f",
                         "orig" => "f",
                         "reqd" => false,
                         "type" => "`$STRING`",
-                        "active" => true,
                       },
                       {
+                        "active" => true,
                         "example" => 2048,
                         "kind" => "query",
                         "name" => "s",
                         "orig" => "s",
                         "reqd" => false,
                         "type" => "`$INTEGER`",
-                        "active" => true,
                       },
                     ],
                   },
@@ -115,11 +120,9 @@ module HomepageScreenshotConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "active" => true,
                   "index$" => 0,
                 },
               ],
-              "input" => "data",
               "key$" => "load",
             },
           },
@@ -130,86 +133,88 @@ module HomepageScreenshotConfig
         "get_screenshot_by_domain_and_date" => {
           "fields" => [
             {
+              "active" => true,
               "name" => "date",
               "req" => false,
               "type" => "`$STRING`",
-              "active" => true,
               "index$" => 0,
             },
             {
+              "active" => true,
               "name" => "domain",
               "req" => false,
               "type" => "`$STRING`",
-              "active" => true,
               "index$" => 1,
             },
             {
+              "active" => true,
               "name" => "screenshot_url",
               "req" => false,
               "type" => "`$STRING`",
-              "active" => true,
               "index$" => 2,
             },
             {
+              "active" => true,
               "name" => "size",
               "req" => false,
               "type" => "`$INTEGER`",
-              "active" => true,
               "index$" => 3,
             },
             {
+              "active" => true,
               "name" => "timestamp",
               "req" => false,
               "type" => "`$STRING`",
-              "active" => true,
               "index$" => 4,
             },
           ],
           "name" => "get_screenshot_by_domain_and_date",
           "op" => {
             "load" => {
+              "input" => "data",
               "name" => "load",
               "points" => [
                 {
+                  "active" => true,
                   "args" => {
                     "params" => [
                       {
+                        "active" => true,
                         "example" => "2026-02",
                         "kind" => "param",
                         "name" => "date",
                         "orig" => "date",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "active" => true,
                       },
                       {
+                        "active" => true,
                         "example" => "bbc.co.uk",
                         "kind" => "param",
                         "name" => "domain",
                         "orig" => "domain",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "active" => true,
                       },
                     ],
                     "query" => [
                       {
+                        "active" => true,
                         "example" => "png",
                         "kind" => "query",
                         "name" => "f",
                         "orig" => "f",
                         "reqd" => false,
                         "type" => "`$STRING`",
-                        "active" => true,
                       },
                       {
+                        "active" => true,
                         "example" => 2048,
                         "kind" => "query",
                         "name" => "s",
                         "orig" => "s",
                         "reqd" => false,
                         "type" => "`$INTEGER`",
-                        "active" => true,
                       },
                     ],
                   },
@@ -231,11 +236,9 @@ module HomepageScreenshotConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "active" => true,
                   "index$" => 0,
                 },
               ],
-              "input" => "data",
               "key$" => "load",
             },
           },

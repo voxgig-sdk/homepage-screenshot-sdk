@@ -1,21 +1,8 @@
 # HomepageScreenshot SDK
 
-Capture homepage screenshots and favicons for any domain, with monthly historical snapshots back to January 2024
+Homepage Screenshot API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Homepage Screenshot API
-
-Homepage Screenshot API is a free public endpoint provided by [screenshotof.com](https://screenshotof.com), powered by [Urlbox](https://urlbox.com). It captures and serves homepage screenshots and favicons for arbitrary domains, and maintains an archive of monthly snapshots dating back to January 2024 for over a million popular sites.
-
-What you get from the API:
-
-- Current homepage screenshots in PNG, with optional sizes of 128, 256, 512 or 2048 pixels (`s` query parameter)
-- Historical snapshots addressable by month (`YYYY-MM`)
-- Alternative response formats via the `f` parameter: `png` (default), `json` (metadata), or `md` (extracted markdown content)
-- Favicons and site icons at multiple resolutions (`/icon/`, `/icon-lg/`, `/icon-best/`)
-
-The API is unauthenticated, CORS-enabled, and aimed at web monitoring, link previews, directory listings, and similar lightweight integrations. Default request quota is 1,000/day; contact support@urlbox.com for higher limits.
 
 ## Try it
 
@@ -49,27 +36,31 @@ gem install homepage-screenshot-sdk
 luarocks install homepage-screenshot-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { HomepageScreenshotSDK } from 'homepage-screenshot'
 
-const client = new HomepageScreenshotSDK({})
+const client = new HomepageScreenshotSDK({
+  apikey: process.env.HOMEPAGE-SCREENSHOT_APIKEY,
+})
 
+// Load getscreenshotbydomain data
+const getscreenshotbydomain = await client.GetScreenshotByDomain().load({})
+console.log(getscreenshotbydomain.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -99,8 +90,8 @@ The API exposes 2 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **GetScreenshotByDomain** | Returns the most recent screenshot (or JSON metadata / markdown) for a given domain via `GET /{domain}`, with optional `s` size and `f` format query parameters. | `/{domain}` |
-| **GetScreenshotByDomainAndDate** | Returns the archived monthly snapshot for a given domain and `YYYY-MM` date via `GET /{domain}/{date}`, useful for historical comparisons back to January 2024. | `/{domain}/{date}` |
+| **GetScreenshotByDomain** |  | `/{domain}` |
+| **GetScreenshotByDomainAndDate** |  | `/{domain}/{date}` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -110,15 +101,17 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from homepagescreenshot_sdk import HomepageScreenshotSDK
 
-client = HomepageScreenshotSDK({})
+client = HomepageScreenshotSDK({
+    "apikey": os.environ.get("HOMEPAGE-SCREENSHOT_APIKEY"),
+})
 
 
 # Load a specific getscreenshotbydomain
-getscreenshotbydomain, err = client.GetScreenshotByDomain(None).load(
-    {"id": "example_id"}, None
-)
+getscreenshotbydomain, err = client.GetScreenshotByDomain().load({"id": "example_id"})
+print(getscreenshotbydomain)
 ```
 
 ### PHP
@@ -127,13 +120,14 @@ getscreenshotbydomain, err = client.GetScreenshotByDomain(None).load(
 <?php
 require_once 'homepagescreenshot_sdk.php';
 
-$client = new HomepageScreenshotSDK([]);
+$client = new HomepageScreenshotSDK([
+    "apikey" => getenv("HOMEPAGE-SCREENSHOT_APIKEY"),
+]);
 
 
 // Load a specific getscreenshotbydomain
-[$getscreenshotbydomain, $err] = $client->GetScreenshotByDomain(null)->load(
-    ["id" => "example_id"], null
-);
+[$getscreenshotbydomain, $err] = $client->GetScreenshotByDomain()->load(["id" => "example_id"]);
+print_r($getscreenshotbydomain);
 ```
 
 ### Golang
@@ -141,8 +135,13 @@ $client = new HomepageScreenshotSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/homepage-screenshot-sdk/go"
 
-client := sdk.NewHomepageScreenshotSDK(map[string]any{})
+client := sdk.NewHomepageScreenshotSDK(map[string]any{
+    "apikey": os.Getenv("HOMEPAGE-SCREENSHOT_APIKEY"),
+})
 
+// Load getscreenshotbydomain data
+getscreenshotbydomain, err := client.GetScreenshotByDomain(nil).Load(map[string]any{}, nil)
+fmt.Println(getscreenshotbydomain)
 ```
 
 ### Ruby
@@ -150,13 +149,14 @@ client := sdk.NewHomepageScreenshotSDK(map[string]any{})
 ```ruby
 require_relative "HomepageScreenshot_sdk"
 
-client = HomepageScreenshotSDK.new({})
+client = HomepageScreenshotSDK.new({
+  "apikey" => ENV["HOMEPAGE-SCREENSHOT_APIKEY"],
+})
 
 
 # Load a specific getscreenshotbydomain
-getscreenshotbydomain, err = client.GetScreenshotByDomain(nil).load(
-  { "id" => "example_id" }, nil
-)
+getscreenshotbydomain, err = client.GetScreenshotByDomain().load({ "id" => "example_id" })
+puts getscreenshotbydomain
 ```
 
 ### Lua
@@ -164,13 +164,14 @@ getscreenshotbydomain, err = client.GetScreenshotByDomain(nil).load(
 ```lua
 local sdk = require("homepage-screenshot_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("HOMEPAGE-SCREENSHOT_APIKEY"),
+})
 
 
 -- Load a specific getscreenshotbydomain
-local getscreenshotbydomain, err = client:GetScreenshotByDomain(nil):load(
-  { id = "example_id" }, nil
-)
+local getscreenshotbydomain, err = client:GetScreenshotByDomain():load({ id = "example_id" })
+print(getscreenshotbydomain)
 ```
 
 ## Unit testing in offline mode
@@ -189,25 +190,21 @@ const result = await client.GetScreenshotByDomain().load({ id: 'test01' })
 ### Python
 
 ```python
-client = HomepageScreenshotSDK.test(None, None)
-result, err = client.GetScreenshotByDomain(None).load(
-    {"id": "test01"}, None
-)
+client = HomepageScreenshotSDK.test()
+result, err = client.GetScreenshotByDomain().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = HomepageScreenshotSDK::test(null, null);
-[$result, $err] = $client->GetScreenshotByDomain(null)->load(
-    ["id" => "test01"], null
-);
+$client = HomepageScreenshotSDK::test();
+[$result, $err] = $client->GetScreenshotByDomain()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.GetScreenshotByDomain(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -216,19 +213,15 @@ result, err := client.GetScreenshotByDomain(nil).Load(
 ### Ruby
 
 ```ruby
-client = HomepageScreenshotSDK.test(nil, nil)
-result, err = client.GetScreenshotByDomain(nil).load(
-  { "id" => "test01" }, nil
-)
+client = HomepageScreenshotSDK.test
+result, err = client.GetScreenshotByDomain().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:GetScreenshotByDomain(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:GetScreenshotByDomain():load({ id = "test01" })
 ```
 
 ## How it works
@@ -332,15 +325,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Homepage Screenshot API
-
-- Upstream: [https://screenshotof.com](https://screenshotof.com)
-
-- Free tier: up to 1,000 requests per day without an API key
-- Higher limits available by contacting support@urlbox.com
-- No explicit licence terms are published; use is governed by the operator's standard terms
-- Powered by Urlbox as a byproduct of their screenshot infrastructure
 
 ---
 

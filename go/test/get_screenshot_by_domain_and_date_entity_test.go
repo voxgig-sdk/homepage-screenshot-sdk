@@ -117,6 +117,7 @@ func get_screenshot_by_domain_and_dateBasicSetup(extra map[string]any) *entityTe
 		"HOMEPAGESCREENSHOT_TEST_GET_SCREENSHOT_BY_DOMAIN_AND_DATE_ENTID": idmap,
 		"HOMEPAGESCREENSHOT_TEST_LIVE":      "FALSE",
 		"HOMEPAGESCREENSHOT_TEST_EXPLAIN":   "FALSE",
+		"HOMEPAGESCREENSHOT_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["HOMEPAGESCREENSHOT_TEST_GET_SCREENSHOT_BY_DOMAIN_AND_DATE_ENTID"])
@@ -127,6 +128,7 @@ func get_screenshot_by_domain_and_dateBasicSetup(extra map[string]any) *entityTe
 	if env["HOMEPAGESCREENSHOT_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
+				"apikey": env["HOMEPAGESCREENSHOT_APIKEY"],
 			},
 			extra,
 		})

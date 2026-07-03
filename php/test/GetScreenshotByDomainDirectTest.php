@@ -75,12 +75,14 @@ function get_screenshot_by_domain_direct_setup($mockres)
     $env = Runner::env_override([
         "HOMEPAGESCREENSHOT_TEST_GET_SCREENSHOT_BY_DOMAIN_ENTID" => [],
         "HOMEPAGESCREENSHOT_TEST_LIVE" => "FALSE",
+        "HOMEPAGESCREENSHOT_APIKEY" => "NONE",
     ]);
 
     $live = $env["HOMEPAGESCREENSHOT_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
+            "apikey" => $env["HOMEPAGESCREENSHOT_APIKEY"],
         ];
         $client = new HomepageScreenshotSDK($merged_opts);
         return [

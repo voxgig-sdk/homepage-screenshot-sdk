@@ -1,41 +1,13 @@
 {
-  "name": "homepage-screenshot",
-  "origin": "voxgig-sdk",
   "def": "homepage-screenshot_0.1.0.json",
   "main": {
+    "def": {
+      "desc": ""
+    },
     "kit": {
-      "info": {
-        "contact": {
-          "email": "support@urlbox.com"
-        },
-        "description": "This API provides fast and efficient screenshots of specified web pages. Users can request screenshots for various dates, sizes, and formats, making it ideal for web monitoring and analysis. Screenshots of homepages not in the top ~1 million websites will be generated on demand and may take a few seconds. Free tier allows up to 1,000 requests per day without an API key.",
-        "servers": [
-          {
-            "description": "Production server",
-            "url": "https://screenshotof.com"
-          }
-        ],
-        "termsOfService": "https://screenshotof.com",
-        "title": "Homepage Screenshot API",
-        "version": "0.2",
-        "tagline": "Capture homepage screenshots and favicons for any domain, with monthly historical snapshots back to January 2024",
-        "homepage": "https://screenshotof.com",
-        "docs_url": "https://screenshotof.com",
-        "license_short": "Free for up to 1,000 requests per day; no API key required.",
-        "license_md": "- Free tier: up to 1,000 requests per day without an API key\n- Higher limits available by contacting support@urlbox.com\n- No explicit licence terms are published; use is governed by the operator's standard terms\n- Powered by Urlbox as a byproduct of their screenshot infrastructure",
-        "about_md": "Homepage Screenshot API is a free public endpoint provided by [screenshotof.com](https://screenshotof.com), powered by [Urlbox](https://urlbox.com). It captures and serves homepage screenshots and favicons for arbitrary domains, and maintains an archive of monthly snapshots dating back to January 2024 for over a million popular sites.\n\nWhat you get from the API:\n\n- Current homepage screenshots in PNG, with optional sizes of 128, 256, 512 or 2048 pixels (`s` query parameter)\n- Historical snapshots addressable by month (`YYYY-MM`)\n- Alternative response formats via the `f` parameter: `png` (default), `json` (metadata), or `md` (extracted markdown content)\n- Favicons and site icons at multiple resolutions (`/icon/`, `/icon-lg/`, `/icon-best/`)\n\nThe API is unauthenticated, CORS-enabled, and aimed at web monitoring, link previews, directory listings, and similar lightweight integrations. Default request quota is 1,000/day; contact support@urlbox.com for higher limits.",
-        "entity_desc": {
-          "get_screenshot_by_domain": "Returns the most recent screenshot (or JSON metadata / markdown) for a given domain via `GET /{domain}`, with optional `s` size and `f` format query parameters.",
-          "get_screenshot_by_domain_and_date": "Returns the archived monthly snapshot for a given domain and `YYYY-MM` date via `GET /{domain}/{date}`, useful for historical comparisons back to January 2024."
-        },
-        "auth": false
-      },
       "config": {
         "auth": {
           "prefix": "Bearer"
-        },
-        "headers": {
-          "content-type": "application/json"
         },
         "docs_order": [
           "ts",
@@ -44,75 +16,81 @@
           "go",
           "rb",
           "lua"
-        ]
+        ],
+        "headers": {
+          "content-type": "application/json"
+        }
       },
       "entity": {
         "get_screenshot_by_domain": {
+          "active": true,
           "alias": {
             "field": {}
           },
           "fields": [
             {
+              "active": true,
               "name": "domain",
               "req": false,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             },
             {
+              "active": true,
               "name": "screenshot_url",
               "req": false,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             },
             {
+              "active": true,
               "name": "size",
               "req": false,
-              "type": "`$INTEGER`",
-              "active": true
+              "type": "`$INTEGER`"
             },
             {
+              "active": true,
               "name": "timestamp",
               "req": false,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             }
           ],
           "name": "get_screenshot_by_domain",
           "op": {
             "load": {
+              "input": "data",
               "name": "load",
               "points": [
                 {
+                  "active": true,
                   "args": {
                     "params": [
                       {
+                        "active": true,
                         "example": "bbc.co.uk",
                         "kind": "param",
                         "name": "id",
                         "orig": "domain",
                         "reqd": true,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       }
                     ],
                     "query": [
                       {
+                        "active": true,
                         "example": "png",
                         "kind": "query",
                         "name": "f",
                         "orig": "f",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "example": 2048,
                         "kind": "query",
                         "name": "s",
                         "orig": "s",
                         "reqd": false,
-                        "type": "`$INTEGER`",
-                        "active": true
+                        "type": "`$INTEGER`"
                       }
                     ]
                   },
@@ -136,99 +114,99 @@
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             }
           },
-          "active": true,
           "relations": {
             "ancestors": []
           }
         },
         "get_screenshot_by_domain_and_date": {
+          "active": true,
           "alias": {
             "field": {}
           },
           "fields": [
             {
+              "active": true,
               "name": "date",
               "req": false,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             },
             {
+              "active": true,
               "name": "domain",
               "req": false,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             },
             {
+              "active": true,
               "name": "screenshot_url",
               "req": false,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             },
             {
+              "active": true,
               "name": "size",
               "req": false,
-              "type": "`$INTEGER`",
-              "active": true
+              "type": "`$INTEGER`"
             },
             {
+              "active": true,
               "name": "timestamp",
               "req": false,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             }
           ],
           "name": "get_screenshot_by_domain_and_date",
           "op": {
             "load": {
+              "input": "data",
               "name": "load",
               "points": [
                 {
+                  "active": true,
                   "args": {
                     "params": [
                       {
+                        "active": true,
                         "example": "2026-02",
                         "kind": "param",
                         "name": "date",
                         "orig": "date",
                         "reqd": true,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "example": "bbc.co.uk",
                         "kind": "param",
                         "name": "domain",
                         "orig": "domain",
                         "reqd": true,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       }
                     ],
                     "query": [
                       {
+                        "active": true,
                         "example": "png",
                         "kind": "query",
                         "name": "f",
                         "orig": "f",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "example": 2048,
                         "kind": "query",
                         "name": "s",
                         "orig": "s",
                         "reqd": false,
-                        "type": "`$INTEGER`",
-                        "active": true
+                        "type": "`$INTEGER`"
                       }
                     ]
                   },
@@ -249,14 +227,11 @@
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             }
           },
-          "active": true,
           "relations": {
             "ancestors": []
           }
@@ -264,9 +239,6 @@
       },
       "feature": {
         "test": {
-          "name": "test",
-          "title": "In-memory mock transport for testing without a live server",
-          "version": "0.0.1",
           "active": true,
           "config": {
             "options": {
@@ -274,6 +246,14 @@
             }
           },
           "hook": {
+            "GetData": {
+              "active": true,
+              "await": false
+            },
+            "GetMatch": {
+              "active": true,
+              "await": false
+            },
             "PostConstruct": {
               "active": true,
               "await": false
@@ -282,25 +262,11 @@
               "active": true,
               "await": false
             },
-            "SetData": {
-              "active": true,
-              "await": false
-            },
-            "GetData": {
-              "active": true,
-              "await": false
-            },
-            "SetMatch": {
-              "active": true
-            },
-            "GetMatch": {
-              "active": true,
+            "PostOperation": {
+              "active": false,
               "await": false
             },
             "PrePoint": {
-              "active": true
-            },
-            "PreSpec": {
               "active": true,
               "await": false
             },
@@ -316,20 +282,32 @@
               "active": true,
               "await": false
             },
+            "PreSpec": {
+              "active": true,
+              "await": false
+            },
             "PreTarget": {
               "active": false,
               "await": false
             },
-            "PostOperation": {
-              "active": false,
+            "SetData": {
+              "active": true,
+              "await": false
+            },
+            "SetMatch": {
+              "active": true,
               "await": false
             }
           },
+          "name": "test",
           "target": {
-            "ts": {
+            "go": {
               "deps": {}
             },
-            "go": {
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
               "deps": {}
             },
             "lua": {
@@ -344,22 +322,26 @@
             "rb": {
               "deps": {}
             },
-            "go-cli": {
-              "deps": {}
-            },
-            "go-mcp": {
+            "ts": {
               "deps": {}
             }
-          }
+          },
+          "title": "In-memory mock transport for testing without a live server",
+          "version": "0.0.1"
         }
       },
       "flow": {
         "BasicGetScreenshotByDomainAndDateFlow": {
+          "active": true,
           "entity": "get_screenshot_by_domain_and_date",
+          "key$": "BasicGetScreenshotByDomainAndDateFlow",
           "kind": "basic",
           "name": "BasicGetScreenshotByDomainAndDateFlow",
+          "param": {},
           "step": [
             {
+              "active": true,
+              "data": {},
               "input": {
                 "ref": "get_screenshot_by_domain_and_date_ref01",
                 "srcdatavar": "get_screenshot_by_domain_and_date_ref01_data",
@@ -370,6 +352,7 @@
                 "id": "get_screenshot_by_domain_and_date01"
               },
               "op": "load",
+              "spec": [],
               "valid": [
                 {
                   "apply": "TextFieldMark",
@@ -377,22 +360,21 @@
                     "mark": "Mark01-get_screenshot_by_domain_and_date_ref01"
                   }
                 }
-              ],
-              "active": true,
-              "data": {},
-              "spec": []
+              ]
             }
-          ],
-          "key$": "BasicGetScreenshotByDomainAndDateFlow",
-          "active": true,
-          "param": {}
+          ]
         },
         "BasicGetScreenshotByDomainFlow": {
+          "active": true,
           "entity": "get_screenshot_by_domain",
+          "key$": "BasicGetScreenshotByDomainFlow",
           "kind": "basic",
           "name": "BasicGetScreenshotByDomainFlow",
+          "param": {},
           "step": [
             {
+              "active": true,
+              "data": {},
               "input": {
                 "ref": "get_screenshot_by_domain_ref01",
                 "srcdatavar": "get_screenshot_by_domain_ref01_data",
@@ -402,6 +384,7 @@
                 "id": "get_screenshot_by_domain01"
               },
               "op": "load",
+              "spec": [],
               "valid": [
                 {
                   "apply": "TextFieldMark",
@@ -409,27 +392,53 @@
                     "mark": "Mark01-get_screenshot_by_domain_ref01"
                   }
                 }
-              ],
-              "active": true,
-              "data": {},
-              "spec": []
+              ]
             }
-          ],
-          "key$": "BasicGetScreenshotByDomainFlow",
-          "active": true,
-          "param": {}
+          ]
         }
       },
+      "info": {
+        "contact": {
+          "email": "support@urlbox.com"
+        },
+        "description": "This API provides fast and efficient screenshots of specified web pages. Users can request screenshots for various dates, sizes, and formats, making it ideal for web monitoring and analysis. Screenshots of homepages not in the top ~1 million websites will be generated on demand and may take a few seconds. Free tier allows up to 1,000 requests per day without an API key.",
+        "servers": [
+          {
+            "description": "Production server",
+            "url": "https://screenshotof.com"
+          }
+        ],
+        "termsOfService": "https://screenshotof.com",
+        "title": "Homepage Screenshot API",
+        "version": "0.2"
+      },
+      "option": {},
       "target": {
-        "go-cli": {
-          "title": "Go CLI",
-          "ext": "go",
+        "go": {
+          "active": true,
           "comment": {
             "line": "//"
           },
+          "deps": {},
+          "ext": "go",
           "module": {
             "name": "homepage-screenshot"
           },
+          "name": "go",
+          "srcfeature": false,
+          "title": "Golang"
+        },
+        "go-cli": {
+          "active": true,
+          "comment": {
+            "line": "//"
+          },
+          "deps": {},
+          "ext": "go",
+          "module": {
+            "name": "homepage-screenshot"
+          },
+          "name": "go-cli",
           "phase": {
             "entity": {
               "active": false
@@ -444,19 +453,19 @@
               "active": false
             }
           },
-          "deps": {},
-          "name": "go-cli",
-          "active": true
+          "title": "Go CLI"
         },
         "go-mcp": {
-          "title": "Go MCP server",
-          "ext": "go",
+          "active": true,
           "comment": {
             "line": "//"
           },
+          "deps": {},
+          "ext": "go",
           "module": {
             "name": "homepage-screenshot"
           },
+          "name": "go-mcp",
           "phase": {
             "entity": {
               "active": false
@@ -471,138 +480,120 @@
               "active": false
             }
           },
-          "deps": {},
-          "name": "go-mcp",
-          "active": true
-        },
-        "ts": {
-          "title": "TypeScript",
-          "ext": "ts",
-          "comment": {
-            "line": "//"
-          },
-          "module": {
-            "name": "homepage-screenshot"
-          },
-          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
-          "deps": {
-            "dotenv": {
-              "active": true,
-              "version": "^17.4.2",
-              "kind": "dev"
-            },
-            "typescript": {
-              "active": true,
-              "version": "^5.9.3",
-              "kind": "dev"
-            },
-            "@types/node": {
-              "active": true,
-              "version": "^25.6.0",
-              "kind": "dev"
-            }
-          },
-          "name": "ts",
-          "active": true
-        },
-        "go": {
-          "title": "Golang",
-          "ext": "go",
-          "comment": {
-            "line": "//"
-          },
-          "module": {
-            "name": "homepage-screenshot"
-          },
-          "srcfeature": false,
-          "deps": {},
-          "name": "go",
-          "active": true
+          "title": "Go MCP server"
         },
         "lua": {
-          "title": "Lua",
-          "ext": "lua",
+          "active": true,
           "comment": {
             "line": "--"
           },
-          "module": {
-            "name": "homepage-screenshot"
-          },
-          "srcfeature": false,
           "deps": {
             "dkjson": {
               "active": true,
-              "version": "2.5",
-              "kind": "prod"
+              "kind": "prod",
+              "version": "2.5"
             }
           },
+          "ext": "lua",
+          "module": {
+            "name": "homepage-screenshot"
+          },
           "name": "lua",
-          "active": true
+          "srcfeature": false,
+          "title": "Lua"
         },
         "php": {
-          "title": "PHP",
-          "ext": "php",
+          "active": true,
           "comment": {
             "line": "//"
           },
+          "deps": {},
+          "ext": "php",
           "module": {
             "name": "homepage-screenshot"
           },
-          "srcfeature": false,
-          "deps": {},
           "name": "php",
-          "active": true
+          "srcfeature": false,
+          "title": "PHP"
         },
         "py": {
-          "title": "Python",
-          "ext": "py",
+          "active": true,
           "comment": {
             "line": "#"
           },
-          "module": {
-            "name": "homepage-screenshot"
-          },
-          "srcfeature": false,
           "deps": {
             "requests": {
               "active": true,
-              "version": "2.33",
-              "kind": "prod"
+              "kind": "prod",
+              "version": "2.33"
             }
           },
-          "name": "py",
-          "active": true
-        },
-        "rb": {
-          "title": "Ruby",
-          "ext": "rb",
-          "comment": {
-            "line": "#"
-          },
+          "ext": "py",
           "module": {
             "name": "homepage-screenshot"
           },
+          "name": "py",
           "srcfeature": false,
+          "title": "Python"
+        },
+        "rb": {
+          "active": true,
+          "comment": {
+            "line": "#"
+          },
           "deps": {
-            "voxgig-struct": {
-              "active": true,
-              "version": "0.0.10",
-              "kind": "prod"
-            },
             "json": {
               "active": true,
-              "version": "0",
-              "kind": "prod"
+              "kind": "prod",
+              "version": "0"
+            },
+            "voxgig-struct": {
+              "active": true,
+              "kind": "prod",
+              "version": "0.0.10"
             }
           },
+          "ext": "rb",
+          "module": {
+            "name": "homepage-screenshot"
+          },
           "name": "rb",
-          "active": true
+          "srcfeature": false,
+          "title": "Ruby"
+        },
+        "ts": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "//"
+          },
+          "deps": {
+            "@types/node": {
+              "active": true,
+              "kind": "dev",
+              "version": "^25.6.0"
+            },
+            "dotenv": {
+              "active": true,
+              "kind": "dev",
+              "version": "^17.4.2"
+            },
+            "typescript": {
+              "active": true,
+              "kind": "dev",
+              "version": "^5.9.3"
+            }
+          },
+          "ext": "ts",
+          "module": {
+            "name": "homepage-screenshot"
+          },
+          "name": "ts",
+          "title": "TypeScript"
         }
-      },
-      "option": {}
-    },
-    "def": {
-      "desc": ""
+      }
     }
-  }
+  },
+  "name": "homepage-screenshot",
+  "origin": "voxgig-sdk"
 }

@@ -82,6 +82,7 @@ def get_screenshot_by_domain_basic_setup(extra)
     "HOMEPAGESCREENSHOT_TEST_GET_SCREENSHOT_BY_DOMAIN_ENTID" => idmap,
     "HOMEPAGESCREENSHOT_TEST_LIVE" => "FALSE",
     "HOMEPAGESCREENSHOT_TEST_EXPLAIN" => "FALSE",
+    "HOMEPAGESCREENSHOT_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -93,6 +94,7 @@ def get_screenshot_by_domain_basic_setup(extra)
   if env["HOMEPAGESCREENSHOT_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
+        "apikey" => env["HOMEPAGESCREENSHOT_APIKEY"],
       },
       extra || {},
     ])
