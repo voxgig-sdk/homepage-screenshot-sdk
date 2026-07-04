@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:get_screenshot_by_domain():list() / client:get_screenshot_by_domain():load({ id = ... })
-function HomepageScreenshotSDK:get_screenshot_by_domain(data)
+-- Idiomatic facade: client:GetScreenshotByDomain():list() / client:GetScreenshotByDomain():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function HomepageScreenshotSDK:GetScreenshotByDomain(data)
   local EntityMod = require("entity.get_screenshot_by_domain_entity")
   if data == nil then
     if self._get_screenshot_by_domain == nil then
@@ -256,15 +257,10 @@ function HomepageScreenshotSDK:get_screenshot_by_domain(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:get_screenshot_by_domain() instead.
-function HomepageScreenshotSDK:GetScreenshotByDomain(data)
-  local EntityMod = require("entity.get_screenshot_by_domain_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:get_screenshot_by_domain_and_date():list() / client:get_screenshot_by_domain_and_date():load({ id = ... })
-function HomepageScreenshotSDK:get_screenshot_by_domain_and_date(data)
+-- Idiomatic facade: client:GetScreenshotByDomainAndDate():list() / client:GetScreenshotByDomainAndDate():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function HomepageScreenshotSDK:GetScreenshotByDomainAndDate(data)
   local EntityMod = require("entity.get_screenshot_by_domain_and_date_entity")
   if data == nil then
     if self._get_screenshot_by_domain_and_date == nil then
@@ -272,12 +268,6 @@ function HomepageScreenshotSDK:get_screenshot_by_domain_and_date(data)
     end
     return self._get_screenshot_by_domain_and_date
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:get_screenshot_by_domain_and_date() instead.
-function HomepageScreenshotSDK:GetScreenshotByDomainAndDate(data)
-  local EntityMod = require("entity.get_screenshot_by_domain_and_date_entity")
   return EntityMod.new(self, data)
 end
 

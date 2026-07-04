@@ -87,7 +87,7 @@ same parameters as `direct()`.
 ## GetScreenshotByDomainEntity
 
 ```lua
-local get_screenshot_by_domain = client:get_screenshot_by_domain(nil)
+local get_screenshot_by_domain = client:GetScreenshotByDomain(nil)
 ```
 
 ### Fields
@@ -106,7 +106,7 @@ local get_screenshot_by_domain = client:get_screenshot_by_domain(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:get_screenshot_by_domain():load({ id = "get_screenshot_by_domain_id" })
+local result, err = client:GetScreenshotByDomain():load({ id = "get_screenshot_by_domain_id" })
 ```
 
 ### Common Methods
@@ -142,7 +142,7 @@ Return the entity name.
 ## GetScreenshotByDomainAndDateEntity
 
 ```lua
-local get_screenshot_by_domain_and_date = client:get_screenshot_by_domain_and_date(nil)
+local get_screenshot_by_domain_and_date = client:GetScreenshotByDomainAndDate(nil)
 ```
 
 ### Fields
@@ -162,7 +162,7 @@ local get_screenshot_by_domain_and_date = client:get_screenshot_by_domain_and_da
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:get_screenshot_by_domain_and_date():load({ id = "get_screenshot_by_domain_and_date_id" })
+local result, err = client:GetScreenshotByDomainAndDate():load({ id = "get_screenshot_by_domain_and_date_id" })
 ```
 
 ### Common Methods

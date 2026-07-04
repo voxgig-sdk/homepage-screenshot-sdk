@@ -32,8 +32,9 @@ client = HomepageScreenshotSDK.new
 
 ```ruby
 begin
-  result = client.getscreenshotbydomain.load({ "id" => "example_id" })
-  puts result
+  # load returns the bare GetScreenshotByDomain record (raises on error).
+  getscreenshotbydomain = client.GetScreenshotByDomain.load({ "id" => "example_id" })
+  puts getscreenshotbydomain
 rescue => err
   warn "load failed: #{err}"
 end
@@ -80,13 +81,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = HomepageScreenshotSDK.test
+client = HomepageScreenshotSDK.test({
+  "entity" => { "getscreenshotbydomain" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.getscreenshotbydomain.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+getscreenshotbydomain = client.GetScreenshotByDomain.load({ "id" => "test01" })
+puts getscreenshotbydomain
 ```
 
 ### Use a custom fetch function
@@ -236,7 +241,7 @@ API path: `/{domain}/{date}`
 
 ### GetScreenshotByDomain
 
-Create an instance: `const get_screenshot_by_domain = client.get_screenshot_by_domain`
+Create an instance: `get_screenshot_by_domain = client.GetScreenshotByDomain`
 
 #### Operations
 
@@ -255,14 +260,15 @@ Create an instance: `const get_screenshot_by_domain = client.get_screenshot_by_d
 
 #### Example: Load
 
-```ts
-const get_screenshot_by_domain = await client.get_screenshot_by_domain.load({ id: 'get_screenshot_by_domain_id' })
+```ruby
+# load returns the bare GetScreenshotByDomain record (raises on error).
+get_screenshot_by_domain = client.GetScreenshotByDomain.load({ "id" => "get_screenshot_by_domain_id" })
 ```
 
 
 ### GetScreenshotByDomainAndDate
 
-Create an instance: `const get_screenshot_by_domain_and_date = client.get_screenshot_by_domain_and_date`
+Create an instance: `get_screenshot_by_domain_and_date = client.GetScreenshotByDomainAndDate`
 
 #### Operations
 
@@ -282,8 +288,9 @@ Create an instance: `const get_screenshot_by_domain_and_date = client.get_screen
 
 #### Example: Load
 
-```ts
-const get_screenshot_by_domain_and_date = await client.get_screenshot_by_domain_and_date.load({ id: 'get_screenshot_by_domain_and_date_id' })
+```ruby
+# load returns the bare GetScreenshotByDomainAndDate record (raises on error).
+get_screenshot_by_domain_and_date = client.GetScreenshotByDomainAndDate.load({ "id" => "get_screenshot_by_domain_and_date_id" })
 ```
 
 
@@ -358,7 +365,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-getscreenshotbydomain = client.getscreenshotbydomain
+getscreenshotbydomain = client.GetScreenshotByDomain
 getscreenshotbydomain.load({ "id" => "example_id" })
 
 # getscreenshotbydomain.data_get now returns the loaded getscreenshotbydomain data

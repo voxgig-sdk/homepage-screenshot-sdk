@@ -205,28 +205,14 @@ class HomepageScreenshotSDK {
 
 
 
-  _get_screenshot_by_domain?: GetScreenshotByDomainEntity
-
-  // Idiomatic facade: `client.get_screenshot_by_domain.list()` / `client.get_screenshot_by_domain.load({ id })`.
-  get get_screenshot_by_domain(): GetScreenshotByDomainEntity {
-    return (this._get_screenshot_by_domain ??= new GetScreenshotByDomainEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.get_screenshot_by_domain` instead. */
+  // Entity access: `client.GetScreenshotByDomain().list()` / `client.GetScreenshotByDomain().load({ id })`.
   GetScreenshotByDomain(data?: any) {
     const self = this
     return new GetScreenshotByDomainEntity(self,data)
   }
 
 
-  _get_screenshot_by_domain_and_date?: GetScreenshotByDomainAndDateEntity
-
-  // Idiomatic facade: `client.get_screenshot_by_domain_and_date.list()` / `client.get_screenshot_by_domain_and_date.load({ id })`.
-  get get_screenshot_by_domain_and_date(): GetScreenshotByDomainAndDateEntity {
-    return (this._get_screenshot_by_domain_and_date ??= new GetScreenshotByDomainAndDateEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.get_screenshot_by_domain_and_date` instead. */
+  // Entity access: `client.GetScreenshotByDomainAndDate().list()` / `client.GetScreenshotByDomainAndDate().load({ id })`.
   GetScreenshotByDomainAndDate(data?: any) {
     const self = this
     return new GetScreenshotByDomainAndDateEntity(self,data)

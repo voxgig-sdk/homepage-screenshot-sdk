@@ -233,10 +233,10 @@ class HomepageScreenshotSDK
 
     private $_get_screenshot_by_domain = null;
 
-    // Idiomatic facade: $client->get_screenshot_by_domain()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias GetScreenshotByDomain() (PHP method
-    // names are case-insensitive).
-    public function get_screenshot_by_domain($data = null)
+    // Canonical facade: $client->GetScreenshotByDomain()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->get_screenshot_by_domain()
+    // resolves here too.
+    public function GetScreenshotByDomain($data = null)
     {
         require_once __DIR__ . '/entity/get_screenshot_by_domain_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class HomepageScreenshotSDK
 
     private $_get_screenshot_by_domain_and_date = null;
 
-    // Idiomatic facade: $client->get_screenshot_by_domain_and_date()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias GetScreenshotByDomainAndDate() (PHP method
-    // names are case-insensitive).
-    public function get_screenshot_by_domain_and_date($data = null)
+    // Canonical facade: $client->GetScreenshotByDomainAndDate()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->get_screenshot_by_domain_and_date()
+    // resolves here too.
+    public function GetScreenshotByDomainAndDate($data = null)
     {
         require_once __DIR__ . '/entity/get_screenshot_by_domain_and_date_entity.php';
         if ($data === null) {

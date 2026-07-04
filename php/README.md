@@ -33,9 +33,10 @@ $client = new HomepageScreenshotSDK();
 
 ```php
 try {
-    $result = $client->getscreenshotbydomain()->load(["id" => "example_id"]);
-    print_r($result);
-} catch (\Exception $err) {
+    // load() returns the bare GetScreenshotByDomain record (throws on error).
+    $getscreenshotbydomain = $client->GetScreenshotByDomain()->load(["id" => "example_id"]);
+    print_r($getscreenshotbydomain);
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -81,13 +82,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = HomepageScreenshotSDK::test();
+$client = HomepageScreenshotSDK::test([
+    "entity" => ["getscreenshotbydomain" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->getscreenshotbydomain()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$getscreenshotbydomain = $client->GetScreenshotByDomain()->load(["id" => "test01"]);
+print_r($getscreenshotbydomain);
 ```
 
 ### Use a custom fetch function
@@ -241,7 +246,7 @@ API path: `/{domain}/{date}`
 
 ### GetScreenshotByDomain
 
-Create an instance: `const get_screenshot_by_domain = client.get_screenshot_by_domain`
+Create an instance: `$get_screenshot_by_domain = $client->GetScreenshotByDomain();`
 
 #### Operations
 
@@ -260,14 +265,15 @@ Create an instance: `const get_screenshot_by_domain = client.get_screenshot_by_d
 
 #### Example: Load
 
-```ts
-const get_screenshot_by_domain = await client.get_screenshot_by_domain.load({ id: 'get_screenshot_by_domain_id' })
+```php
+// load() returns the bare GetScreenshotByDomain record (throws on error).
+$get_screenshot_by_domain = $client->GetScreenshotByDomain()->load(["id" => "get_screenshot_by_domain_id"]);
 ```
 
 
 ### GetScreenshotByDomainAndDate
 
-Create an instance: `const get_screenshot_by_domain_and_date = client.get_screenshot_by_domain_and_date`
+Create an instance: `$get_screenshot_by_domain_and_date = $client->GetScreenshotByDomainAndDate();`
 
 #### Operations
 
@@ -287,8 +293,9 @@ Create an instance: `const get_screenshot_by_domain_and_date = client.get_screen
 
 #### Example: Load
 
-```ts
-const get_screenshot_by_domain_and_date = await client.get_screenshot_by_domain_and_date.load({ id: 'get_screenshot_by_domain_and_date_id' })
+```php
+// load() returns the bare GetScreenshotByDomainAndDate record (throws on error).
+$get_screenshot_by_domain_and_date = $client->GetScreenshotByDomainAndDate()->load(["id" => "get_screenshot_by_domain_and_date_id"]);
 ```
 
 
@@ -363,7 +370,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$getscreenshotbydomain = $client->getscreenshotbydomain();
+$getscreenshotbydomain = $client->GetScreenshotByDomain();
 $getscreenshotbydomain->load(["id" => "example_id"]);
 
 // $getscreenshotbydomain->dataGet() now returns the loaded getscreenshotbydomain data

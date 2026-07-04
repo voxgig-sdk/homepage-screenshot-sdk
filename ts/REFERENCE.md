@@ -121,7 +121,7 @@ Alias for `HomepageScreenshotSDK.test()`.
 ## GetScreenshotByDomainEntity
 
 ```ts
-const get_screenshot_by_domain = client.get_screenshot_by_domain
+const get_screenshot_by_domain = client.GetScreenshotByDomain()
 ```
 
 ### Fields
@@ -140,7 +140,7 @@ const get_screenshot_by_domain = client.get_screenshot_by_domain
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.get_screenshot_by_domain.load({ id: 'get_screenshot_by_domain_id' })
+const result = await client.GetScreenshotByDomain().load({ id: 'get_screenshot_by_domain_id' })
 ```
 
 ### Common Methods
@@ -174,7 +174,7 @@ Return a copy of the entity options.
 ## GetScreenshotByDomainAndDateEntity
 
 ```ts
-const get_screenshot_by_domain_and_date = client.get_screenshot_by_domain_and_date
+const get_screenshot_by_domain_and_date = client.GetScreenshotByDomainAndDate()
 ```
 
 ### Fields
@@ -194,7 +194,7 @@ const get_screenshot_by_domain_and_date = client.get_screenshot_by_domain_and_da
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.get_screenshot_by_domain_and_date.load({ id: 'get_screenshot_by_domain_and_date_id' })
+const result = await client.GetScreenshotByDomainAndDate().load({ id: 'get_screenshot_by_domain_and_date_id' })
 ```
 
 ### Common Methods

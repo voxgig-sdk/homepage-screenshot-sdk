@@ -220,41 +220,21 @@ class HomepageScreenshotSDK:
         }
 
 
-    @property
-    def get_screenshot_by_domain(self):
-        """Idiomatic facade: client.get_screenshot_by_domain.list() / client.get_screenshot_by_domain.load({"id": ...})."""
-        from entity.get_screenshot_by_domain_entity import GetScreenshotByDomainEntity
-        cached = getattr(self, "_get_screenshot_by_domain", None)
-        if cached is None:
-            cached = GetScreenshotByDomainEntity(self, None)
-            self._get_screenshot_by_domain = cached
-        return cached
-
-    def GetScreenshotByDomain(self, data=None):
-        # Deprecated: use client.get_screenshot_by_domain instead.
+    def GetScreenshotByDomain(self, data=None) -> "GetScreenshotByDomainEntity":
+        """Entity factory: client.GetScreenshotByDomain().list({}) / client.GetScreenshotByDomain().load({"id": ...})."""
         from entity.get_screenshot_by_domain_entity import GetScreenshotByDomainEntity
         return GetScreenshotByDomainEntity(self, data)
 
 
-    @property
-    def get_screenshot_by_domain_and_date(self):
-        """Idiomatic facade: client.get_screenshot_by_domain_and_date.list() / client.get_screenshot_by_domain_and_date.load({"id": ...})."""
-        from entity.get_screenshot_by_domain_and_date_entity import GetScreenshotByDomainAndDateEntity
-        cached = getattr(self, "_get_screenshot_by_domain_and_date", None)
-        if cached is None:
-            cached = GetScreenshotByDomainAndDateEntity(self, None)
-            self._get_screenshot_by_domain_and_date = cached
-        return cached
-
-    def GetScreenshotByDomainAndDate(self, data=None):
-        # Deprecated: use client.get_screenshot_by_domain_and_date instead.
+    def GetScreenshotByDomainAndDate(self, data=None) -> "GetScreenshotByDomainAndDateEntity":
+        """Entity factory: client.GetScreenshotByDomainAndDate().list({}) / client.GetScreenshotByDomainAndDate().load({"id": ...})."""
         from entity.get_screenshot_by_domain_and_date_entity import GetScreenshotByDomainAndDateEntity
         return GetScreenshotByDomainAndDateEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "HomepageScreenshotSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -274,3 +254,10 @@ class HomepageScreenshotSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.get_screenshot_by_domain_entity import GetScreenshotByDomainEntity
+    from entity.get_screenshot_by_domain_and_date_entity import GetScreenshotByDomainAndDateEntity

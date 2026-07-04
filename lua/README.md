@@ -34,9 +34,9 @@ local client = sdk.new()
 ### 3. Load a getscreenshotbydomain
 
 ```lua
-local result, err = client:getscreenshotbydomain():load({ id = "example_id" })
+local getscreenshotbydomain, err = client:GetScreenshotByDomain():load({ id = "example_id" })
 if err then error(err) end
-print(result)
+print(getscreenshotbydomain)
 ```
 
 
@@ -82,8 +82,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:getscreenshotbydomain():load({ id = "test01" })
--- result contains mock response data
+local result, err = client:GetScreenshotByDomain():load({ id = "test01" })
+-- result is the loaded data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -184,17 +184,22 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`table` with these keys:
+Entity operations return `(value, err)`. The `value` is the operation's
+data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `ok` | `boolean` | `true` if the HTTP status is 2xx. |
-| `status` | `number` | HTTP status code. |
-| `headers` | `table` | Response headers. |
-| `data` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `list` | an array (`table`) of entity records |
 
-On error, `ok` is `false` and `err` contains the error value.
+Check `err` first (it is non-`nil` on failure), then use `value`:
+
+    local get_screenshot_by_domain, err = client:GetScreenshotByDomain():load({ id = "example_id" })
+    if err then error(err) end
+    -- get_screenshot_by_domain is the loaded record
+
+Only `direct()` returns a response envelope — a `table` with `ok`,
+`status`, `headers`, and `data` keys.
 
 ### Entities
 
@@ -232,7 +237,7 @@ API path: `/{domain}/{date}`
 
 ### GetScreenshotByDomain
 
-Create an instance: `const get_screenshot_by_domain = client.get_screenshot_by_domain`
+Create an instance: `local get_screenshot_by_domain = client:GetScreenshotByDomain(nil)`
 
 #### Operations
 
@@ -251,14 +256,14 @@ Create an instance: `const get_screenshot_by_domain = client.get_screenshot_by_d
 
 #### Example: Load
 
-```ts
-const get_screenshot_by_domain = await client.get_screenshot_by_domain.load({ id: 'get_screenshot_by_domain_id' })
+```lua
+local get_screenshot_by_domain, err = client:GetScreenshotByDomain():load({ id = "get_screenshot_by_domain_id" })
 ```
 
 
 ### GetScreenshotByDomainAndDate
 
-Create an instance: `const get_screenshot_by_domain_and_date = client.get_screenshot_by_domain_and_date`
+Create an instance: `local get_screenshot_by_domain_and_date = client:GetScreenshotByDomainAndDate(nil)`
 
 #### Operations
 
@@ -278,8 +283,8 @@ Create an instance: `const get_screenshot_by_domain_and_date = client.get_screen
 
 #### Example: Load
 
-```ts
-const get_screenshot_by_domain_and_date = await client.get_screenshot_by_domain_and_date.load({ id: 'get_screenshot_by_domain_and_date_id' })
+```lua
+local get_screenshot_by_domain_and_date, err = client:GetScreenshotByDomainAndDate():load({ id = "get_screenshot_by_domain_and_date_id" })
 ```
 
 
@@ -354,7 +359,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local getscreenshotbydomain = client:getscreenshotbydomain()
+local getscreenshotbydomain = client:GetScreenshotByDomain()
 getscreenshotbydomain:load({ id = "example_id" })
 
 -- getscreenshotbydomain:data_get() now returns the loaded getscreenshotbydomain data

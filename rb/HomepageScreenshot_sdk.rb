@@ -208,26 +208,14 @@ class HomepageScreenshotSDK
   end
 
 
-  # Idiomatic facade: client.get_screenshot_by_domain.list / client.get_screenshot_by_domain.load({ "id" => ... })
-  def get_screenshot_by_domain
-    require_relative 'entity/get_screenshot_by_domain_entity'
-    @get_screenshot_by_domain ||= GetScreenshotByDomainEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.get_screenshot_by_domain instead.
+  # Canonical facade: client.GetScreenshotByDomain.list / client.GetScreenshotByDomain.load({ "id" => ... })
   def GetScreenshotByDomain(data = nil)
     require_relative 'entity/get_screenshot_by_domain_entity'
     GetScreenshotByDomainEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.get_screenshot_by_domain_and_date.list / client.get_screenshot_by_domain_and_date.load({ "id" => ... })
-  def get_screenshot_by_domain_and_date
-    require_relative 'entity/get_screenshot_by_domain_and_date_entity'
-    @get_screenshot_by_domain_and_date ||= GetScreenshotByDomainAndDateEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.get_screenshot_by_domain_and_date instead.
+  # Canonical facade: client.GetScreenshotByDomainAndDate.list / client.GetScreenshotByDomainAndDate.load({ "id" => ... })
   def GetScreenshotByDomainAndDate(data = nil)
     require_relative 'entity/get_screenshot_by_domain_and_date_entity'
     GetScreenshotByDomainAndDateEntity.new(self, data)

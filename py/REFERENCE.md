@@ -84,7 +84,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## GetScreenshotByDomainEntity
 
 ```python
-get_screenshot_by_domain = client.get_screenshot_by_domain
+get_screenshot_by_domain = client.GetScreenshotByDomain()
 ```
 
 ### Fields
@@ -103,7 +103,7 @@ get_screenshot_by_domain = client.get_screenshot_by_domain
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.get_screenshot_by_domain.load({"id": "get_screenshot_by_domain_id"})
+result = client.GetScreenshotByDomain().load({"id": "get_screenshot_by_domain_id"})
 ```
 
 ### Common Methods
@@ -138,7 +138,7 @@ Return the entity name.
 ## GetScreenshotByDomainAndDateEntity
 
 ```python
-get_screenshot_by_domain_and_date = client.get_screenshot_by_domain_and_date
+get_screenshot_by_domain_and_date = client.GetScreenshotByDomainAndDate()
 ```
 
 ### Fields
@@ -158,7 +158,7 @@ get_screenshot_by_domain_and_date = client.get_screenshot_by_domain_and_date
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.get_screenshot_by_domain_and_date.load({"id": "get_screenshot_by_domain_and_date_id"})
+result = client.GetScreenshotByDomainAndDate().load({"id": "get_screenshot_by_domain_and_date_id"})
 ```
 
 ### Common Methods

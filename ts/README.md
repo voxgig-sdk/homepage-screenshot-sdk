@@ -30,11 +30,14 @@ const client = new HomepageScreenshotSDK()
 
 ### 3. Load a getscreenshotbydomain
 
-```ts
-const result = await client.getscreenshotbydomain.load({ id: 'example_id' })
+`load()` returns the entity directly and throws on failure:
 
-if (result.ok) {
-  console.log(result.data)
+```ts
+try {
+  const getscreenshotbydomain = await client.GetScreenshotByDomain().load({ id: 'example_id' })
+  console.log(getscreenshotbydomain)
+} catch (err) {
+  console.error('load failed:', err)
 }
 ```
 
@@ -52,6 +55,9 @@ const result = await client.direct({
   params: { id: 'example' },
 })
 
+if (result instanceof Error) {
+  throw result
+}
 if (result.ok) {
   console.log(result.status)  // 200
   console.log(result.data)    // response body
@@ -80,9 +86,9 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = HomepageScreenshotSDK.test()
 
-const result = await client.getscreenshotbydomain.load({ id: 'test01' })
-// result.ok === true
-// result.data contains mock response data
+const getscreenshotbydomain = await client.GetScreenshotByDomain().load({ id: 'test01' })
+// getscreenshotbydomain is a bare entity populated with mock response data
+console.log(getscreenshotbydomain)
 ```
 
 You can also use the instance method:
@@ -97,7 +103,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.getscreenshotbydomain
+const entity = client.GetScreenshotByDomain()
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -193,29 +199,30 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `load(reqmatch?, ctrl?): Promise<Result>` | Load a single entity by match criteria. |
-| `list` | `list(reqmatch?, ctrl?): Promise<Result>` | List entities matching the criteria. |
-| `create` | `create(reqdata?, ctrl?): Promise<Result>` | Create a new entity. |
-| `update` | `update(reqdata?, ctrl?): Promise<Result>` | Update an existing entity. |
-| `remove` | `remove(reqmatch?, ctrl?): Promise<Result>` | Remove an entity. |
+| `load` | `load(reqmatch?, ctrl?): Promise<Entity>` | Load a single entity by match criteria. |
+| `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria. |
+| `create` | `create(reqdata?, ctrl?): Promise<Entity>` | Create a new entity. |
+| `update` | `update(reqdata?, ctrl?): Promise<Entity>` | Update an existing entity. |
+| `remove` | `remove(reqmatch?, ctrl?): Promise<void>` | Remove an entity. |
 | `data` | `data(data?): any` | Get or set entity data. |
 | `match` | `match(match?): any` | Get or set entity match criteria. |
 | `make` | `make(): Entity` | Create a new instance with the same options. |
 | `client` | `client(): HomepageScreenshotSDK` | Return the parent SDK client. |
 | `entopts` | `entopts(): object` | Return a copy of the entity options. |
 
-#### Result shape
+#### Return values
 
-All entity operations return a Result object:
+Entity operations resolve to the entity data directly — there is no
+result envelope:
 
-```ts
-{
-  ok: boolean      // true if the HTTP status is 2xx
-  status: number   // HTTP status code
-  headers: object  // response headers
-  data: any        // parsed JSON response body
-}
-```
+- `load`, `create` and `update` resolve to a single entity object.
+- `list` resolves to an **array** of entity objects (iterate it directly;
+  there is no `.data` and no `.ok`).
+- `remove` resolves to `void`.
+
+On a failed request these methods **throw**, so wrap calls in
+`try`/`catch` to handle errors. Only `direct()` returns the result
+envelope described below.
 
 ### DirectResult shape
 
@@ -281,7 +288,7 @@ API path: `/{domain}/{date}`
 
 ### GetScreenshotByDomain
 
-Create an instance: `const get_screenshot_by_domain = client.get_screenshot_by_domain`
+Create an instance: `const get_screenshot_by_domain = client.GetScreenshotByDomain()`
 
 #### Operations
 
@@ -301,13 +308,13 @@ Create an instance: `const get_screenshot_by_domain = client.get_screenshot_by_d
 #### Example: Load
 
 ```ts
-const get_screenshot_by_domain = await client.get_screenshot_by_domain.load({ id: 'get_screenshot_by_domain_id' })
+const get_screenshot_by_domain = await client.GetScreenshotByDomain().load({ id: 'get_screenshot_by_domain_id' })
 ```
 
 
 ### GetScreenshotByDomainAndDate
 
-Create an instance: `const get_screenshot_by_domain_and_date = client.get_screenshot_by_domain_and_date`
+Create an instance: `const get_screenshot_by_domain_and_date = client.GetScreenshotByDomainAndDate()`
 
 #### Operations
 
@@ -328,7 +335,7 @@ Create an instance: `const get_screenshot_by_domain_and_date = client.get_screen
 #### Example: Load
 
 ```ts
-const get_screenshot_by_domain_and_date = await client.get_screenshot_by_domain_and_date.load({ id: 'get_screenshot_by_domain_and_date_id' })
+const get_screenshot_by_domain_and_date = await client.GetScreenshotByDomainAndDate().load({ id: 'get_screenshot_by_domain_and_date_id' })
 ```
 
 
@@ -399,7 +406,7 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const getscreenshotbydomain = client.getscreenshotbydomain
+const getscreenshotbydomain = client.GetScreenshotByDomain()
 await getscreenshotbydomain.load({ id: "example_id" })
 
 // getscreenshotbydomain.data() now returns the loaded getscreenshotbydomain data

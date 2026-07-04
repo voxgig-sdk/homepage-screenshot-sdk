@@ -33,10 +33,12 @@ client = HomepageScreenshotSDK()
 
 ### 3. Load a getscreenshotbydomain
 
+`load()` returns the bare record (a `dict`) and raises on error.
+
 ```python
 try:
-    result = client.getscreenshotbydomain.load({"id": "example_id"})
-    print(result)
+    getscreenshotbydomain = client.GetScreenshotByDomain().load({"id": "example_id"})
+    print(getscreenshotbydomain)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -84,8 +86,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = HomepageScreenshotSDK.test()
 
-result = client.getscreenshotbydomain.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+getscreenshotbydomain = client.GetScreenshotByDomain().load({"id": "test01"})
+# getscreenshotbydomain contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -236,7 +239,7 @@ API path: `/{domain}/{date}`
 
 ### GetScreenshotByDomain
 
-Create an instance: `const get_screenshot_by_domain = client.get_screenshot_by_domain`
+Create an instance: `get_screenshot_by_domain = client.GetScreenshotByDomain()`
 
 #### Operations
 
@@ -255,14 +258,14 @@ Create an instance: `const get_screenshot_by_domain = client.get_screenshot_by_d
 
 #### Example: Load
 
-```ts
-const get_screenshot_by_domain = await client.get_screenshot_by_domain.load({ id: 'get_screenshot_by_domain_id' })
+```python
+get_screenshot_by_domain = client.GetScreenshotByDomain().load({"id": "get_screenshot_by_domain_id"})
 ```
 
 
 ### GetScreenshotByDomainAndDate
 
-Create an instance: `const get_screenshot_by_domain_and_date = client.get_screenshot_by_domain_and_date`
+Create an instance: `get_screenshot_by_domain_and_date = client.GetScreenshotByDomainAndDate()`
 
 #### Operations
 
@@ -282,8 +285,8 @@ Create an instance: `const get_screenshot_by_domain_and_date = client.get_screen
 
 #### Example: Load
 
-```ts
-const get_screenshot_by_domain_and_date = await client.get_screenshot_by_domain_and_date.load({ id: 'get_screenshot_by_domain_and_date_id' })
+```python
+get_screenshot_by_domain_and_date = client.GetScreenshotByDomainAndDate().load({"id": "get_screenshot_by_domain_and_date_id"})
 ```
 
 
@@ -357,7 +360,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-getscreenshotbydomain = client.getscreenshotbydomain
+getscreenshotbydomain = client.GetScreenshotByDomain()
 getscreenshotbydomain.load({"id": "example_id"})
 
 # getscreenshotbydomain.data_get() now returns the loaded getscreenshotbydomain data

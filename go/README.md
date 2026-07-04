@@ -30,36 +30,30 @@ go mod edit -replace github.com/voxgig-sdk/homepage-screenshot-sdk/go=../homepag
 This tutorial walks through creating a client, listing entities, and
 loading a specific record.
 
-### 1. Create a client
+### Quickstart
+
+A complete program: create a client, then call the entity operations.
+Each operation returns `(value, error)` — the value is the data itself
+(there is no `{ok, data}` wrapper), so check `err` and use the value
+directly.
 
 ```go
 package main
 
 import (
     "fmt"
-
     sdk "github.com/voxgig-sdk/homepage-screenshot-sdk/go"
-    "github.com/voxgig-sdk/homepage-screenshot-sdk/go/core"
 )
 
 func main() {
     client := sdk.New()
-```
 
-### 3. Load a getscreenshotbydomain
-
-```go
-    result, err = client.GetScreenshotByDomain(nil).Load(
-        map[string]any{"id": "example_id"}, nil,
-    )
+    // Load a single getscreenshotbydomain — the value is the loaded record.
+    getscreenshotbydomain, err := client.GetScreenshotByDomain(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }
-
-    rm = core.ToMapAny(result)
-    if rm["ok"] == true {
-        fmt.Println(rm["data"])
-    }
+    fmt.Println(getscreenshotbydomain)
 }
 ```
 
@@ -110,10 +104,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-result, err := client.GetScreenshotByDomain(nil).Load(
+getscreenshotbydomain, err := client.GetScreenshotByDomain(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
-// result contains mock response data
+if err != nil {
+    panic(err)
+}
+fmt.Println(getscreenshotbydomain) // the loaded mock data
 ```
 
 ### Use a custom fetch function
@@ -211,17 +208,24 @@ All entities implement the `HomepageScreenshotEntity` interface.
 
 ### Result shape
 
-Entity operations return `(any, error)`. The `any` value is a
-`map[string]any` with these keys:
+Entity operations return `(value, error)`. The `value` is the
+operation's data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `"ok"` | `bool` | `true` if the HTTP status is 2xx. |
-| `"status"` | `int` | HTTP status code. |
-| `"headers"` | `map[string]any` | Response headers. |
-| `"data"` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `Load` / `Create` / `Update` / `Remove` | the entity record (`map[string]any`) |
+| `List` | a `[]any` of entity records |
 
-On error, `"ok"` is `false` and `"err"` contains the error value.
+Check `err` first, then use the value directly (or the typed
+`...Typed` variants, which return the entity's model struct and a typed
+slice):
+
+    getscreenshotbydomain, err := client.GetScreenshotByDomain(nil).Load(map[string]any{"id": "example_id"}, nil)
+    if err != nil { /* handle */ }
+    // getscreenshotbydomain is the loaded record
+
+Only `Direct()` returns a response envelope — a `map[string]any` with
+`"ok"`, `"status"`, `"headers"`, and `"data"` keys.
 
 ### Entities
 
@@ -279,7 +283,11 @@ Create an instance: `get_screenshot_by_domain := client.GetScreenshotByDomain(ni
 #### Example: Load
 
 ```go
-result, err := client.GetScreenshotByDomain(nil).Load(map[string]any{"id": "get_screenshot_by_domain_id"}, nil)
+get_screenshot_by_domain, err := client.GetScreenshotByDomain(nil).Load(map[string]any{"id": "get_screenshot_by_domain_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(get_screenshot_by_domain) // the loaded record
 ```
 
 
@@ -306,7 +314,11 @@ Create an instance: `get_screenshot_by_domain_and_date := client.GetScreenshotBy
 #### Example: Load
 
 ```go
-result, err := client.GetScreenshotByDomainAndDate(nil).Load(map[string]any{"id": "get_screenshot_by_domain_and_date_id"}, nil)
+get_screenshot_by_domain_and_date, err := client.GetScreenshotByDomainAndDate(nil).Load(map[string]any{"id": "get_screenshot_by_domain_and_date_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(get_screenshot_by_domain_and_date) // the loaded record
 ```
 
 
