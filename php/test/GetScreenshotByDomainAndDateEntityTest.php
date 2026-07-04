@@ -49,8 +49,7 @@ class GetScreenshotByDomainAndDateEntityTest extends TestCase
         // LOAD
         $get_screenshot_by_domain_and_date_ref01_ent = $client->GetScreenshotByDomainAndDate(null);
         $get_screenshot_by_domain_and_date_ref01_match_dt0 = [];
-        [$get_screenshot_by_domain_and_date_ref01_data_dt0_loaded, $err] = $get_screenshot_by_domain_and_date_ref01_ent->load($get_screenshot_by_domain_and_date_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $get_screenshot_by_domain_and_date_ref01_data_dt0_loaded = $get_screenshot_by_domain_and_date_ref01_ent->load($get_screenshot_by_domain_and_date_ref01_match_dt0, null);
         $this->assertNotNull($get_screenshot_by_domain_and_date_ref01_data_dt0_loaded);
 
     }
@@ -85,7 +84,6 @@ function get_screenshot_by_domain_and_date_basic_setup($extra)
         "HOMEPAGESCREENSHOT_TEST_GET_SCREENSHOT_BY_DOMAIN_AND_DATE_ENTID" => $idmap,
         "HOMEPAGESCREENSHOT_TEST_LIVE" => "FALSE",
         "HOMEPAGESCREENSHOT_TEST_EXPLAIN" => "FALSE",
-        "HOMEPAGESCREENSHOT_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -97,7 +95,6 @@ function get_screenshot_by_domain_and_date_basic_setup($extra)
     if ($env["HOMEPAGESCREENSHOT_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["HOMEPAGESCREENSHOT_APIKEY"],
             ],
             $extra ?? [],
         ]);

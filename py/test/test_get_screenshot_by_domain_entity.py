@@ -49,8 +49,7 @@ class TestGetScreenshotByDomainEntity:
         # LOAD
         get_screenshot_by_domain_ref01_ent = client.GetScreenshotByDomain(None)
         get_screenshot_by_domain_ref01_match_dt0 = {}
-        get_screenshot_by_domain_ref01_data_dt0_loaded, err = get_screenshot_by_domain_ref01_ent.load(get_screenshot_by_domain_ref01_match_dt0, None)
-        assert err is None
+        get_screenshot_by_domain_ref01_data_dt0_loaded = get_screenshot_by_domain_ref01_ent.load(get_screenshot_by_domain_ref01_match_dt0, None)
         assert get_screenshot_by_domain_ref01_data_dt0_loaded is not None
 
 
@@ -91,7 +90,6 @@ def _get_screenshot_by_domain_basic_setup(extra):
         "HOMEPAGESCREENSHOT_TEST_GET_SCREENSHOT_BY_DOMAIN_ENTID": idmap,
         "HOMEPAGESCREENSHOT_TEST_LIVE": "FALSE",
         "HOMEPAGESCREENSHOT_TEST_EXPLAIN": "FALSE",
-        "HOMEPAGESCREENSHOT_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,7 +100,6 @@ def _get_screenshot_by_domain_basic_setup(extra):
     if env.get("HOMEPAGESCREENSHOT_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("HOMEPAGESCREENSHOT_APIKEY"),
             },
             extra or {},
         ])

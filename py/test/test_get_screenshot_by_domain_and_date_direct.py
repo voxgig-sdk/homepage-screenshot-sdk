@@ -29,7 +29,7 @@ class TestGetScreenshotByDomainAndDateDirect:
             params["date"] = "direct01"
             params["domain"] = "direct02"
 
-        result, err = client.direct({
+        result = client.direct({
             "path": "{domain}/{date}",
             "method": "GET",
             "params": params,
@@ -39,8 +39,8 @@ class TestGetScreenshotByDomainAndDateDirect:
             # Live mode is lenient: synthetic IDs frequently 4xx. Skip
             # rather than fail when the load endpoint isn't reachable
             # with the IDs we can construct from setup.idmap.
-            if err is not None:
-                pytest.skip(f"load call failed (likely synthetic IDs against live API): {err}")
+            if result.get("err") is not None:
+                pytest.skip(f"load call failed (likely synthetic IDs against live API): {result.get('err')}")
                 return
             if not result.get("ok"):
                 pytest.skip("load call not ok (likely synthetic IDs against live API)")
@@ -50,7 +50,6 @@ class TestGetScreenshotByDomainAndDateDirect:
                 pytest.skip(f"expected 2xx status, got {status}")
                 return
         else:
-            assert err is None
             assert result["ok"] is True
             assert helpers.to_int(result["status"]) == 200
             assert result["data"] is not None
@@ -68,14 +67,12 @@ def _get_screenshot_by_domain_and_date_direct_setup(mockres):
     env = runner.env_override({
         "HOMEPAGESCREENSHOT_TEST_GET_SCREENSHOT_BY_DOMAIN_AND_DATE_ENTID": {},
         "HOMEPAGESCREENSHOT_TEST_LIVE": "FALSE",
-        "HOMEPAGESCREENSHOT_APIKEY": "NONE",
     })
 
     live = env.get("HOMEPAGESCREENSHOT_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("HOMEPAGESCREENSHOT_APIKEY"),
         }
         client = HomepageScreenshotSDK(merged_opts)
         return {

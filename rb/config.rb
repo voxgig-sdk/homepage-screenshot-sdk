@@ -15,9 +15,6 @@ module HomepageScreenshotConfig
       },
       "options" => {
         "base" => "https://screenshotof.com",
-        "auth" => {
-          "prefix" => "Bearer",
-        },
         "headers" => {
           "content-type" => "application/json",
         },
@@ -76,6 +73,7 @@ module HomepageScreenshotConfig
                         "orig" => "domain",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 0,
                       },
                     ],
                     "query" => [
@@ -186,6 +184,7 @@ module HomepageScreenshotConfig
                         "orig" => "date",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 0,
                       },
                       {
                         "active" => true,
@@ -195,6 +194,7 @@ module HomepageScreenshotConfig
                         "orig" => "domain",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 1,
                       },
                     ],
                     "query" => [

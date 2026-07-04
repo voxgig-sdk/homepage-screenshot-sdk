@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  GetScreenshotByDomainAndDate,
+  GetScreenshotByDomainAndDateLoadMatch,
+} from '../HomepageScreenshotTypes'
 
 // TODO: needs Entity superclass
-class GetScreenshotByDomainAndDateEntity extends HomepageScreenshotEntityBase {
+class GetScreenshotByDomainAndDateEntity extends HomepageScreenshotEntityBase<GetScreenshotByDomainAndDate> {
 
   constructor(client: HomepageScreenshotSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class GetScreenshotByDomainAndDateEntity extends HomepageScreenshotEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: GetScreenshotByDomainAndDateLoadMatch, ctrl?: Control): Promise<GetScreenshotByDomainAndDate> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class GetScreenshotByDomainAndDateEntity extends HomepageScreenshotEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<GetScreenshotByDomainAndDate> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

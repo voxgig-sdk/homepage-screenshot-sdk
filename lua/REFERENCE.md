@@ -19,7 +19,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `table` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -88,7 +87,7 @@ same parameters as `direct()`.
 ## GetScreenshotByDomainEntity
 
 ```lua
-local get_screenshot_by_domain = client:GetScreenshotByDomain(nil)
+local get_screenshot_by_domain = client:get_screenshot_by_domain(nil)
 ```
 
 ### Fields
@@ -107,7 +106,7 @@ local get_screenshot_by_domain = client:GetScreenshotByDomain(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:GetScreenshotByDomain():load({ id = "get_screenshot_by_domain_id" })
+local result, err = client:get_screenshot_by_domain():load({ id = "get_screenshot_by_domain_id" })
 ```
 
 ### Common Methods
@@ -143,7 +142,7 @@ Return the entity name.
 ## GetScreenshotByDomainAndDateEntity
 
 ```lua
-local get_screenshot_by_domain_and_date = client:GetScreenshotByDomainAndDate(nil)
+local get_screenshot_by_domain_and_date = client:get_screenshot_by_domain_and_date(nil)
 ```
 
 ### Fields
@@ -163,7 +162,7 @@ local get_screenshot_by_domain_and_date = client:GetScreenshotByDomainAndDate(ni
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:GetScreenshotByDomainAndDate():load({ id = "get_screenshot_by_domain_and_date_id" })
+local result, err = client:get_screenshot_by_domain_and_date():load({ id = "get_screenshot_by_domain_and_date_id" })
 ```
 
 ### Common Methods

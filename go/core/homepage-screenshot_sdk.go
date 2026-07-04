@@ -245,11 +245,17 @@ func (sdk *HomepageScreenshotSDK) Direct(fetchargs map[string]any) (map[string]a
 }
 
 
+// GetScreenshotByDomain returns a GetScreenshotByDomain entity bound to this client.
+// Idiomatic usage: client.GetScreenshotByDomain(nil).List(nil, nil) or
+// client.GetScreenshotByDomain(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *HomepageScreenshotSDK) GetScreenshotByDomain(data map[string]any) HomepageScreenshotEntity {
 	return NewGetScreenshotByDomainEntityFunc(sdk, data)
 }
 
 
+// GetScreenshotByDomainAndDate returns a GetScreenshotByDomainAndDate entity bound to this client.
+// Idiomatic usage: client.GetScreenshotByDomainAndDate(nil).List(nil, nil) or
+// client.GetScreenshotByDomainAndDate(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *HomepageScreenshotSDK) GetScreenshotByDomainAndDate(data map[string]any) HomepageScreenshotEntity {
 	return NewGetScreenshotByDomainAndDateEntityFunc(sdk, data)
 }

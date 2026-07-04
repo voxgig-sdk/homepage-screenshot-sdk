@@ -91,7 +91,6 @@ function get_screenshot_by_domain_and_date_basic_setup(extra)
     ["HOMEPAGESCREENSHOT_TEST_GET_SCREENSHOT_BY_DOMAIN_AND_DATE_ENTID"] = idmap,
     ["HOMEPAGESCREENSHOT_TEST_LIVE"] = "FALSE",
     ["HOMEPAGESCREENSHOT_TEST_EXPLAIN"] = "FALSE",
-    ["HOMEPAGESCREENSHOT_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -103,7 +102,6 @@ function get_screenshot_by_domain_and_date_basic_setup(extra)
   if env["HOMEPAGESCREENSHOT_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
-        apikey = env["HOMEPAGESCREENSHOT_APIKEY"],
       },
       extra or {},
     })

@@ -244,12 +244,38 @@ end
 
 
 
+-- Idiomatic facade: client:get_screenshot_by_domain():list() / client:get_screenshot_by_domain():load({ id = ... })
+function HomepageScreenshotSDK:get_screenshot_by_domain(data)
+  local EntityMod = require("entity.get_screenshot_by_domain_entity")
+  if data == nil then
+    if self._get_screenshot_by_domain == nil then
+      self._get_screenshot_by_domain = EntityMod.new(self, nil)
+    end
+    return self._get_screenshot_by_domain
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:get_screenshot_by_domain() instead.
 function HomepageScreenshotSDK:GetScreenshotByDomain(data)
   local EntityMod = require("entity.get_screenshot_by_domain_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:get_screenshot_by_domain_and_date():list() / client:get_screenshot_by_domain_and_date():load({ id = ... })
+function HomepageScreenshotSDK:get_screenshot_by_domain_and_date(data)
+  local EntityMod = require("entity.get_screenshot_by_domain_and_date_entity")
+  if data == nil then
+    if self._get_screenshot_by_domain_and_date == nil then
+      self._get_screenshot_by_domain_and_date = EntityMod.new(self, nil)
+    end
+    return self._get_screenshot_by_domain_and_date
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:get_screenshot_by_domain_and_date() instead.
 function HomepageScreenshotSDK:GetScreenshotByDomainAndDate(data)
   local EntityMod = require("entity.get_screenshot_by_domain_and_date_entity")
   return EntityMod.new(self, data)

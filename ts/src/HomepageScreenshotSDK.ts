@@ -3,6 +3,8 @@
 import { GetScreenshotByDomainEntity } from './entity/GetScreenshotByDomainEntity'
 import { GetScreenshotByDomainAndDateEntity } from './entity/GetScreenshotByDomainAndDateEntity'
 
+export type * from './HomepageScreenshotTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -203,12 +205,28 @@ class HomepageScreenshotSDK {
 
 
 
+  _get_screenshot_by_domain?: GetScreenshotByDomainEntity
+
+  // Idiomatic facade: `client.get_screenshot_by_domain.list()` / `client.get_screenshot_by_domain.load({ id })`.
+  get get_screenshot_by_domain(): GetScreenshotByDomainEntity {
+    return (this._get_screenshot_by_domain ??= new GetScreenshotByDomainEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.get_screenshot_by_domain` instead. */
   GetScreenshotByDomain(data?: any) {
     const self = this
     return new GetScreenshotByDomainEntity(self,data)
   }
 
 
+  _get_screenshot_by_domain_and_date?: GetScreenshotByDomainAndDateEntity
+
+  // Idiomatic facade: `client.get_screenshot_by_domain_and_date.list()` / `client.get_screenshot_by_domain_and_date.load({ id })`.
+  get get_screenshot_by_domain_and_date(): GetScreenshotByDomainAndDateEntity {
+    return (this._get_screenshot_by_domain_and_date ??= new GetScreenshotByDomainAndDateEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.get_screenshot_by_domain_and_date` instead. */
   GetScreenshotByDomainAndDate(data?: any) {
     const self = this
     return new GetScreenshotByDomainAndDateEntity(self,data)

@@ -14,9 +14,6 @@ local function make_config()
     },
     options = {
       base = "https://screenshotof.com",
-      auth = {
-        prefix = "Bearer",
-      },
       headers = {
         ["content-type"] = "application/json",
       },
@@ -75,6 +72,7 @@ local function make_config()
                       ["orig"] = "domain",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 0,
                     },
                   },
                   ["query"] = {
@@ -185,6 +183,7 @@ local function make_config()
                       ["orig"] = "date",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 0,
                     },
                     {
                       ["active"] = true,
@@ -194,6 +193,7 @@ local function make_config()
                       ["orig"] = "domain",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 1,
                     },
                   },
                   ["query"] = {

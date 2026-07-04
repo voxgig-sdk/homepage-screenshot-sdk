@@ -13,6 +13,9 @@ require_relative 'config'
 require_relative 'feature/base_feature'
 require_relative 'features'
 
+# Load typed models (Struct value objects).
+require_relative 'HomepageScreenshot_types'
+
 
 class HomepageScreenshotSDK
   attr_accessor :mode, :features, :options
@@ -131,7 +134,7 @@ class HomepageScreenshotSDK
     end
 
     _, err = utility.prepare_auth.call(ctx)
-    return nil, err if err
+    raise err if err
 
     utility.make_fetch_def.call(ctx)
   end
@@ -139,8 +142,14 @@ class HomepageScreenshotSDK
   def direct(fetchargs = {})
     utility = @_utility
 
-    fetchdef, err = prepare(fetchargs)
-    return { "ok" => false, "err" => err }, nil if err
+    # direct() is the raw-HTTP escape hatch: it always returns a result hash
+    # ({ "ok" => ..., ... }) and never raises. prepare() raises on error, so
+    # trap that and surface it in the hash.
+    begin
+      fetchdef = prepare(fetchargs)
+    rescue HomepageScreenshotError => err
+      return { "ok" => false, "err" => err }
+    end
 
     fetchargs ||= {}
     ctrl = HomepageScreenshotHelpers.to_map(VoxgigStruct.getprop(fetchargs, "ctrl")) || {}
@@ -153,13 +162,13 @@ class HomepageScreenshotSDK
     url = fetchdef["url"] || ""
     fetched, fetch_err = utility.fetcher.call(ctx, url, fetchdef)
 
-    return { "ok" => false, "err" => fetch_err }, nil if fetch_err
+    return { "ok" => false, "err" => fetch_err } if fetch_err
 
     if fetched.nil?
       return {
         "ok" => false,
         "err" => ctx.make_error("direct_no_response", "response: undefined"),
-      }, nil
+      }
     end
 
     if fetched.is_a?(Hash)
@@ -189,22 +198,36 @@ class HomepageScreenshotSDK
         "status" => status,
         "headers" => headers,
         "data" => json_data,
-      }, nil
+      }
     end
 
     return {
       "ok" => false,
       "err" => ctx.make_error("direct_invalid", "invalid response type"),
-    }, nil
+    }
   end
 
 
+  # Idiomatic facade: client.get_screenshot_by_domain.list / client.get_screenshot_by_domain.load({ "id" => ... })
+  def get_screenshot_by_domain
+    require_relative 'entity/get_screenshot_by_domain_entity'
+    @get_screenshot_by_domain ||= GetScreenshotByDomainEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.get_screenshot_by_domain instead.
   def GetScreenshotByDomain(data = nil)
     require_relative 'entity/get_screenshot_by_domain_entity'
     GetScreenshotByDomainEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.get_screenshot_by_domain_and_date.list / client.get_screenshot_by_domain_and_date.load({ "id" => ... })
+  def get_screenshot_by_domain_and_date
+    require_relative 'entity/get_screenshot_by_domain_and_date_entity'
+    @get_screenshot_by_domain_and_date ||= GetScreenshotByDomainAndDateEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.get_screenshot_by_domain_and_date instead.
   def GetScreenshotByDomainAndDate(data = nil)
     require_relative 'entity/get_screenshot_by_domain_and_date_entity'
     GetScreenshotByDomainAndDateEntity.new(self, data)

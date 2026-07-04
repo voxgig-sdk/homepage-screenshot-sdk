@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch GetScreenshotByDomainLoadMatch
+---@param ctrl? table
+---@return GetScreenshotByDomain
+---@return string? err
 function GetScreenshotByDomainEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

@@ -85,6 +85,27 @@ func (e *GetScreenshotByDomainAndDateEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an GetScreenshotByDomainAndDate; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *GetScreenshotByDomainAndDateEntity) DataTyped(data ...GetScreenshotByDomainAndDate) GetScreenshotByDomainAndDate {
+	if len(data) > 0 {
+		return typedFrom[GetScreenshotByDomainAndDate](e.Data(asMap(data[0])))
+	}
+	return typedFrom[GetScreenshotByDomainAndDate](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through GetScreenshotByDomainAndDate (all fields
+// optional at the wire level).
+func (e *GetScreenshotByDomainAndDateEntity) MatchTyped(match ...GetScreenshotByDomainAndDate) GetScreenshotByDomainAndDate {
+	if len(match) > 0 {
+		return typedFrom[GetScreenshotByDomainAndDate](e.Match(asMap(match[0])))
+	}
+	return typedFrom[GetScreenshotByDomainAndDate](e.Match())
+}
+
 
 func (e *GetScreenshotByDomainAndDateEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
@@ -109,6 +130,17 @@ func (e *GetScreenshotByDomainAndDateEntity) Load(reqmatch map[string]any, ctrl 
 			}
 		}
 	})
+}
+
+// LoadTyped is the statically-typed variant of Load: it takes an
+// GetScreenshotByDomainAndDateLoadMatch and returns an GetScreenshotByDomainAndDate. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *GetScreenshotByDomainAndDateEntity) LoadTyped(reqmatch GetScreenshotByDomainAndDateLoadMatch, ctrl map[string]any) (GetScreenshotByDomainAndDate, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return GetScreenshotByDomainAndDate{}, err
+	}
+	return typedFrom[GetScreenshotByDomainAndDate](res), nil
 }
 
 

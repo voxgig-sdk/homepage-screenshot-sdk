@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  GetScreenshotByDomain,
+  GetScreenshotByDomainLoadMatch,
+} from '../HomepageScreenshotTypes'
 
 // TODO: needs Entity superclass
-class GetScreenshotByDomainEntity extends HomepageScreenshotEntityBase {
+class GetScreenshotByDomainEntity extends HomepageScreenshotEntityBase<GetScreenshotByDomain> {
 
   constructor(client: HomepageScreenshotSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class GetScreenshotByDomainEntity extends HomepageScreenshotEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: GetScreenshotByDomainLoadMatch, ctrl?: Control): Promise<GetScreenshotByDomain> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class GetScreenshotByDomainEntity extends HomepageScreenshotEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<GetScreenshotByDomain> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

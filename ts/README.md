@@ -9,9 +9,12 @@ The TypeScript SDK for the HomepageScreenshot API — a type-safe, entity-orient
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/homepage-screenshot
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/homepage-screenshot-sdk/releases](https://github.com/voxgig-sdk/homepage-screenshot-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,15 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { HomepageScreenshotSDK } from 'homepage-screenshot'
+import { HomepageScreenshotSDK } from '@voxgig-sdk/homepage-screenshot'
 
-const client = new HomepageScreenshotSDK({
-  apikey: process.env.HOMEPAGE-SCREENSHOT_APIKEY,
-})
+const client = new HomepageScreenshotSDK()
 ```
 
 ### 3. Load a getscreenshotbydomain
 
 ```ts
-const result = await client.GetScreenshotByDomain().load({ id: 'example_id' })
+const result = await client.getscreenshotbydomain.load({ id: 'example_id' })
 
 if (result.ok) {
   console.log(result.data)
@@ -79,7 +80,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = HomepageScreenshotSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.getscreenshotbydomain.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -87,7 +88,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new HomepageScreenshotSDK({ apikey: '...' })
+const client = new HomepageScreenshotSDK()
 const testClient = client.tester()
 ```
 
@@ -96,7 +97,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.getscreenshotbydomain
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -123,7 +124,6 @@ const logger = {
 }
 
 const client = new HomepageScreenshotSDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -133,8 +133,7 @@ const client = new HomepageScreenshotSDK({
 Create a `.env.local` file at the project root:
 
 ```
-HOMEPAGE-SCREENSHOT_TEST_LIVE=TRUE
-HOMEPAGE-SCREENSHOT_APIKEY=<your-key>
+HOMEPAGE_SCREENSHOT_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -152,7 +151,6 @@ cd ts && npm test
 
 ```ts
 new HomepageScreenshotSDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -163,7 +161,6 @@ new HomepageScreenshotSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -284,7 +281,7 @@ API path: `/{domain}/{date}`
 
 ### GetScreenshotByDomain
 
-Create an instance: `const get_screenshot_by_domain = client.GetScreenshotByDomain()`
+Create an instance: `const get_screenshot_by_domain = client.get_screenshot_by_domain`
 
 #### Operations
 
@@ -304,13 +301,13 @@ Create an instance: `const get_screenshot_by_domain = client.GetScreenshotByDoma
 #### Example: Load
 
 ```ts
-const get_screenshot_by_domain = await client.GetScreenshotByDomain().load({ id: 'get_screenshot_by_domain_id' })
+const get_screenshot_by_domain = await client.get_screenshot_by_domain.load({ id: 'get_screenshot_by_domain_id' })
 ```
 
 
 ### GetScreenshotByDomainAndDate
 
-Create an instance: `const get_screenshot_by_domain_and_date = client.GetScreenshotByDomainAndDate()`
+Create an instance: `const get_screenshot_by_domain_and_date = client.get_screenshot_by_domain_and_date`
 
 #### Operations
 
@@ -331,7 +328,7 @@ Create an instance: `const get_screenshot_by_domain_and_date = client.GetScreens
 #### Example: Load
 
 ```ts
-const get_screenshot_by_domain_and_date = await client.GetScreenshotByDomainAndDate().load({ id: 'get_screenshot_by_domain_and_date_id' })
+const get_screenshot_by_domain_and_date = await client.get_screenshot_by_domain_and_date.load({ id: 'get_screenshot_by_domain_and_date_id' })
 ```
 
 
@@ -392,7 +389,7 @@ homepage-screenshot/
 Import the SDK from the package root:
 
 ```ts
-import { HomepageScreenshotSDK } from 'homepage-screenshot'
+import { HomepageScreenshotSDK } from '@voxgig-sdk/homepage-screenshot'
 ```
 
 ### Entity state
@@ -402,11 +399,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const getscreenshotbydomain = client.getscreenshotbydomain
+await getscreenshotbydomain.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// getscreenshotbydomain.data() now returns the loaded getscreenshotbydomain data
+// getscreenshotbydomain.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

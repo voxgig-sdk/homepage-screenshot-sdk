@@ -144,16 +144,23 @@ class HomepageScreenshotSDK:
 
         _, err = utility.prepare_auth(ctx)
         if err is not None:
-            return None, err
+            raise err
 
-        return utility.make_fetch_def(ctx)
+        fetchdef, err = utility.make_fetch_def(ctx)
+        if err is not None:
+            raise err
+
+        return fetchdef
 
     def direct(self, fetchargs=None):
         utility = self._utility
 
-        fetchdef, err = self.prepare(fetchargs)
-        if err is not None:
-            return {"ok": False, "err": err}, None
+        try:
+            fetchdef = self.prepare(fetchargs)
+        except Exception as err:
+            # direct() is the raw-HTTP escape hatch: it never raises, it
+            # returns a result object callers branch on via result["ok"].
+            return {"ok": False, "err": err}
 
         if fetchargs is None:
             fetchargs = {}
@@ -170,13 +177,13 @@ class HomepageScreenshotSDK:
         fetched, fetch_err = utility.fetcher(ctx, url, fetchdef)
 
         if fetch_err is not None:
-            return {"ok": False, "err": fetch_err}, None
+            return {"ok": False, "err": fetch_err}
 
         if fetched is None:
             return {
                 "ok": False,
                 "err": ctx.make_error("direct_no_response", "response: undefined"),
-            }, None
+            }
 
         if isinstance(fetched, dict):
             status = helpers.to_int(vs.getprop(fetched, "status"))
@@ -205,20 +212,42 @@ class HomepageScreenshotSDK:
                 "status": status,
                 "headers": headers,
                 "data": json_data,
-            }, None
+            }
 
         return {
             "ok": False,
             "err": ctx.make_error("direct_invalid", "invalid response type"),
-        }, None
+        }
 
+
+    @property
+    def get_screenshot_by_domain(self):
+        """Idiomatic facade: client.get_screenshot_by_domain.list() / client.get_screenshot_by_domain.load({"id": ...})."""
+        from entity.get_screenshot_by_domain_entity import GetScreenshotByDomainEntity
+        cached = getattr(self, "_get_screenshot_by_domain", None)
+        if cached is None:
+            cached = GetScreenshotByDomainEntity(self, None)
+            self._get_screenshot_by_domain = cached
+        return cached
 
     def GetScreenshotByDomain(self, data=None):
+        # Deprecated: use client.get_screenshot_by_domain instead.
         from entity.get_screenshot_by_domain_entity import GetScreenshotByDomainEntity
         return GetScreenshotByDomainEntity(self, data)
 
 
+    @property
+    def get_screenshot_by_domain_and_date(self):
+        """Idiomatic facade: client.get_screenshot_by_domain_and_date.list() / client.get_screenshot_by_domain_and_date.load({"id": ...})."""
+        from entity.get_screenshot_by_domain_and_date_entity import GetScreenshotByDomainAndDateEntity
+        cached = getattr(self, "_get_screenshot_by_domain_and_date", None)
+        if cached is None:
+            cached = GetScreenshotByDomainAndDateEntity(self, None)
+            self._get_screenshot_by_domain_and_date = cached
+        return cached
+
     def GetScreenshotByDomainAndDate(self, data=None):
+        # Deprecated: use client.get_screenshot_by_domain_and_date instead.
         from entity.get_screenshot_by_domain_and_date_entity import GetScreenshotByDomainAndDateEntity
         return GetScreenshotByDomainAndDateEntity(self, data)
 

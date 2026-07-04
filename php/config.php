@@ -20,9 +20,6 @@ class HomepageScreenshotConfig
             ],
             "options" => [
                 "base" => "https://screenshotof.com",
-                "auth" => [
-                    "prefix" => "Bearer",
-                ],
                 "headers" => [
           'content-type' => 'application/json',
         ],
@@ -81,6 +78,7 @@ class HomepageScreenshotConfig
                         'orig' => 'domain',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                     'query' => [
@@ -191,6 +189,7 @@ class HomepageScreenshotConfig
                         'orig' => 'date',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                       [
                         'active' => true,
@@ -200,6 +199,7 @@ class HomepageScreenshotConfig
                         'orig' => 'domain',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 1,
                       ],
                     ],
                     'query' => [

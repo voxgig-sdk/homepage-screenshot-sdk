@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch GetScreenshotByDomainAndDateLoadMatch
+---@param ctrl? table
+---@return GetScreenshotByDomainAndDate
+---@return string? err
 function GetScreenshotByDomainAndDateEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

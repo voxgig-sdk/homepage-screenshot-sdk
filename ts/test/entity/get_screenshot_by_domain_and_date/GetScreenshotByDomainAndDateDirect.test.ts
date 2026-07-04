@@ -82,14 +82,12 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'HOMEPAGESCREENSHOT_TEST_GET_SCREENSHOT_BY_DOMAIN_AND_DATE_ENTID': {},
     'HOMEPAGESCREENSHOT_TEST_LIVE': 'FALSE',
-    'HOMEPAGESCREENSHOT_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.HOMEPAGESCREENSHOT_TEST_LIVE
 
   if (live) {
     const client = new HomepageScreenshotSDK({
-      apikey: env.HOMEPAGESCREENSHOT_APIKEY,
     })
 
     let idmap: any = env['HOMEPAGESCREENSHOT_TEST_GET_SCREENSHOT_BY_DOMAIN_AND_DATE_ENTID']
