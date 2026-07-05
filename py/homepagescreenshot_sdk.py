@@ -221,13 +221,13 @@ class HomepageScreenshotSDK:
 
 
     def GetScreenshotByDomain(self, data=None) -> "GetScreenshotByDomainEntity":
-        """Entity factory: client.GetScreenshotByDomain().list({}) / client.GetScreenshotByDomain().load({"id": ...})."""
+        """Entity factory: client.GetScreenshotByDomain().list() / client.GetScreenshotByDomain().load({"id": ...})."""
         from entity.get_screenshot_by_domain_entity import GetScreenshotByDomainEntity
         return GetScreenshotByDomainEntity(self, data)
 
 
     def GetScreenshotByDomainAndDate(self, data=None) -> "GetScreenshotByDomainAndDateEntity":
-        """Entity factory: client.GetScreenshotByDomainAndDate().list({}) / client.GetScreenshotByDomainAndDate().load({"id": ...})."""
+        """Entity factory: client.GetScreenshotByDomainAndDate().list() / client.GetScreenshotByDomainAndDate().load({"id": ...})."""
         from entity.get_screenshot_by_domain_and_date_entity import GetScreenshotByDomainAndDateEntity
         return GetScreenshotByDomainAndDateEntity(self, data)
 

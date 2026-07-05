@@ -8,7 +8,7 @@ Complete API reference for the HomepageScreenshot PHP SDK.
 ### Constructor
 
 ```php
-require_once __DIR__ . '/homepage-screenshot_sdk.php';
+require_once __DIR__ . '/homepagescreenshot_sdk.php';
 
 $client = new HomepageScreenshotSDK($options);
 ```
@@ -49,11 +49,11 @@ Create a new `GetScreenshotByDomainEntity` instance. Pass `null` for no initial 
 
 Create a new `GetScreenshotByDomainAndDateEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): HomepageScreenshotUtility`
 
 Return a copy of the SDK utility object.
 
@@ -96,10 +96,10 @@ $get_screenshot_by_domain = $client->GetScreenshotByDomain();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `domain` | ``$STRING`` | No |  |
-| `screenshot_url` | ``$STRING`` | No |  |
-| `size` | ``$INTEGER`` | No |  |
-| `timestamp` | ``$STRING`` | No |  |
+| `domain` | `string` | No |  |
+| `screenshot_url` | `string` | No |  |
+| `size` | `int` | No |  |
+| `timestamp` | `string` | No |  |
 
 ### Operations
 
@@ -113,19 +113,19 @@ $result = $client->GetScreenshotByDomain()->load(["id" => "get_screenshot_by_dom
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -134,7 +134,7 @@ Set the entity match criteria.
 Create a new `GetScreenshotByDomainEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -151,11 +151,11 @@ $get_screenshot_by_domain_and_date = $client->GetScreenshotByDomainAndDate();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `date` | ``$STRING`` | No |  |
-| `domain` | ``$STRING`` | No |  |
-| `screenshot_url` | ``$STRING`` | No |  |
-| `size` | ``$INTEGER`` | No |  |
-| `timestamp` | ``$STRING`` | No |  |
+| `date` | `string` | No |  |
+| `domain` | `string` | No |  |
+| `screenshot_url` | `string` | No |  |
+| `size` | `int` | No |  |
+| `timestamp` | `string` | No |  |
 
 ### Operations
 
@@ -164,24 +164,24 @@ $get_screenshot_by_domain_and_date = $client->GetScreenshotByDomainAndDate();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->GetScreenshotByDomainAndDate()->load(["id" => "get_screenshot_by_domain_and_date_id"]);
+$result = $client->GetScreenshotByDomainAndDate()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -190,7 +190,7 @@ Set the entity match criteria.
 Create a new `GetScreenshotByDomainAndDateEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

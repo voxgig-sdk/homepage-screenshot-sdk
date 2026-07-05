@@ -8,7 +8,7 @@ Complete API reference for the HomepageScreenshot Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'homepage-screenshot_sdk'
+require_relative 'HomepageScreenshot_sdk'
 
 client = HomepageScreenshotSDK.new(options)
 ```
@@ -97,10 +97,10 @@ get_screenshot_by_domain = client.GetScreenshotByDomain
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `domain` | ``$STRING`` | No |  |
-| `screenshot_url` | ``$STRING`` | No |  |
-| `size` | ``$INTEGER`` | No |  |
-| `timestamp` | ``$STRING`` | No |  |
+| `domain` | `String` | No |  |
+| `screenshot_url` | `String` | No |  |
+| `size` | `Integer` | No |  |
+| `timestamp` | `String` | No |  |
 
 ### Operations
 
@@ -152,11 +152,11 @@ get_screenshot_by_domain_and_date = client.GetScreenshotByDomainAndDate
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `date` | ``$STRING`` | No |  |
-| `domain` | ``$STRING`` | No |  |
-| `screenshot_url` | ``$STRING`` | No |  |
-| `size` | ``$INTEGER`` | No |  |
-| `timestamp` | ``$STRING`` | No |  |
+| `date` | `String` | No |  |
+| `domain` | `String` | No |  |
+| `screenshot_url` | `String` | No |  |
+| `size` | `Integer` | No |  |
+| `timestamp` | `String` | No |  |
 
 ### Operations
 
@@ -165,7 +165,7 @@ get_screenshot_by_domain_and_date = client.GetScreenshotByDomainAndDate
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.GetScreenshotByDomainAndDate.load({ "id" => "get_screenshot_by_domain_and_date_id" })
+result = client.GetScreenshotByDomainAndDate.load()
 ```
 
 ### Common Methods

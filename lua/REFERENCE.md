@@ -94,10 +94,10 @@ local get_screenshot_by_domain = client:GetScreenshotByDomain(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `domain` | ``$STRING`` | No |  |
-| `screenshot_url` | ``$STRING`` | No |  |
-| `size` | ``$INTEGER`` | No |  |
-| `timestamp` | ``$STRING`` | No |  |
+| `domain` | `string` | No |  |
+| `screenshot_url` | `string` | No |  |
+| `size` | `number` | No |  |
+| `timestamp` | `string` | No |  |
 
 ### Operations
 
@@ -149,11 +149,11 @@ local get_screenshot_by_domain_and_date = client:GetScreenshotByDomainAndDate(ni
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `date` | ``$STRING`` | No |  |
-| `domain` | ``$STRING`` | No |  |
-| `screenshot_url` | ``$STRING`` | No |  |
-| `size` | ``$INTEGER`` | No |  |
-| `timestamp` | ``$STRING`` | No |  |
+| `date` | `string` | No |  |
+| `domain` | `string` | No |  |
+| `screenshot_url` | `string` | No |  |
+| `size` | `number` | No |  |
+| `timestamp` | `string` | No |  |
 
 ### Operations
 
@@ -162,7 +162,7 @@ local get_screenshot_by_domain_and_date = client:GetScreenshotByDomainAndDate(ni
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:GetScreenshotByDomainAndDate():load({ id = "get_screenshot_by_domain_and_date_id" })
+local result, err = client:GetScreenshotByDomainAndDate():load()
 ```
 
 ### Common Methods

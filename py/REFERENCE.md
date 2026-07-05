@@ -8,7 +8,7 @@ Complete API reference for the HomepageScreenshot Python SDK.
 ### Constructor
 
 ```python
-from homepage-screenshot_sdk import HomepageScreenshotSDK
+from homepagescreenshot_sdk import HomepageScreenshotSDK
 
 client = HomepageScreenshotSDK(options)
 ```
@@ -91,10 +91,10 @@ get_screenshot_by_domain = client.GetScreenshotByDomain()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `domain` | ``$STRING`` | No |  |
-| `screenshot_url` | ``$STRING`` | No |  |
-| `size` | ``$INTEGER`` | No |  |
-| `timestamp` | ``$STRING`` | No |  |
+| `domain` | `str` | No |  |
+| `screenshot_url` | `str` | No |  |
+| `size` | `int` | No |  |
+| `timestamp` | `str` | No |  |
 
 ### Operations
 
@@ -145,11 +145,11 @@ get_screenshot_by_domain_and_date = client.GetScreenshotByDomainAndDate()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `date` | ``$STRING`` | No |  |
-| `domain` | ``$STRING`` | No |  |
-| `screenshot_url` | ``$STRING`` | No |  |
-| `size` | ``$INTEGER`` | No |  |
-| `timestamp` | ``$STRING`` | No |  |
+| `date` | `str` | No |  |
+| `domain` | `str` | No |  |
+| `screenshot_url` | `str` | No |  |
+| `size` | `int` | No |  |
+| `timestamp` | `str` | No |  |
 
 ### Operations
 
@@ -158,7 +158,7 @@ get_screenshot_by_domain_and_date = client.GetScreenshotByDomainAndDate()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.GetScreenshotByDomainAndDate().load({"id": "get_screenshot_by_domain_and_date_id"})
+result = client.GetScreenshotByDomainAndDate().load()
 ```
 
 ### Common Methods
