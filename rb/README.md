@@ -317,7 +317,7 @@ Create an instance: `get_screenshot_by_domain_and_date = client.GetScreenshotByD
 
 ```ruby
 # load returns the bare GetScreenshotByDomainAndDate record (raises on error).
-get_screenshot_by_domain_and_date = client.GetScreenshotByDomainAndDate.load()
+get_screenshot_by_domain_and_date = client.GetScreenshotByDomainAndDate.load({ "date" => "date", "domain" => "domain" })
 ```
 
 

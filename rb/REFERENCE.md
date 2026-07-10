@@ -165,7 +165,7 @@ get_screenshot_by_domain_and_date = client.GetScreenshotByDomainAndDate
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.GetScreenshotByDomainAndDate.load()
+result = client.GetScreenshotByDomainAndDate.load({ "date" => "date", "domain" => "domain" })
 ```
 
 ### Common Methods

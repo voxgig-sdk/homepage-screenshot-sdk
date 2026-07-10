@@ -94,7 +94,8 @@ same parameters as `Direct()`.
 ## GetScreenshotByDomainEntity
 
 ```go
-get_screenshot_by_domain := client.GetScreenshotByDomain(nil)
+getScreenshotByDomain := client.GetScreenshotByDomain(nil)
+fmt.Println(getScreenshotByDomain.GetName()) // "get_screenshot_by_domain"
 ```
 
 ### Fields
@@ -114,6 +115,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.GetScreenshotByDomain(nil).Load(map[string]any{"id": "get_screenshot_by_domain_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -143,7 +148,8 @@ Return the entity name.
 ## GetScreenshotByDomainAndDateEntity
 
 ```go
-get_screenshot_by_domain_and_date := client.GetScreenshotByDomainAndDate(nil)
+getScreenshotByDomainAndDate := client.GetScreenshotByDomainAndDate(nil)
+fmt.Println(getScreenshotByDomainAndDate.GetName()) // "get_screenshot_by_domain_and_date"
 ```
 
 ### Fields
@@ -163,7 +169,11 @@ get_screenshot_by_domain_and_date := client.GetScreenshotByDomainAndDate(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.GetScreenshotByDomainAndDate(nil).Load(nil, nil)
+result, err := client.GetScreenshotByDomainAndDate(nil).Load(map[string]any{"date": "date", "domain": "domain"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods

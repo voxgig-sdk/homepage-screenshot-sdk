@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -403,15 +400,18 @@
           "email": "support@urlbox.com"
         },
         "description": "This API provides fast and efficient screenshots of specified web pages. Users can request screenshots for various dates, sizes, and formats, making it ideal for web monitoring and analysis. Screenshots of homepages not in the top ~1 million websites will be generated on demand and may take a few seconds. Free tier allows up to 1,000 requests per day without an API key.",
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "description": "Production server",
             "url": "https://screenshotof.com"
           }
         ],
+        "summary": "This API provides fast and efficient screenshots of specified web pages.",
         "termsOfService": "https://screenshotof.com",
         "title": "Homepage Screenshot API",
-        "version": "0.2"
+        "version": "0.2",
+        "website": "https://screenshotof.com"
       },
       "option": {},
       "target": {
@@ -464,6 +464,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -514,6 +517,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

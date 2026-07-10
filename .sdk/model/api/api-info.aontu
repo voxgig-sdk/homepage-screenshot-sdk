@@ -15,10 +15,10 @@ main: {
           url: "https://screenshotof.com"
         }
       ]
+      summary: "This API provides fast and efficient screenshots of specified web pages."
       termsOfService: "https://screenshotof.com"
       title: "Homepage Screenshot API"
       version: "0.2"
+      website: "https://screenshotof.com"
     }
   }
-}
-

@@ -318,7 +318,7 @@ Create an instance: `get_screenshot_by_domain_and_date = client.GetScreenshotByD
 #### Example: Load
 
 ```python
-get_screenshot_by_domain_and_date = client.GetScreenshotByDomainAndDate().load()
+get_screenshot_by_domain_and_date = client.GetScreenshotByDomainAndDate().load({"date": "date", "domain": "domain"})
 ```
 
 

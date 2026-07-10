@@ -327,7 +327,7 @@ Create an instance: `$get_screenshot_by_domain_and_date = $client->GetScreenshot
 
 ```php
 // load() returns the bare GetScreenshotByDomainAndDate record (throws on error).
-$get_screenshot_by_domain_and_date = $client->GetScreenshotByDomainAndDate()->load();
+$get_screenshot_by_domain_and_date = $client->GetScreenshotByDomainAndDate()->load(["date" => "date", "domain" => "domain"]);
 ```
 
 

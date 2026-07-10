@@ -164,7 +164,7 @@ $get_screenshot_by_domain_and_date = $client->GetScreenshotByDomainAndDate();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->GetScreenshotByDomainAndDate()->load();
+$result = $client->GetScreenshotByDomainAndDate()->load(["date" => "date", "domain" => "domain"]);
 ```
 
 ### Common Methods

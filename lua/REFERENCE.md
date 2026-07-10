@@ -162,7 +162,7 @@ local get_screenshot_by_domain_and_date = client:GetScreenshotByDomainAndDate(ni
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:GetScreenshotByDomainAndDate():load()
+local result, err = client:GetScreenshotByDomainAndDate():load({ date = "date", domain = "domain" })
 ```
 
 ### Common Methods

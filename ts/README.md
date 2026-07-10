@@ -362,7 +362,7 @@ Create an instance: `const get_screenshot_by_domain_and_date = client.GetScreens
 #### Example: Load
 
 ```ts
-const get_screenshot_by_domain_and_date = await client.GetScreenshotByDomainAndDate().load()
+const get_screenshot_by_domain_and_date = await client.GetScreenshotByDomainAndDate().load({ date: 'date', domain: 'domain' })
 ```
 
 

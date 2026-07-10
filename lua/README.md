@@ -303,7 +303,7 @@ Create an instance: `local get_screenshot_by_domain_and_date = client:GetScreens
 #### Example: Load
 
 ```lua
-local get_screenshot_by_domain_and_date, err = client:GetScreenshotByDomainAndDate():load()
+local get_screenshot_by_domain_and_date, err = client:GetScreenshotByDomainAndDate():load({ date = "date", domain = "domain" })
 ```
 
 

@@ -50,12 +50,12 @@ import (
 func main() {
     client := sdk.New()
 
-    // Load a single getscreenshotbydomain — the value is the loaded record.
-    getscreenshotbydomain, err := client.GetScreenshotByDomain(nil).Load(map[string]any{"id": "example"}, nil)
+    // Load a single getScreenshotByDomain — the value is the loaded record.
+    getScreenshotByDomain, err := client.GetScreenshotByDomain(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }
-    fmt.Println(getscreenshotbydomain)
+    fmt.Println(getScreenshotByDomain)
 }
 ```
 
@@ -135,13 +135,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-getscreenshotbydomain, err := client.GetScreenshotByDomain(nil).Load(
+getScreenshotByDomain, err := client.GetScreenshotByDomain(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(getscreenshotbydomain) // the returned mock data
+fmt.Println(getScreenshotByDomain) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -246,9 +246,9 @@ Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    getscreenshotbydomain, err := client.GetScreenshotByDomain(nil).Load(map[string]any{"id": "example_id"}, nil)
+    getScreenshotByDomain, err := client.GetScreenshotByDomain(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil { /* handle */ }
-    // getscreenshotbydomain is the returned record
+    // getScreenshotByDomain is the returned record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -289,7 +289,7 @@ API path: `/{domain}/{date}`
 
 ### GetScreenshotByDomain
 
-Create an instance: `get_screenshot_by_domain := client.GetScreenshotByDomain(nil)`
+Create an instance: `getScreenshotByDomain := client.GetScreenshotByDomain(nil)`
 
 #### Operations
 
@@ -309,17 +309,17 @@ Create an instance: `get_screenshot_by_domain := client.GetScreenshotByDomain(ni
 #### Example: Load
 
 ```go
-get_screenshot_by_domain, err := client.GetScreenshotByDomain(nil).Load(map[string]any{"id": "get_screenshot_by_domain_id"}, nil)
+getScreenshotByDomain, err := client.GetScreenshotByDomain(nil).Load(map[string]any{"id": "get_screenshot_by_domain_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(get_screenshot_by_domain) // the loaded record
+fmt.Println(getScreenshotByDomain) // the loaded record
 ```
 
 
 ### GetScreenshotByDomainAndDate
 
-Create an instance: `get_screenshot_by_domain_and_date := client.GetScreenshotByDomainAndDate(nil)`
+Create an instance: `getScreenshotByDomainAndDate := client.GetScreenshotByDomainAndDate(nil)`
 
 #### Operations
 
@@ -340,11 +340,11 @@ Create an instance: `get_screenshot_by_domain_and_date := client.GetScreenshotBy
 #### Example: Load
 
 ```go
-get_screenshot_by_domain_and_date, err := client.GetScreenshotByDomainAndDate(nil).Load(nil, nil)
+getScreenshotByDomainAndDate, err := client.GetScreenshotByDomainAndDate(nil).Load(map[string]any{"date": "date", "domain": "domain"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(get_screenshot_by_domain_and_date) // the loaded record
+fmt.Println(getScreenshotByDomainAndDate) // the loaded record
 ```
 
 
