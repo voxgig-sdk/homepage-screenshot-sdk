@@ -97,6 +97,7 @@ module HomepageScreenshotConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{domain}",
                   "parts" => [
@@ -218,6 +219,7 @@ module HomepageScreenshotConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{domain}/{date}",
                   "parts" => [

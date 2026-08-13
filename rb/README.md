@@ -34,7 +34,7 @@ client = HomepageScreenshotSDK.new
 
 ```ruby
 begin
-  # load returns the bare GetScreenshotByDomain record (raises on error).
+  # load returns the ENTITY — call data_get for the GetScreenshotByDomain record (raises on error).
   getscreenshotbydomain = client.GetScreenshotByDomain.load({ "id" => "example_id" })
   puts getscreenshotbydomain
 rescue => err
@@ -120,7 +120,8 @@ client = HomepageScreenshotSDK.test({
   "entity" => { "getscreenshotbydomain" => { "test01" => { "id" => "test01" } } },
 })
 
-# Entity ops return the bare mock record (raises on error).
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
 getscreenshotbydomain = client.GetScreenshotByDomain.load({ "id" => "test01" })
 puts getscreenshotbydomain
 ```
@@ -288,7 +289,7 @@ Create an instance: `get_screenshot_by_domain = client.GetScreenshotByDomain`
 #### Example: Load
 
 ```ruby
-# load returns the bare GetScreenshotByDomain record (raises on error).
+# load returns the ENTITY — call data_get for the GetScreenshotByDomain record (raises on error).
 get_screenshot_by_domain = client.GetScreenshotByDomain.load({ "id" => "get_screenshot_by_domain_id" })
 ```
 
@@ -316,7 +317,7 @@ Create an instance: `get_screenshot_by_domain_and_date = client.GetScreenshotByD
 #### Example: Load
 
 ```ruby
-# load returns the bare GetScreenshotByDomainAndDate record (raises on error).
+# load returns the ENTITY — call data_get for the GetScreenshotByDomainAndDate record (raises on error).
 get_screenshot_by_domain_and_date = client.GetScreenshotByDomainAndDate.load({ "date" => "date", "domain" => "domain" })
 ```
 

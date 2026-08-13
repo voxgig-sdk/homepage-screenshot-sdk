@@ -26,8 +26,8 @@ import {
 describe('GetScreenshotByDomainEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when HOMEPAGESCREENSHOT_TEST_LIVE=TRUE.
-  afterEach(liveDelay('HOMEPAGESCREENSHOT_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when HOMEPAGE_SCREENSHOT_TEST_LIVE=TRUE.
+  afterEach(liveDelay('HOMEPAGE_SCREENSHOT_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = HomepageScreenshotSDK.test()

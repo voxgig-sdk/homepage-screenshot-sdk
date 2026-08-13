@@ -23,8 +23,8 @@ module HomepageScreenshotTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("HOMEPAGESCREENSHOT_TEST_LIVE")
-    override = getenv("HOMEPAGESCREENSHOT_TEST_OVERRIDE")
+    live = getenv("HOMEPAGE_SCREENSHOT_TEST_LIVE")
+    override = getenv("HOMEPAGE_SCREENSHOT_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module HomepageScreenshotTestRunner
       end
     end
 
-    explain = getenv("HOMEPAGESCREENSHOT_TEST_EXPLAIN")
-    m["HOMEPAGESCREENSHOT_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("HOMEPAGE_SCREENSHOT_TEST_EXPLAIN")
+    m["HOMEPAGE_SCREENSHOT_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

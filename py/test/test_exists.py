@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# HomepageScreenshot SDK exists test
 
 import pytest
 from homepagescreenshot_sdk import HomepageScreenshotSDK

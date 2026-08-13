@@ -68,11 +68,11 @@ function get_screenshot_by_domain_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["HOMEPAGESCREENSHOT_TEST_GET_SCREENSHOT_BY_DOMAIN_ENTID"] = {},
-    ["HOMEPAGESCREENSHOT_TEST_LIVE"] = "FALSE",
+    ["HOMEPAGE_SCREENSHOT_TEST_GET_SCREENSHOT_BY_DOMAIN_ENTID"] = {},
+    ["HOMEPAGE_SCREENSHOT_TEST_LIVE"] = "FALSE",
   })
 
-  local live = env["HOMEPAGESCREENSHOT_TEST_LIVE"] == "TRUE"
+  local live = env["HOMEPAGE_SCREENSHOT_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {

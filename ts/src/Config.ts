@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'HomepageScreenshot',
   }
 
 
@@ -128,6 +128,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/{domain}",
               "parts": [
@@ -249,6 +250,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/{domain}/{date}",
               "parts": [

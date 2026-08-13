@@ -75,11 +75,11 @@ function get_screenshot_by_domain_and_date_direct_setup($mockres)
     $calls = new \ArrayObject();
 
     $env = Runner::env_override([
-        "HOMEPAGESCREENSHOT_TEST_GET_SCREENSHOT_BY_DOMAIN_AND_DATE_ENTID" => [],
-        "HOMEPAGESCREENSHOT_TEST_LIVE" => "FALSE",
+        "HOMEPAGE_SCREENSHOT_TEST_GET_SCREENSHOT_BY_DOMAIN_AND_DATE_ENTID" => [],
+        "HOMEPAGE_SCREENSHOT_TEST_LIVE" => "FALSE",
     ]);
 
-    $live = $env["HOMEPAGESCREENSHOT_TEST_LIVE"] === "TRUE";
+    $live = $env["HOMEPAGE_SCREENSHOT_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [

@@ -43,8 +43,8 @@ class HomepageScreenshotTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('HOMEPAGESCREENSHOT_TEST_LIVE');
-        $override = self::getenv('HOMEPAGESCREENSHOT_TEST_OVERRIDE');
+        $live = self::getenv('HOMEPAGE_SCREENSHOT_TEST_LIVE');
+        $override = self::getenv('HOMEPAGE_SCREENSHOT_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class HomepageScreenshotTestRunner
             }
         }
 
-        $explain = self::getenv('HOMEPAGESCREENSHOT_TEST_EXPLAIN');
+        $explain = self::getenv('HOMEPAGE_SCREENSHOT_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['HOMEPAGESCREENSHOT_TEST_EXPLAIN'] = $explain;
+            $m['HOMEPAGE_SCREENSHOT_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

@@ -102,6 +102,7 @@ class HomepageScreenshotConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/{domain}',
                   'parts' => [
@@ -223,6 +224,7 @@ class HomepageScreenshotConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/{domain}/{date}',
                   'parts' => [

@@ -33,7 +33,7 @@ class GetScreenshotByDomainAndDateEntityTest extends TestCase
         // The basic flow consumes synthetic IDs from the fixture. In live mode
         // without an *_ENTID env override, those IDs hit the live API and 4xx.
         if (!empty($setup["synthetic_only"])) {
-            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set HOMEPAGESCREENSHOT_TEST_GET_SCREENSHOT_BY_DOMAIN_AND_DATE_ENTID JSON to run live");
+            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set HOMEPAGE_SCREENSHOT_TEST_GET_SCREENSHOT_BY_DOMAIN_AND_DATE_ENTID JSON to run live");
             return;
         }
         $client = $setup["client"];
@@ -77,22 +77,22 @@ function get_screenshot_by_domain_and_date_basic_setup($extra)
     // Detect ENTID env override before envOverride consumes it. When live
     // mode is on without a real override, the basic test runs against synthetic
     // IDs from the fixture and 4xx's. Surface this so the test can skip.
-    $entid_env_raw = getenv("HOMEPAGESCREENSHOT_TEST_GET_SCREENSHOT_BY_DOMAIN_AND_DATE_ENTID");
+    $entid_env_raw = getenv("HOMEPAGE_SCREENSHOT_TEST_GET_SCREENSHOT_BY_DOMAIN_AND_DATE_ENTID");
     $idmap_overridden = $entid_env_raw !== false && str_starts_with(trim($entid_env_raw), "{");
 
     $env = Runner::env_override([
-        "HOMEPAGESCREENSHOT_TEST_GET_SCREENSHOT_BY_DOMAIN_AND_DATE_ENTID" => $idmap,
-        "HOMEPAGESCREENSHOT_TEST_LIVE" => "FALSE",
-        "HOMEPAGESCREENSHOT_TEST_EXPLAIN" => "FALSE",
+        "HOMEPAGE_SCREENSHOT_TEST_GET_SCREENSHOT_BY_DOMAIN_AND_DATE_ENTID" => $idmap,
+        "HOMEPAGE_SCREENSHOT_TEST_LIVE" => "FALSE",
+        "HOMEPAGE_SCREENSHOT_TEST_EXPLAIN" => "FALSE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
-        $env["HOMEPAGESCREENSHOT_TEST_GET_SCREENSHOT_BY_DOMAIN_AND_DATE_ENTID"]);
+        $env["HOMEPAGE_SCREENSHOT_TEST_GET_SCREENSHOT_BY_DOMAIN_AND_DATE_ENTID"]);
     if ($idmap_resolved === null) {
         $idmap_resolved = Helpers::to_map($idmap);
     }
 
-    if ($env["HOMEPAGESCREENSHOT_TEST_LIVE"] === "TRUE") {
+    if ($env["HOMEPAGE_SCREENSHOT_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
             ],
@@ -101,13 +101,13 @@ function get_screenshot_by_domain_and_date_basic_setup($extra)
         $client = new HomepageScreenshotSDK(Helpers::to_map($merged_opts));
     }
 
-    $live = $env["HOMEPAGESCREENSHOT_TEST_LIVE"] === "TRUE";
+    $live = $env["HOMEPAGE_SCREENSHOT_TEST_LIVE"] === "TRUE";
     return [
         "client" => $client,
         "data" => $entity_data,
         "idmap" => $idmap_resolved,
         "env" => $env,
-        "explain" => $env["HOMEPAGESCREENSHOT_TEST_EXPLAIN"] === "TRUE",
+        "explain" => $env["HOMEPAGE_SCREENSHOT_TEST_EXPLAIN"] === "TRUE",
         "live" => $live,
         "synthetic_only" => $live && !$idmap_overridden,
         "now" => (int)(microtime(true) * 1000),

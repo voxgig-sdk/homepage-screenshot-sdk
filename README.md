@@ -23,7 +23,7 @@ support (`load`):
 
 ```ts
 const client = new HomepageScreenshotSDK()
-const getscreenshotbydomain = await client.GetScreenshotByDomain().load()
+const getscreenshotbydomain = await client.GetScreenshotByDomain().load({ id: "example_id" })
 ```
 
 Thinking in entities keeps the mental model small — for people and AI agents alike —
@@ -38,9 +38,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = HomepageScreenshotSDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = HomepageScreenshotSDK.test({
+  entity: {
+    get_screenshot_by_domain: {
+      test01: { id: 'test01' },
+    },
+  },
+})
 const getscreenshotbydomain = await client.GetScreenshotByDomain().load({ id: 'test01' })
-// getscreenshotbydomain is a bare GetScreenshotByDomain populated with mock data
+// getscreenshotbydomain is the GetScreenshotByDomain entity, populated with mock data
+// — call getscreenshotbydomain.data() for the record itself
 console.log(getscreenshotbydomain)
 ```
 
@@ -183,7 +192,7 @@ require_once 'homepagescreenshot_sdk.php';
 $client = new HomepageScreenshotSDK();
 
 
-// Load a specific getscreenshotbydomain (returns the bare record; throws on error)
+// Load a specific getscreenshotbydomain (returns the ENTITY; call data_get() for the record; throws on error)
 $getscreenshotbydomain = $client->GetScreenshotByDomain()->load(["id" => "example_id"]);
 print_r($getscreenshotbydomain);
 ```
@@ -211,7 +220,7 @@ require_relative "HomepageScreenshot_sdk"
 client = HomepageScreenshotSDK.new
 
 
-# Load a specific getscreenshotbydomain (returns the bare record; raises on error)
+# Load a specific getscreenshotbydomain (returns the ENTITY; call data_get for the record)
 getscreenshotbydomain = client.GetScreenshotByDomain.load({ "id" => "example_id" })
 puts getscreenshotbydomain
 ```
@@ -345,6 +354,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://screenshotof.com](https://screenshotof.com)
 

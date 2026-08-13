@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import HomepageScreenshotControl
-from core.error import HomepageScreenshotError
-from core.result import HomepageScreenshotResult
-from core.spec import HomepageScreenshotSpec
+from homepagescreenshot_sdk.config import make_config
+from homepagescreenshot_sdk.features import _make_feature
+from homepagescreenshot_sdk.core.control import HomepageScreenshotControl
+from homepagescreenshot_sdk.core.error import HomepageScreenshotError
+from homepagescreenshot_sdk.core.result import HomepageScreenshotResult
+from homepagescreenshot_sdk.core.spec import HomepageScreenshotSpec
 
 
 # True when this SDK was generated with the named feature.

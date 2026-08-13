@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ HomepageScreenshotUtility.registrar = ->(u) {
   u.prepare_params = HomepageScreenshotUtilities::PrepareParams
   u.prepare_path = HomepageScreenshotUtilities::PreparePath
   u.prepare_query = HomepageScreenshotUtilities::PrepareQuery
+  u.graphql_body = HomepageScreenshotUtilities::GraphqlBody
+  u.graphql_errors = HomepageScreenshotUtilities::GraphqlErrors
   u.result_basic = HomepageScreenshotUtilities::ResultBasic
   u.result_body = HomepageScreenshotUtilities::ResultBody
   u.result_headers = HomepageScreenshotUtilities::ResultHeaders

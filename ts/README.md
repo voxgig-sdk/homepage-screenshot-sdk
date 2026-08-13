@@ -121,7 +121,8 @@ Create a mock client for unit testing — no server required:
 const client = HomepageScreenshotSDK.test()
 
 const getscreenshotbydomain = await client.GetScreenshotByDomain().load({ id: 'test01' })
-// getscreenshotbydomain is a bare entity populated with mock response data
+// getscreenshotbydomain is the entity, populated with mock response data
+// — call getscreenshotbydomain.data() for the record itself
 console.log(getscreenshotbydomain)
 ```
 

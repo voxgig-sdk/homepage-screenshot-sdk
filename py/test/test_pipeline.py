@@ -16,11 +16,11 @@
 import pytest
 
 from homepagescreenshot_sdk import HomepageScreenshotSDK
-from core.error import HomepageScreenshotError
-from core.result import HomepageScreenshotResult
-from core.response import HomepageScreenshotResponse
-from core.spec import HomepageScreenshotSpec
-from feature.base_feature import HomepageScreenshotBaseFeature
+from homepagescreenshot_sdk.core.error import HomepageScreenshotError
+from homepagescreenshot_sdk.core.result import HomepageScreenshotResult
+from homepagescreenshot_sdk.core.response import HomepageScreenshotResponse
+from homepagescreenshot_sdk.core.spec import HomepageScreenshotSpec
+from homepagescreenshot_sdk.feature.base_feature import HomepageScreenshotBaseFeature
 
 
 def _client():

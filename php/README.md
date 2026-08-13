@@ -35,7 +35,7 @@ $client = new HomepageScreenshotSDK();
 
 ```php
 try {
-    // load() returns the bare GetScreenshotByDomain record (throws on error).
+    // load() returns the ENTITY — call data_get() for the GetScreenshotByDomain record (throws on error).
     $getscreenshotbydomain = $client->GetScreenshotByDomain()->load(["id" => "example_id"]);
     print_r($getscreenshotbydomain);
 } catch (\Throwable $err) {
@@ -126,7 +126,8 @@ $client = HomepageScreenshotSDK::test([
     "entity" => ["getscreenshotbydomain" => ["test01" => ["id" => "test01"]]],
 ]);
 
-// Entity ops return the bare mock record (throws on error).
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
 $getscreenshotbydomain = $client->GetScreenshotByDomain()->load(["id" => "test01"]);
 print_r($getscreenshotbydomain);
 ```
@@ -226,7 +227,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -298,7 +299,7 @@ Create an instance: `$get_screenshot_by_domain = $client->GetScreenshotByDomain(
 #### Example: Load
 
 ```php
-// load() returns the bare GetScreenshotByDomain record (throws on error).
+// load() returns the ENTITY — call data_get() for the GetScreenshotByDomain record (throws on error).
 $get_screenshot_by_domain = $client->GetScreenshotByDomain()->load(["id" => "get_screenshot_by_domain_id"]);
 ```
 
@@ -326,7 +327,7 @@ Create an instance: `$get_screenshot_by_domain_and_date = $client->GetScreenshot
 #### Example: Load
 
 ```php
-// load() returns the bare GetScreenshotByDomainAndDate record (throws on error).
+// load() returns the ENTITY — call data_get() for the GetScreenshotByDomainAndDate record (throws on error).
 $get_screenshot_by_domain_and_date = $client->GetScreenshotByDomainAndDate()->load(["date" => "date", "domain" => "domain"]);
 ```
 

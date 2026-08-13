@@ -19,11 +19,15 @@ import {
 describe('GetScreenshotByDomainAndDateDirect', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when HOMEPAGESCREENSHOT_TEST_LIVE=TRUE.
-  afterEach(liveDelay('HOMEPAGESCREENSHOT_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when HOMEPAGE_SCREENSHOT_TEST_LIVE=TRUE.
+  afterEach(liveDelay('HOMEPAGE_SCREENSHOT_TEST_LIVE'))
 
   test('direct-exists', async () => {
     const sdk = new HomepageScreenshotSDK({
+      // Concrete base: a live construction must satisfy any server
+      // variables a templated base URL declares; overriding base with a
+      // literal (as the direct flow tests do) sidesteps the requirement.
+      base: 'http://localhost:8080',
       system: { fetch: async () => ({}) }
     })
     assert('function' === typeof sdk.direct)
@@ -80,17 +84,17 @@ function directSetup(mockres?: any) {
   const calls: any[] = []
 
   const env = envOverride({
-    'HOMEPAGESCREENSHOT_TEST_GET_SCREENSHOT_BY_DOMAIN_AND_DATE_ENTID': {},
-    'HOMEPAGESCREENSHOT_TEST_LIVE': 'FALSE',
+    'HOMEPAGE_SCREENSHOT_TEST_GET_SCREENSHOT_BY_DOMAIN_AND_DATE_ENTID': {},
+    'HOMEPAGE_SCREENSHOT_TEST_LIVE': 'FALSE',
   })
 
-  const live = 'TRUE' === env.HOMEPAGESCREENSHOT_TEST_LIVE
+  const live = 'TRUE' === env.HOMEPAGE_SCREENSHOT_TEST_LIVE
 
   if (live) {
     const client = new HomepageScreenshotSDK({
     })
 
-    let idmap: any = env['HOMEPAGESCREENSHOT_TEST_GET_SCREENSHOT_BY_DOMAIN_AND_DATE_ENTID']
+    let idmap: any = env['HOMEPAGE_SCREENSHOT_TEST_GET_SCREENSHOT_BY_DOMAIN_AND_DATE_ENTID']
     if ('string' === typeof idmap && idmap.startsWith('{')) {
       idmap = JSON.parse(idmap)
     }
