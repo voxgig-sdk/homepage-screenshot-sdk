@@ -15,7 +15,7 @@ require_relative "../HomepageScreenshot_sdk"
 module HomepageScreenshotFeatureHarness
   # True when this SDK was generated with the named feature.
   def self.has_feature?(name)
-    f = HomepageScreenshotConfig.make_config["feature"]
+    f = HomepageScreenshotConfig.shared_config["feature"]
     f.is_a?(Hash) && !f[name].nil?
   end
 

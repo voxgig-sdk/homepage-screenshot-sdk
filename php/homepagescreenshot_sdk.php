@@ -40,7 +40,7 @@ class HomepageScreenshotSDK
         $utility = new HomepageScreenshotUtility();
         $this->_utility = $utility;
 
-        $config = HomepageScreenshotConfig::make_config();
+        $config = HomepageScreenshotConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

@@ -1,6 +1,20 @@
 # HomepageScreenshot SDK configuration
 
 module HomepageScreenshotConfig
+  # Return the process-wide config, built once on first use. The SDK reads
+  # the config on every request and never writes to it, so one instance is
+  # shared by every client rather than rebuilt per client.
+  #
+  # The returned hash is shared: treat it as read-only. Callers that need to
+  # mutate should use make_config, which always returns a fresh copy.
+  def self.shared_config
+    @shared_config ||= make_config
+  end
+
+
+  # Build a fresh, fully materialised config hash. Every call rebuilds the
+  # whole structure, so prefer shared_config unless you need a private copy
+  # you intend to mutate.
   def self.make_config
     {
       "main" => {
@@ -27,32 +41,20 @@ module HomepageScreenshotConfig
         "get_screenshot_by_domain" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "domain",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 0,
             },
             {
-              "active" => true,
               "name" => "screenshot_url",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 1,
             },
             {
-              "active" => true,
               "name" => "size",
-              "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 2,
             },
             {
-              "active" => true,
               "name" => "timestamp",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 3,
             },
           ],
           "name" => "get_screenshot_by_domain",
@@ -62,37 +64,30 @@ module HomepageScreenshotConfig
               "name" => "load",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "example" => "bbc.co.uk",
                         "kind" => "param",
                         "name" => "id",
                         "orig" => "domain",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 0,
                       },
                     ],
                     "query" => [
                       {
-                        "active" => true,
                         "example" => "png",
                         "kind" => "query",
                         "name" => "f",
                         "orig" => "f",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "example" => 2048,
                         "kind" => "query",
                         "name" => "s",
                         "orig" => "s",
-                        "reqd" => false,
                         "type" => "`$INTEGER`",
                       },
                     ],
@@ -119,10 +114,8 @@ module HomepageScreenshotConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "load",
             },
           },
           "relations" => {
@@ -132,39 +125,24 @@ module HomepageScreenshotConfig
         "get_screenshot_by_domain_and_date" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "date",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 0,
             },
             {
-              "active" => true,
               "name" => "domain",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 1,
             },
             {
-              "active" => true,
               "name" => "screenshot_url",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 2,
             },
             {
-              "active" => true,
               "name" => "size",
-              "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 3,
             },
             {
-              "active" => true,
               "name" => "timestamp",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 4,
             },
           ],
           "name" => "get_screenshot_by_domain_and_date",
@@ -174,47 +152,38 @@ module HomepageScreenshotConfig
               "name" => "load",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "example" => "2026-02",
                         "kind" => "param",
                         "name" => "date",
                         "orig" => "date",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 0,
                       },
                       {
-                        "active" => true,
                         "example" => "bbc.co.uk",
                         "kind" => "param",
                         "name" => "domain",
                         "orig" => "domain",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 1,
                       },
                     ],
                     "query" => [
                       {
-                        "active" => true,
                         "example" => "png",
                         "kind" => "query",
                         "name" => "f",
                         "orig" => "f",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "example" => 2048,
                         "kind" => "query",
                         "name" => "s",
                         "orig" => "s",
-                        "reqd" => false,
                         "type" => "`$INTEGER`",
                       },
                     ],
@@ -238,10 +207,8 @@ module HomepageScreenshotConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "load",
             },
           },
           "relations" => {
