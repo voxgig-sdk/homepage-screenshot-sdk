@@ -97,10 +97,10 @@ get_screenshot_by_domain = client.GetScreenshotByDomain
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `domain` | `String` | No |  |
-| `screenshot_url` | `String` | No |  |
-| `size` | `Integer` | No |  |
-| `timestamp` | `String` | No |  |
+| `domain` | `String` | No | The requested domain |
+| `screenshot_url` | `String` | No | URL to the screenshot image |
+| `size` | `Integer` | No | Size of the screenshot |
+| `timestamp` | `String` | No | When the screenshot was taken |
 
 ### Operations
 
@@ -152,11 +152,11 @@ get_screenshot_by_domain_and_date = client.GetScreenshotByDomainAndDate
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `date` | `String` | No |  |
-| `domain` | `String` | No |  |
-| `screenshot_url` | `String` | No |  |
-| `size` | `Integer` | No |  |
-| `timestamp` | `String` | No |  |
+| `date` | `String` | No | The date of the screenshot in YYYY-MM format |
+| `domain` | `String` | No | The requested domain |
+| `screenshot_url` | `String` | No | URL to the screenshot image |
+| `size` | `Integer` | No | Size of the screenshot |
+| `timestamp` | `String` | No | When the screenshot was taken |
 
 ### Operations
 

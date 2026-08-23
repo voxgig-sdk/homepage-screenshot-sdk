@@ -249,10 +249,10 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `domain` |  |
-| `screenshot_url` |  |
-| `size` |  |
-| `timestamp` |  |
+| `domain` | The requested domain |
+| `screenshot_url` | URL to the screenshot image |
+| `size` | Size of the screenshot |
+| `timestamp` | When the screenshot was taken |
 
 Operations: Load.
 
@@ -262,11 +262,11 @@ API path: `/{domain}`
 
 | Field | Description |
 | --- | --- |
-| `date` |  |
-| `domain` |  |
-| `screenshot_url` |  |
-| `size` |  |
-| `timestamp` |  |
+| `date` | The date of the screenshot in YYYY-MM format |
+| `domain` | The requested domain |
+| `screenshot_url` | URL to the screenshot image |
+| `size` | Size of the screenshot |
+| `timestamp` | When the screenshot was taken |
 
 Operations: Load.
 
@@ -291,10 +291,10 @@ Create an instance: `$get_screenshot_by_domain = $client->GetScreenshotByDomain(
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `domain` | `string` |  |
-| `screenshot_url` | `string` |  |
-| `size` | `int` |  |
-| `timestamp` | `string` |  |
+| `domain` | `string` | The requested domain |
+| `screenshot_url` | `string` | URL to the screenshot image |
+| `size` | `int` | Size of the screenshot |
+| `timestamp` | `string` | When the screenshot was taken |
 
 #### Example: Load
 
@@ -318,11 +318,11 @@ Create an instance: `$get_screenshot_by_domain_and_date = $client->GetScreenshot
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `date` | `string` |  |
-| `domain` | `string` |  |
-| `screenshot_url` | `string` |  |
-| `size` | `int` |  |
-| `timestamp` | `string` |  |
+| `date` | `string` | The date of the screenshot in YYYY-MM format |
+| `domain` | `string` | The requested domain |
+| `screenshot_url` | `string` | URL to the screenshot image |
+| `size` | `int` | Size of the screenshot |
+| `timestamp` | `string` | When the screenshot was taken |
 
 #### Example: Load
 

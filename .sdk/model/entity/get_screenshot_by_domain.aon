@@ -1,38 +1,37 @@
-# Entity: get_screenshot_by_domain_and_date
+# Entity: get_screenshot_by_domain
 
-main: kit: entity: get_screenshot_by_domain_and_date: {
+main: kit: entity: get_screenshot_by_domain: {
 
   alias: field: {}
 
   fields: [
     {
-      name: "date"
-      req: false
-      type: "`$STRING`"
-    }
-    {
       name: "domain"
       req: false
+      short: "The requested domain"
       type: "`$STRING`"
     }
     {
       name: "screenshot_url"
       req: false
+      short: "URL to the screenshot image"
       type: "`$STRING`"
     }
     {
       name: "size"
       req: false
+      short: "Size of the screenshot"
       type: "`$INTEGER`"
     }
     {
       name: "timestamp"
       req: false
+      short: "When the screenshot was taken"
       type: "`$STRING`"
     }
   ]
 
-  name: "get_screenshot_by_domain_and_date"
+  name: "get_screenshot_by_domain"
   op: {
     load: {
       name: "load"
@@ -41,17 +40,9 @@ main: kit: entity: get_screenshot_by_domain_and_date: {
           args: {
             params: [
               {
-                example: "2026-02"
-                kind: "param"
-                name: "date"
-                orig: "date"
-                reqd: true
-                type: "`$STRING`"
-              }
-              {
                 example: "bbc.co.uk"
                 kind: "param"
-                name: "domain"
+                name: "id"
                 orig: "domain"
                 reqd: true
                 type: "`$STRING`"
@@ -77,16 +68,19 @@ main: kit: entity: get_screenshot_by_domain_and_date: {
             ]
           }
           method: "GET"
-          orig: "/{domain}/{date}"
+          orig: "/{domain}"
           parts: [
-            "{domain}"
-            "{date}"
+            "{id}"
           ]
+          rename: {
+            param: {
+              domain: "id"
+            }
+          }
           select: {
             exist: [
-              "date"
-              "domain"
               "f"
+              "id"
               "s"
             ]
           }

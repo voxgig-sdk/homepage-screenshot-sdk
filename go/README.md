@@ -6,7 +6,7 @@ The Golang SDK for the HomepageScreenshot API — an entity-oriented client usin
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.GetScreenshotByDomain(nil)` — each with the same small set of operations (`Load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -259,10 +259,10 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"domain"` |  |
-| `"screenshot_url"` |  |
-| `"size"` |  |
-| `"timestamp"` |  |
+| `"domain"` | The requested domain |
+| `"screenshot_url"` | URL to the screenshot image |
+| `"size"` | Size of the screenshot |
+| `"timestamp"` | When the screenshot was taken |
 
 Operations: Load.
 
@@ -272,11 +272,11 @@ API path: `/{domain}`
 
 | Field | Description |
 | --- | --- |
-| `"date"` |  |
-| `"domain"` |  |
-| `"screenshot_url"` |  |
-| `"size"` |  |
-| `"timestamp"` |  |
+| `"date"` | The date of the screenshot in YYYY-MM format |
+| `"domain"` | The requested domain |
+| `"screenshot_url"` | URL to the screenshot image |
+| `"size"` | Size of the screenshot |
+| `"timestamp"` | When the screenshot was taken |
 
 Operations: Load.
 
@@ -301,10 +301,10 @@ Create an instance: `getScreenshotByDomain := client.GetScreenshotByDomain(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `domain` | `string` |  |
-| `screenshot_url` | `string` |  |
-| `size` | `int` |  |
-| `timestamp` | `string` |  |
+| `domain` | `string` | The requested domain |
+| `screenshot_url` | `string` | URL to the screenshot image |
+| `size` | `int` | Size of the screenshot |
+| `timestamp` | `string` | When the screenshot was taken |
 
 #### Example: Load
 
@@ -331,11 +331,11 @@ Create an instance: `getScreenshotByDomainAndDate := client.GetScreenshotByDomai
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `date` | `string` |  |
-| `domain` | `string` |  |
-| `screenshot_url` | `string` |  |
-| `size` | `int` |  |
-| `timestamp` | `string` |  |
+| `date` | `string` | The date of the screenshot in YYYY-MM format |
+| `domain` | `string` | The requested domain |
+| `screenshot_url` | `string` | URL to the screenshot image |
+| `size` | `int` | Size of the screenshot |
+| `timestamp` | `string` | When the screenshot was taken |
 
 #### Example: Load
 

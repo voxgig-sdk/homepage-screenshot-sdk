@@ -7,6 +7,9 @@ local function make_config()
   return {
     main = {
       name = "HomepageScreenshot",
+      slug = "homepage-screenshot",
+      version = "0.0.1",
+      target = "lua",
     },
     feature = {
       ["test"] = {
@@ -30,18 +33,22 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "domain",
+            ["short"] = "The requested domain",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "screenshot_url",
+            ["short"] = "URL to the screenshot image",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "size",
+            ["short"] = "Size of the screenshot",
             ["type"] = "`$INTEGER`",
           },
           {
             ["name"] = "timestamp",
+            ["short"] = "When the screenshot was taken",
             ["type"] = "`$STRING`",
           },
         },
@@ -114,22 +121,27 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "date",
+            ["short"] = "The date of the screenshot in YYYY-MM format",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "domain",
+            ["short"] = "The requested domain",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "screenshot_url",
+            ["short"] = "URL to the screenshot image",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "size",
+            ["short"] = "Size of the screenshot",
             ["type"] = "`$INTEGER`",
           },
           {
             ["name"] = "timestamp",
+            ["short"] = "When the screenshot was taken",
             ["type"] = "`$STRING`",
           },
         },

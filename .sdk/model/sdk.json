@@ -36,24 +36,28 @@
               "active": true,
               "name": "domain",
               "req": false,
+              "short": "The requested domain",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "screenshot_url",
               "req": false,
+              "short": "URL to the screenshot image",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "size",
               "req": false,
+              "short": "Size of the screenshot",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "timestamp",
               "req": false,
+              "short": "When the screenshot was taken",
               "type": "`$STRING`"
             }
           ],
@@ -138,30 +142,35 @@
               "active": true,
               "name": "date",
               "req": false,
+              "short": "The date of the screenshot in YYYY-MM format",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "domain",
               "req": false,
+              "short": "The requested domain",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "screenshot_url",
               "req": false,
+              "short": "URL to the screenshot image",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "size",
               "req": false,
+              "short": "Size of the screenshot",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "timestamp",
               "req": false,
+              "short": "When the screenshot was taken",
               "type": "`$STRING`"
             }
           ],

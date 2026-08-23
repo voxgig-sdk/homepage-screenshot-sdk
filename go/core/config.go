@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "HomepageScreenshot",
+			"slug": "homepage-screenshot",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -34,18 +37,22 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "domain",
+						"short": "The requested domain",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "screenshot_url",
+						"short": "URL to the screenshot image",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "size",
+						"short": "Size of the screenshot",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "timestamp",
+						"short": "When the screenshot was taken",
 						"type": "`$STRING`",
 					},
 				},
@@ -118,22 +125,27 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "date",
+						"short": "The date of the screenshot in YYYY-MM format",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "domain",
+						"short": "The requested domain",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "screenshot_url",
+						"short": "URL to the screenshot image",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "size",
+						"short": "Size of the screenshot",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "timestamp",
+						"short": "When the screenshot was taken",
 						"type": "`$STRING`",
 					},
 				},

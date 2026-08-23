@@ -19,9 +19,20 @@ class Config {
     return fi
   }
 
+  // False for a feature added at runtime via options.extend (station's
+  // adopt path) - the constructor uses this to skip makeFeature for names
+  // no generated class backs.
+  hasFeature(this: any, fn: string) {
+    return null != FEATURE_CLASS[fn]
+  }
+
 
   main = {
     name: 'HomepageScreenshot',
+        slug: "homepage-screenshot",
+    version: "0.0.1",
+    target: "ts",
+
   }
 
 
@@ -59,18 +70,22 @@ class Config {
       "fields": [
         {
           "name": "domain",
+          "short": "The requested domain",
           "type": "`$STRING`"
         },
         {
           "name": "screenshot_url",
+          "short": "URL to the screenshot image",
           "type": "`$STRING`"
         },
         {
           "name": "size",
+          "short": "Size of the screenshot",
           "type": "`$INTEGER`"
         },
         {
           "name": "timestamp",
+          "short": "When the screenshot was taken",
           "type": "`$STRING`"
         }
       ],
@@ -143,22 +158,27 @@ class Config {
       "fields": [
         {
           "name": "date",
+          "short": "The date of the screenshot in YYYY-MM format",
           "type": "`$STRING`"
         },
         {
           "name": "domain",
+          "short": "The requested domain",
           "type": "`$STRING`"
         },
         {
           "name": "screenshot_url",
+          "short": "URL to the screenshot image",
           "type": "`$STRING`"
         },
         {
           "name": "size",
+          "short": "Size of the screenshot",
           "type": "`$INTEGER`"
         },
         {
           "name": "timestamp",
+          "short": "When the screenshot was taken",
           "type": "`$STRING`"
         }
       ],

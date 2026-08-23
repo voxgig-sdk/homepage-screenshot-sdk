@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -286,10 +286,10 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `domain` |  |
-| `screenshot_url` |  |
-| `size` |  |
-| `timestamp` |  |
+| `domain` | The requested domain |
+| `screenshot_url` | URL to the screenshot image |
+| `size` | Size of the screenshot |
+| `timestamp` | When the screenshot was taken |
 
 Operations: load.
 
@@ -299,11 +299,11 @@ API path: `/{domain}`
 
 | Field | Description |
 | --- | --- |
-| `date` |  |
-| `domain` |  |
-| `screenshot_url` |  |
-| `size` |  |
-| `timestamp` |  |
+| `date` | The date of the screenshot in YYYY-MM format |
+| `domain` | The requested domain |
+| `screenshot_url` | URL to the screenshot image |
+| `size` | Size of the screenshot |
+| `timestamp` | When the screenshot was taken |
 
 Operations: load.
 
@@ -328,10 +328,10 @@ Create an instance: `const get_screenshot_by_domain = client.GetScreenshotByDoma
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `domain` | `string` |  |
-| `screenshot_url` | `string` |  |
-| `size` | `number` |  |
-| `timestamp` | `string` |  |
+| `domain` | `string` | The requested domain |
+| `screenshot_url` | `string` | URL to the screenshot image |
+| `size` | `number` | Size of the screenshot |
+| `timestamp` | `string` | When the screenshot was taken |
 
 #### Example: Load
 
@@ -354,11 +354,11 @@ Create an instance: `const get_screenshot_by_domain_and_date = client.GetScreens
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `date` | `string` |  |
-| `domain` | `string` |  |
-| `screenshot_url` | `string` |  |
-| `size` | `number` |  |
-| `timestamp` | `string` |  |
+| `date` | `string` | The date of the screenshot in YYYY-MM format |
+| `domain` | `string` | The requested domain |
+| `screenshot_url` | `string` | URL to the screenshot image |
+| `size` | `number` | Size of the screenshot |
+| `timestamp` | `string` | When the screenshot was taken |
 
 #### Example: Load
 

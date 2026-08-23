@@ -102,10 +102,10 @@ fmt.Println(getScreenshotByDomain.GetName()) // "get_screenshot_by_domain"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `domain` | `string` | No |  |
-| `screenshot_url` | `string` | No |  |
-| `size` | `int` | No |  |
-| `timestamp` | `string` | No |  |
+| `domain` | `string` | No | The requested domain |
+| `screenshot_url` | `string` | No | URL to the screenshot image |
+| `size` | `int` | No | Size of the screenshot |
+| `timestamp` | `string` | No | When the screenshot was taken |
 
 ### Operations
 
@@ -156,11 +156,11 @@ fmt.Println(getScreenshotByDomainAndDate.GetName()) // "get_screenshot_by_domain
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `date` | `string` | No |  |
-| `domain` | `string` | No |  |
-| `screenshot_url` | `string` | No |  |
-| `size` | `int` | No |  |
-| `timestamp` | `string` | No |  |
+| `date` | `string` | No | The date of the screenshot in YYYY-MM format |
+| `domain` | `string` | No | The requested domain |
+| `screenshot_url` | `string` | No | URL to the screenshot image |
+| `size` | `int` | No | Size of the screenshot |
+| `timestamp` | `string` | No | When the screenshot was taken |
 
 ### Operations
 
