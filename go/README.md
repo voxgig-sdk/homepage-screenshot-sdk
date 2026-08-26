@@ -260,6 +260,7 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 | Field | Description |
 | --- | --- |
 | `"domain"` | The requested domain |
+| `"id"` |  |
 | `"screenshot_url"` | URL to the screenshot image |
 | `"size"` | Size of the screenshot |
 | `"timestamp"` | When the screenshot was taken |
@@ -302,6 +303,7 @@ Create an instance: `getScreenshotByDomain := client.GetScreenshotByDomain(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `domain` | `string` | The requested domain |
+| `id` | `string` |  |
 | `screenshot_url` | `string` | URL to the screenshot image |
 | `size` | `int` | Size of the screenshot |
 | `timestamp` | `string` | When the screenshot was taken |

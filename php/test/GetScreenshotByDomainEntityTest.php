@@ -48,9 +48,13 @@ class GetScreenshotByDomainEntityTest extends TestCase
 
         // LOAD
         $get_screenshot_by_domain_ref01_ent = $client->GetScreenshotByDomain(null);
-        $get_screenshot_by_domain_ref01_match_dt0 = [];
+        $get_screenshot_by_domain_ref01_match_dt0 = [
+            "id" => $get_screenshot_by_domain_ref01_data["id"],
+        ];
         $get_screenshot_by_domain_ref01_data_dt0_loaded = $get_screenshot_by_domain_ref01_ent->load($get_screenshot_by_domain_ref01_match_dt0, null);
-        $this->assertNotNull($get_screenshot_by_domain_ref01_data_dt0_loaded);
+        $get_screenshot_by_domain_ref01_data_dt0_load_result = Helpers::to_map(is_object($get_screenshot_by_domain_ref01_data_dt0_loaded) && method_exists($get_screenshot_by_domain_ref01_data_dt0_loaded, 'data_get') ? $get_screenshot_by_domain_ref01_data_dt0_loaded->data_get() : $get_screenshot_by_domain_ref01_data_dt0_loaded);
+        $this->assertNotNull($get_screenshot_by_domain_ref01_data_dt0_load_result);
+        $this->assertEquals($get_screenshot_by_domain_ref01_data_dt0_load_result["id"], $get_screenshot_by_domain_ref01_data["id"]);
 
     }
 }

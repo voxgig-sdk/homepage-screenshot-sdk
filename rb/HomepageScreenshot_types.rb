@@ -13,6 +13,9 @@
 # @!attribute [rw] domain
 #   @return [String, nil]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] screenshot_url
 #   @return [String, nil]
 #
@@ -23,6 +26,7 @@
 #   @return [String, nil]
 GetScreenshotByDomain = Struct.new(
   :domain,
+  :id,
   :screenshot_url,
   :size,
   :timestamp,

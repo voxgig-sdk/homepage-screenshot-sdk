@@ -145,7 +145,7 @@ await entity.load({ id: 'example' })
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
-console.log(data)
+console.log(data.id)
 ```
 
 ### Add custom middleware
@@ -287,6 +287,7 @@ The `prepare()` method returns:
 | Field | Description |
 | --- | --- |
 | `domain` | The requested domain |
+| `id` |  |
 | `screenshot_url` | URL to the screenshot image |
 | `size` | Size of the screenshot |
 | `timestamp` | When the screenshot was taken |
@@ -329,6 +330,7 @@ Create an instance: `const get_screenshot_by_domain = client.GetScreenshotByDoma
 | Field | Type | Description |
 | --- | --- | --- |
 | `domain` | `string` | The requested domain |
+| `id` | `string` |  |
 | `screenshot_url` | `string` | URL to the screenshot image |
 | `size` | `number` | Size of the screenshot |
 | `timestamp` | `string` | When the screenshot was taken |

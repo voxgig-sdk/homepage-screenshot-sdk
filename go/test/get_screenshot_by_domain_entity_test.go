@@ -61,13 +61,19 @@ func TestGetScreenshotByDomainEntity(t *testing.T) {
 
 		// LOAD
 		getScreenshotByDomainRef01Ent := client.GetScreenshotByDomain(nil)
-		getScreenshotByDomainRef01MatchDt0 := map[string]any{}
+		getScreenshotByDomainRef01MatchDt0 := map[string]any{
+			"id": getScreenshotByDomainRef01Data["id"],
+		}
 		getScreenshotByDomainRef01DataDt0Loaded, err := getScreenshotByDomainRef01Ent.Load(getScreenshotByDomainRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if getScreenshotByDomainRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		getScreenshotByDomainRef01DataDt0LoadResult := core.ToMapAny(entityData(getScreenshotByDomainRef01DataDt0Loaded))
+		if getScreenshotByDomainRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if getScreenshotByDomainRef01DataDt0LoadResult["id"] != getScreenshotByDomainRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})

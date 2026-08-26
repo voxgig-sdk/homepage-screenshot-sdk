@@ -15,6 +15,7 @@ import (
 // GetScreenshotByDomain is the typed data model for the get_screenshot_by_domain entity.
 type GetScreenshotByDomain struct {
 	Domain *string `json:"domain,omitempty"`
+	Id *string `json:"id,omitempty"`
 	ScreenshotUrl *string `json:"screenshot_url,omitempty"`
 	Size *int `json:"size,omitempty"`
 	Timestamp *string `json:"timestamp,omitempty"`

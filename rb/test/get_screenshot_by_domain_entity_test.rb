@@ -41,9 +41,13 @@ class GetScreenshotByDomainEntityTest < Minitest::Test
 
     # LOAD
     get_screenshot_by_domain_ref01_ent = client.GetScreenshotByDomain(nil)
-    get_screenshot_by_domain_ref01_match_dt0 = {}
+    get_screenshot_by_domain_ref01_match_dt0 = {
+      "id" => get_screenshot_by_domain_ref01_data["id"],
+    }
     get_screenshot_by_domain_ref01_data_dt0_loaded = get_screenshot_by_domain_ref01_ent.load(get_screenshot_by_domain_ref01_match_dt0, nil)
-    assert !get_screenshot_by_domain_ref01_data_dt0_loaded.nil?
+    get_screenshot_by_domain_ref01_data_dt0_load_result = Helpers.to_map(get_screenshot_by_domain_ref01_data_dt0_loaded.respond_to?(:data_get) ? get_screenshot_by_domain_ref01_data_dt0_loaded.data_get : get_screenshot_by_domain_ref01_data_dt0_loaded)
+    assert !get_screenshot_by_domain_ref01_data_dt0_load_result.nil?
+    assert_equal get_screenshot_by_domain_ref01_data_dt0_load_result["id"], get_screenshot_by_domain_ref01_data["id"]
 
   end
 end

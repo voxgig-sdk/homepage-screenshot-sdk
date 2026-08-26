@@ -240,6 +240,7 @@ returns a result `Hash` with these keys:
 | Field | Description |
 | --- | --- |
 | `domain` | The requested domain |
+| `id` |  |
 | `screenshot_url` | URL to the screenshot image |
 | `size` | Size of the screenshot |
 | `timestamp` | When the screenshot was taken |
@@ -282,6 +283,7 @@ Create an instance: `get_screenshot_by_domain = client.GetScreenshotByDomain`
 | Field | Type | Description |
 | --- | --- | --- |
 | `domain` | `String` | The requested domain |
+| `id` | `String` |  |
 | `screenshot_url` | `String` | URL to the screenshot image |
 | `size` | `Integer` | Size of the screenshot |
 | `timestamp` | `String` | When the screenshot was taken |

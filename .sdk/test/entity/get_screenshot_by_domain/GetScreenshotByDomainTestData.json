@@ -2,35 +2,35 @@
   "existing": {
     "get_screenshot_by_domain": {
       "GET_SCREENSHOT_BY_DOMAIN00": {
-        "domain": "s28",
-        "screenshot_url": "s29",
-        "size": "s2a",
-        "timestamp": "s2b",
-        "id": "GET_SCREENSHOT_BY_DOMAIN00"
+        "domain": "s32",
+        "id": "GET_SCREENSHOT_BY_DOMAIN00",
+        "screenshot_url": "s34",
+        "size": "s35",
+        "timestamp": "s36"
       },
       "GET_SCREENSHOT_BY_DOMAIN01": {
-        "domain": "s50",
-        "screenshot_url": "s51",
-        "size": "s52",
-        "timestamp": "s53",
-        "id": "GET_SCREENSHOT_BY_DOMAIN01"
+        "domain": "s64",
+        "id": "GET_SCREENSHOT_BY_DOMAIN01",
+        "screenshot_url": "s66",
+        "size": "s67",
+        "timestamp": "s68"
       },
       "GET_SCREENSHOT_BY_DOMAIN02": {
-        "domain": "s78",
-        "screenshot_url": "s79",
-        "size": "s7a",
-        "timestamp": "s7b",
-        "id": "GET_SCREENSHOT_BY_DOMAIN02"
+        "domain": "s96",
+        "id": "GET_SCREENSHOT_BY_DOMAIN02",
+        "screenshot_url": "s98",
+        "size": "s99",
+        "timestamp": "s9a"
       }
     }
   },
   "new": {
     "get_screenshot_by_domain": {
       "get_screenshot_by_domain_ref01": {
-        "domain": "sa0",
-        "screenshot_url": "sa1",
-        "size": "sa2",
-        "timestamp": "sa3"
+        "domain": "sc8",
+        "screenshot_url": "sca",
+        "size": "scb",
+        "timestamp": "scc"
       }
     }
   }

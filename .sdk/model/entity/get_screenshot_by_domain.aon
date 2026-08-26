@@ -12,6 +12,11 @@ main: kit: entity: get_screenshot_by_domain: {
       type: "`$STRING`"
     }
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "screenshot_url"
       req: false
       short: "URL to the screenshot image"
@@ -30,6 +35,11 @@ main: kit: entity: get_screenshot_by_domain: {
       type: "`$STRING`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "get_screenshot_by_domain"
   op: {

@@ -28,6 +28,7 @@ module HomepageScreenshotConfig
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {
@@ -46,6 +47,10 @@ module HomepageScreenshotConfig
             {
               "name" => "domain",
               "short" => "The requested domain",
+              "type" => "`$STRING`",
+            },
+            {
+              "name" => "id",
               "type" => "`$STRING`",
             },
             {

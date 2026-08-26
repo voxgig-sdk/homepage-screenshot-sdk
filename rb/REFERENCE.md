@@ -98,6 +98,7 @@ get_screenshot_by_domain = client.GetScreenshotByDomain
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `domain` | `String` | No | The requested domain |
+| `id` | `String` | No |  |
 | `screenshot_url` | `String` | No | URL to the screenshot image |
 | `size` | `Integer` | No | Size of the screenshot |
 | `timestamp` | `String` | No | When the screenshot was taken |

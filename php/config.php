@@ -42,6 +42,7 @@ class HomepageScreenshotConfig
           'options' => [
             'active' => false,
           ],
+          'transport' => 'base',
         ],
             ],
             "options" => [
@@ -60,6 +61,10 @@ class HomepageScreenshotConfig
             [
               'name' => 'domain',
               'short' => 'The requested domain',
+              'type' => '`$STRING`',
+            ],
+            [
+              'name' => 'id',
               'type' => '`$STRING`',
             ],
             [

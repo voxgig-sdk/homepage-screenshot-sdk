@@ -243,6 +243,7 @@ On error, `ok` is `False` and `err` contains the error value.
 | Field | Description |
 | --- | --- |
 | `domain` | The requested domain |
+| `id` |  |
 | `screenshot_url` | URL to the screenshot image |
 | `size` | Size of the screenshot |
 | `timestamp` | When the screenshot was taken |
@@ -285,6 +286,7 @@ Create an instance: `get_screenshot_by_domain = client.GetScreenshotByDomain()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `domain` | `str` | The requested domain |
+| `id` | `str` |  |
 | `screenshot_url` | `str` | URL to the screenshot image |
 | `size` | `int` | Size of the screenshot |
 | `timestamp` | `str` | When the screenshot was taken |

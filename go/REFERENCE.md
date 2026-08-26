@@ -103,6 +103,7 @@ fmt.Println(getScreenshotByDomain.GetName()) // "get_screenshot_by_domain"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `domain` | `string` | No | The requested domain |
+| `id` | `string` | No |  |
 | `screenshot_url` | `string` | No | URL to the screenshot image |
 | `size` | `int` | No | Size of the screenshot |
 | `timestamp` | `string` | No | When the screenshot was taken |

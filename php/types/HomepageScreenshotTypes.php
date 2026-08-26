@@ -16,6 +16,7 @@ declare(strict_types=1);
 class GetScreenshotByDomain
 {
     public ?string $domain = null;
+    public ?string $id = null;
     public ?string $screenshot_url = null;
     public ?int $size = null;
     public ?string $timestamp = null;

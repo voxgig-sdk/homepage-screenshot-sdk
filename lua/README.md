@@ -227,6 +227,7 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 | Field | Description |
 | --- | --- |
 | `domain` | The requested domain |
+| `id` |  |
 | `screenshot_url` | URL to the screenshot image |
 | `size` | Size of the screenshot |
 | `timestamp` | When the screenshot was taken |
@@ -269,6 +270,7 @@ Create an instance: `local get_screenshot_by_domain = client:GetScreenshotByDoma
 | Field | Type | Description |
 | --- | --- | --- |
 | `domain` | `string` | The requested domain |
+| `id` | `string` |  |
 | `screenshot_url` | `string` | URL to the screenshot image |
 | `size` | `number` | Size of the screenshot |
 | `timestamp` | `string` | When the screenshot was taken |

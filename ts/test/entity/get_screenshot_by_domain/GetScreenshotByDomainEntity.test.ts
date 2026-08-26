@@ -59,9 +59,12 @@ describe('GetScreenshotByDomainEntity', async () => {
 
     let get_screenshot_by_domain_ref01_data = Object.values(setup.data.existing.get_screenshot_by_domain)[0] as any
 
-    // LOAD: skipped — no entity id field and load requires path params.
-    // Entity-var is declared here so later flow steps still compile.
+    // LOAD
     const get_screenshot_by_domain_ref01_ent = client.GetScreenshotByDomain()
+    const get_screenshot_by_domain_ref01_match_dt0: any = {}
+    get_screenshot_by_domain_ref01_match_dt0.id = get_screenshot_by_domain_ref01_data.id
+    const get_screenshot_by_domain_ref01_data_dt0 = (await get_screenshot_by_domain_ref01_ent.load(get_screenshot_by_domain_ref01_match_dt0)).data()
+    assert(get_screenshot_by_domain_ref01_data_dt0.id === get_screenshot_by_domain_ref01_data.id)
 
 
   })
