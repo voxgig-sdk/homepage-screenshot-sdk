@@ -15,6 +15,8 @@
 
 ---@class GetScreenshotByDomainLoadMatch
 ---@field id string
+---@field f? string
+---@field s? number
 
 ---@class GetScreenshotByDomainAndDate
 ---@field date? string
@@ -26,6 +28,8 @@
 ---@class GetScreenshotByDomainAndDateLoadMatch
 ---@field date string
 ---@field domain string
+---@field f? string
+---@field s? number
 
 local M = {}
 

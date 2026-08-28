@@ -24,8 +24,13 @@ class GetScreenshotByDomain(TypedDict, total=False):
     timestamp: str
 
 
-class GetScreenshotByDomainLoadMatch(TypedDict):
+class GetScreenshotByDomainLoadMatchRequired(TypedDict):
     id: str
+
+
+class GetScreenshotByDomainLoadMatch(GetScreenshotByDomainLoadMatchRequired, total=False):
+    f: str
+    s: int
 
 
 class GetScreenshotByDomainAndDate(TypedDict, total=False):
@@ -36,6 +41,11 @@ class GetScreenshotByDomainAndDate(TypedDict, total=False):
     timestamp: str
 
 
-class GetScreenshotByDomainAndDateLoadMatch(TypedDict):
+class GetScreenshotByDomainAndDateLoadMatchRequired(TypedDict):
     date: str
     domain: str
+
+
+class GetScreenshotByDomainAndDateLoadMatch(GetScreenshotByDomainAndDateLoadMatchRequired, total=False):
+    f: str
+    s: int

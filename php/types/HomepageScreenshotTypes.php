@@ -26,6 +26,8 @@ class GetScreenshotByDomain
 class GetScreenshotByDomainLoadMatch
 {
     public string $id;
+    public ?string $f = null;
+    public ?int $s = null;
 }
 
 /** GetScreenshotByDomainAndDate entity data model. */
@@ -43,5 +45,7 @@ class GetScreenshotByDomainAndDateLoadMatch
 {
     public string $date;
     public string $domain;
+    public ?string $f = null;
+    public ?int $s = null;
 }
 

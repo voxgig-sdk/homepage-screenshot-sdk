@@ -15,6 +15,8 @@ export interface GetScreenshotByDomain {
 
 export interface GetScreenshotByDomainLoadMatch {
   id: string
+  f?: string
+  s?: number
 }
 
 export interface GetScreenshotByDomainAndDate {
@@ -28,5 +30,7 @@ export interface GetScreenshotByDomainAndDate {
 export interface GetScreenshotByDomainAndDateLoadMatch {
   date: string
   domain: string
+  f?: string
+  s?: number
 }
 

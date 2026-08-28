@@ -37,8 +37,16 @@ GetScreenshotByDomain = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [String]
+#
+# @!attribute [rw] f
+#   @return [String, nil]
+#
+# @!attribute [rw] s
+#   @return [Integer, nil]
 GetScreenshotByDomainLoadMatch = Struct.new(
   :id,
+  :f,
+  :s,
   keyword_init: true
 )
 
@@ -74,9 +82,17 @@ GetScreenshotByDomainAndDate = Struct.new(
 #
 # @!attribute [rw] domain
 #   @return [String]
+#
+# @!attribute [rw] f
+#   @return [String, nil]
+#
+# @!attribute [rw] s
+#   @return [Integer, nil]
 GetScreenshotByDomainAndDateLoadMatch = Struct.new(
   :date,
   :domain,
+  :f,
+  :s,
   keyword_init: true
 )
 

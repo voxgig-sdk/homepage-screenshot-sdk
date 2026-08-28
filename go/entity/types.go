@@ -24,6 +24,8 @@ type GetScreenshotByDomain struct {
 // GetScreenshotByDomainLoadMatch is the typed request payload for GetScreenshotByDomain.LoadTyped.
 type GetScreenshotByDomainLoadMatch struct {
 	Id string `json:"id"`
+	F *string `json:"f,omitempty"`
+	S *int `json:"s,omitempty"`
 }
 
 // GetScreenshotByDomainAndDate is the typed data model for the get_screenshot_by_domain_and_date entity.
@@ -39,6 +41,8 @@ type GetScreenshotByDomainAndDate struct {
 type GetScreenshotByDomainAndDateLoadMatch struct {
 	Date string `json:"date"`
 	Domain string `json:"domain"`
+	F *string `json:"f,omitempty"`
+	S *int `json:"s,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the
