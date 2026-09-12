@@ -57,6 +57,10 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
         },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
+        },
         ["name"] = "get_screenshot_by_domain",
         ["op"] = {
           ["load"] = {
@@ -95,12 +99,14 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/{domain}",
-                ["parts"] = {
-                  "{id}",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["domain"] = "id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["var"] = "id",
                   },
                 },
                 ["select"] = {
@@ -113,6 +119,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "{id}",
                 },
               },
             },
@@ -135,6 +144,10 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
+          },
+          {
             ["name"] = "screenshot_url",
             ["short"] = "URL to the screenshot image",
             ["type"] = "`$STRING`",
@@ -149,6 +162,19 @@ local function make_config()
             ["short"] = "When the screenshot was taken",
             ["type"] = "`$STRING`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["from"] = {
+            ["date"] = "date",
+            ["domain"] = "domain",
+          },
+          ["name"] = "id",
+          ["parts"] = {
+            "domain",
+            "date",
+          },
+          ["sep"] = "/",
         },
         ["name"] = "get_screenshot_by_domain_and_date",
         ["op"] = {
@@ -196,9 +222,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/{domain}/{date}",
-                ["parts"] = {
-                  "{domain}",
-                  "{date}",
+                ["segments"] = {
+                  {
+                    ["var"] = "domain",
+                  },
+                  {
+                    ["var"] = "date",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -211,6 +241,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "{domain}",
+                  "{date}",
                 },
               },
             },

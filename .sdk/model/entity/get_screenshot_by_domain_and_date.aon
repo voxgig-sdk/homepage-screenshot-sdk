@@ -18,6 +18,11 @@ main: kit: entity: get_screenshot_by_domain_and_date: {
       type: "`$STRING`"
     }
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "screenshot_url"
       req: false
       short: "URL to the screenshot image"
@@ -36,6 +41,20 @@ main: kit: entity: get_screenshot_by_domain_and_date: {
       type: "`$STRING`"
     }
   ]
+
+  id: {
+    field: "id"
+    from: {
+      date: "date"
+      domain: "domain"
+    }
+    name: "id"
+    parts: [
+      "domain"
+      "date"
+    ]
+    sep: "/"
+  }
 
   name: "get_screenshot_by_domain_and_date"
   op: {
@@ -83,9 +102,13 @@ main: kit: entity: get_screenshot_by_domain_and_date: {
           }
           method: "GET"
           orig: "/{domain}/{date}"
-          parts: [
-            "{domain}"
-            "{date}"
+          segments: [
+            {
+              var: "domain"
+            }
+            {
+              var: "date"
+            }
           ]
           select: {
             exist: [

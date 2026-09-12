@@ -242,6 +242,7 @@ API path: `/{domain}`
 | --- | --- |
 | `date` | The date of the screenshot in YYYY-MM format |
 | `domain` | The requested domain |
+| `id` |  |
 | `screenshot_url` | URL to the screenshot image |
 | `size` | Size of the screenshot |
 | `timestamp` | When the screenshot was taken |
@@ -298,6 +299,7 @@ Create an instance: `local get_screenshot_by_domain_and_date = client:GetScreens
 | --- | --- | --- |
 | `date` | `string` | The date of the screenshot in YYYY-MM format |
 | `domain` | `string` | The requested domain |
+| `id` | `string` |  |
 | `screenshot_url` | `string` | URL to the screenshot image |
 | `size` | `number` | Size of the screenshot |
 | `timestamp` | `string` | When the screenshot was taken |

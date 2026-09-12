@@ -184,6 +184,7 @@ const get_screenshot_by_domain_and_date = client.GetScreenshotByDomainAndDate()
 | --- | --- | --- | --- |
 | `date` | `string` | No | The date of the screenshot in YYYY-MM format |
 | `domain` | `string` | No | The requested domain |
+| `id` | `string` | No |  |
 | `screenshot_url` | `string` | No | URL to the screenshot image |
 | `size` | `number` | No | Size of the screenshot |
 | `timestamp` | `string` | No | When the screenshot was taken |

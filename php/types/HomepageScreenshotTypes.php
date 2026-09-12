@@ -35,6 +35,7 @@ class GetScreenshotByDomainAndDate
 {
     public ?string $date = null;
     public ?string $domain = null;
+    public ?string $id = null;
     public ?string $screenshot_url = null;
     public ?int $size = null;
     public ?string $timestamp = null;

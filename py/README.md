@@ -258,6 +258,7 @@ API path: `/{domain}`
 | --- | --- |
 | `date` | The date of the screenshot in YYYY-MM format |
 | `domain` | The requested domain |
+| `id` |  |
 | `screenshot_url` | URL to the screenshot image |
 | `size` | Size of the screenshot |
 | `timestamp` | When the screenshot was taken |
@@ -314,6 +315,7 @@ Create an instance: `get_screenshot_by_domain_and_date = client.GetScreenshotByD
 | --- | --- | --- |
 | `date` | `str` | The date of the screenshot in YYYY-MM format |
 | `domain` | `str` | The requested domain |
+| `id` | `str` |  |
 | `screenshot_url` | `str` | URL to the screenshot image |
 | `size` | `int` | Size of the screenshot |
 | `timestamp` | `str` | When the screenshot was taken |

@@ -22,6 +22,7 @@ export interface GetScreenshotByDomainLoadMatch {
 export interface GetScreenshotByDomainAndDate {
   date?: string
   domain?: string
+  id?: string
   screenshot_url?: string
   size?: number
   timestamp?: string

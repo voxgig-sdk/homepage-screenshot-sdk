@@ -36,6 +36,7 @@ class GetScreenshotByDomainLoadMatch(GetScreenshotByDomainLoadMatchRequired, tot
 class GetScreenshotByDomainAndDate(TypedDict, total=False):
     date: str
     domain: str
+    id: str
     screenshot_url: str
     size: int
     timestamp: str

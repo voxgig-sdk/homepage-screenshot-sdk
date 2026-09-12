@@ -79,14 +79,16 @@ main: kit: entity: get_screenshot_by_domain: {
           }
           method: "GET"
           orig: "/{domain}"
-          parts: [
-            "{id}"
-          ]
           rename: {
             param: {
               domain: "id"
             }
           }
+          segments: [
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "f"

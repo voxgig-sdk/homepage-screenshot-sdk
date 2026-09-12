@@ -50,7 +50,7 @@ func TestGetScreenshotByDomainAndDateEntity(t *testing.T) {
 		client := setup.client
 
 		// Bootstrap entity data from existing test data (no create step in flow).
-		getScreenshotByDomainAndDateRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath("existing.get_screenshot_by_domain_and_date", setup.data)))
+		getScreenshotByDomainAndDateRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.get_screenshot_by_domain_and_date")))
 		var getScreenshotByDomainAndDateRef01Data map[string]any
 		if len(getScreenshotByDomainAndDateRef01DataRaw) > 0 {
 			getScreenshotByDomainAndDateRef01Data = core.ToMapAny(getScreenshotByDomainAndDateRef01DataRaw[0][1])
@@ -61,13 +61,19 @@ func TestGetScreenshotByDomainAndDateEntity(t *testing.T) {
 
 		// LOAD
 		getScreenshotByDomainAndDateRef01Ent := client.GetScreenshotByDomainAndDate(nil)
-		getScreenshotByDomainAndDateRef01MatchDt0 := map[string]any{}
+		getScreenshotByDomainAndDateRef01MatchDt0 := map[string]any{
+			"id": getScreenshotByDomainAndDateRef01Data["id"],
+		}
 		getScreenshotByDomainAndDateRef01DataDt0Loaded, err := getScreenshotByDomainAndDateRef01Ent.Load(getScreenshotByDomainAndDateRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if getScreenshotByDomainAndDateRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		getScreenshotByDomainAndDateRef01DataDt0LoadResult := core.ToMapAny(entityData(getScreenshotByDomainAndDateRef01DataDt0Loaded))
+		if getScreenshotByDomainAndDateRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if getScreenshotByDomainAndDateRef01DataDt0LoadResult["id"] != getScreenshotByDomainAndDateRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})
@@ -97,7 +103,7 @@ func get_screenshot_by_domain_and_dateBasicSetup(extra map[string]any) *entityTe
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"get_screenshot_by_domain_and_date01", "get_screenshot_by_domain_and_date02", "get_screenshot_by_domain_and_date03", "domain01"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -125,10 +131,22 @@ func get_screenshot_by_domain_and_dateBasicSetup(extra map[string]any) *entityTe
 	}
 
 	if env["HOMEPAGE_SCREENSHOT_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewHomepageScreenshotSDK(core.ToMapAny(mergedOpts))
 	}

@@ -83,6 +83,10 @@ class HomepageScreenshotConfig
               'type' => '`$STRING`',
             ],
           ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
+          ],
           'name' => 'get_screenshot_by_domain',
           'op' => [
             'load' => [
@@ -121,12 +125,14 @@ class HomepageScreenshotConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/{domain}',
-                  'parts' => [
-                    '{id}',
-                  ],
                   'rename' => [
                     'param' => [
                       'domain' => 'id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'var' => 'id',
                     ],
                   ],
                   'select' => [
@@ -139,6 +145,9 @@ class HomepageScreenshotConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    '{id}',
                   ],
                 ],
               ],
@@ -161,6 +170,10 @@ class HomepageScreenshotConfig
               'type' => '`$STRING`',
             ],
             [
+              'name' => 'id',
+              'type' => '`$STRING`',
+            ],
+            [
               'name' => 'screenshot_url',
               'short' => 'URL to the screenshot image',
               'type' => '`$STRING`',
@@ -175,6 +188,19 @@ class HomepageScreenshotConfig
               'short' => 'When the screenshot was taken',
               'type' => '`$STRING`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'from' => [
+              'date' => 'date',
+              'domain' => 'domain',
+            ],
+            'name' => 'id',
+            'parts' => [
+              'domain',
+              'date',
+            ],
+            'sep' => '/',
           ],
           'name' => 'get_screenshot_by_domain_and_date',
           'op' => [
@@ -222,9 +248,13 @@ class HomepageScreenshotConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/{domain}/{date}',
-                  'parts' => [
-                    '{domain}',
-                    '{date}',
+                  'segments' => [
+                    [
+                      'var' => 'domain',
+                    ],
+                    [
+                      'var' => 'date',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -237,6 +267,10 @@ class HomepageScreenshotConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    '{domain}',
+                    '{date}',
                   ],
                 ],
               ],

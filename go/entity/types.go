@@ -32,6 +32,7 @@ type GetScreenshotByDomainLoadMatch struct {
 type GetScreenshotByDomainAndDate struct {
 	Date *string `json:"date,omitempty"`
 	Domain *string `json:"domain,omitempty"`
+	Id *string `json:"id,omitempty"`
 	ScreenshotUrl *string `json:"screenshot_url,omitempty"`
 	Size *int `json:"size,omitempty"`
 	Timestamp *string `json:"timestamp,omitempty"`

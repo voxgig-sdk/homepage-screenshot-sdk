@@ -2,39 +2,39 @@
   "existing": {
     "get_screenshot_by_domain_and_date": {
       "GET_SCREENSHOT_BY_DOMAIN_AND_DATE00": {
-        "date": "s32",
-        "domain": "s33",
-        "screenshot_url": "s34",
-        "size": "s35",
-        "timestamp": "s36",
-        "id": "GET_SCREENSHOT_BY_DOMAIN_AND_DATE00"
+        "date": "s3c",
+        "domain": "s3d",
+        "id": "GET_SCREENSHOT_BY_DOMAIN_AND_DATE00",
+        "screenshot_url": "s3f",
+        "size": "s40",
+        "timestamp": "s41"
       },
       "GET_SCREENSHOT_BY_DOMAIN_AND_DATE01": {
-        "date": "s64",
-        "domain": "s65",
-        "screenshot_url": "s66",
-        "size": "s67",
-        "timestamp": "s68",
-        "id": "GET_SCREENSHOT_BY_DOMAIN_AND_DATE01"
+        "date": "s78",
+        "domain": "s79",
+        "id": "GET_SCREENSHOT_BY_DOMAIN_AND_DATE01",
+        "screenshot_url": "s7b",
+        "size": "s7c",
+        "timestamp": "s7d"
       },
       "GET_SCREENSHOT_BY_DOMAIN_AND_DATE02": {
-        "date": "s96",
-        "domain": "s97",
-        "screenshot_url": "s98",
-        "size": "s99",
-        "timestamp": "s9a",
-        "id": "GET_SCREENSHOT_BY_DOMAIN_AND_DATE02"
+        "date": "sb4",
+        "domain": "sb5",
+        "id": "GET_SCREENSHOT_BY_DOMAIN_AND_DATE02",
+        "screenshot_url": "sb7",
+        "size": "sb8",
+        "timestamp": "sb9"
       }
     }
   },
   "new": {
     "get_screenshot_by_domain_and_date": {
       "get_screenshot_by_domain_and_date_ref01": {
-        "date": "sc8",
-        "domain": "sc9",
-        "screenshot_url": "sca",
-        "size": "scb",
-        "timestamp": "scc"
+        "date": "sf0",
+        "domain": "sf1",
+        "screenshot_url": "sf3",
+        "size": "sf4",
+        "timestamp": "sf5"
       }
     }
   }
