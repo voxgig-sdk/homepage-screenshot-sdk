@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { HomepageScreenshotSDK } from '@voxgig-sdk/homepage-screenshot'
+import { HomepageScreenshotSDK } from '@voxgig-sdk/homepage-screenshot-sdk'
 
 const client = new HomepageScreenshotSDK()
 ```
@@ -453,7 +453,7 @@ homepage-screenshot/
 Import the SDK from the package root:
 
 ```ts
-import { HomepageScreenshotSDK } from '@voxgig-sdk/homepage-screenshot'
+import { HomepageScreenshotSDK } from '@voxgig-sdk/homepage-screenshot-sdk'
 ```
 
 ### Entity state

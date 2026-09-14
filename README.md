@@ -105,7 +105,7 @@ local result, err = client:GetScreenshotByDomain():load({ id = "test01" })
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/homepage-screenshot` | publish pending — [install from git tag](https://github.com/voxgig-sdk/homepage-screenshot-sdk/releases) |
+| TypeScript | `@voxgig-sdk/homepage-screenshot-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/homepage-screenshot-sdk/releases) |
 | Python | `voxgig-sdk-homepage-screenshot` | publish pending — [install from git tag](https://github.com/voxgig-sdk/homepage-screenshot-sdk/releases) |
 | PHP | `voxgig-sdk/homepage-screenshot` | publish pending — [install from git tag](https://github.com/voxgig-sdk/homepage-screenshot-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/homepage-screenshot-sdk/go` | `go get github.com/voxgig-sdk/homepage-screenshot-sdk/go@latest` |
@@ -119,7 +119,7 @@ local result, err = client:GetScreenshotByDomain():load({ id = "test01" })
 ### TypeScript
 
 ```ts
-import { HomepageScreenshotSDK } from '@voxgig-sdk/homepage-screenshot'
+import { HomepageScreenshotSDK } from '@voxgig-sdk/homepage-screenshot-sdk'
 
 const client = new HomepageScreenshotSDK()
 
