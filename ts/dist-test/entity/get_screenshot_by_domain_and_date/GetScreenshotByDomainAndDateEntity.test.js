@@ -40,6 +40,8 @@ const node_path_1 = __importDefault(require("node:path"));
 const Fs = __importStar(require("node:fs"));
 const node_test_1 = require("node:test");
 const node_assert_1 = __importDefault(require("node:assert"));
+const live_runner_1 = require("../../live-runner");
+const live_entity_1 = require("../../live-entity");
 const __1 = require("../../..");
 const utility_1 = require("../../utility");
 // AFTER the imports on purpose: TypeScript hoists `import` above any
@@ -59,16 +61,12 @@ const utility_1 = require("../../utility");
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.HOMEPAGE_SCREENSHOT_TEST_LIVE;
         for (const op of ['load']) {
-            if ((0, utility_1.maybeSkipControl)(t, 'entityOp', 'get_screenshot_by_domain_and_date.' + op, live))
+            if (!live && (0, utility_1.maybeSkipControl)(t, 'entityOp', 'get_screenshot_by_domain_and_date.' + op, live))
                 return;
         }
         const setup = basicSetup();
-        // The basic flow consumes synthetic IDs and field values from the
-        // fixture (entity TestData.json). Those don't exist on the live API.
-        // Skip live runs unless the user provided a real ENTID env override.
-        if (setup.syntheticOnly) {
-            t.skip('live entity test uses synthetic IDs from fixture — set HOMEPAGE_SCREENSHOT_TEST_GET_SCREENSHOT_BY_DOMAIN_AND_DATE_ENTID JSON to run live');
-            return;
+        if (setup.live) {
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": [{ "active": true, "name": "date", "req": false, "short": "The date of the screenshot in YYYY-MM format", "type": "`$STRING`", "index$": 0 }, { "active": true, "name": "domain", "req": false, "short": "The requested domain", "type": "`$STRING`", "index$": 1 }, { "active": true, "name": "id", "req": false, "type": "`$STRING`", "index$": 2 }, { "active": true, "name": "screenshot_url", "req": false, "short": "URL to the screenshot image", "type": "`$STRING`", "index$": 3 }, { "active": true, "name": "size", "req": false, "short": "Size of the screenshot", "type": "`$INTEGER`", "index$": 4 }, { "active": true, "name": "timestamp", "req": false, "short": "When the screenshot was taken", "type": "`$STRING`", "index$": 5 }], "id": { "field": "id", "from": { "date": "date", "domain": "domain" }, "name": "id", "parts": ["domain", "date"], "sep": "/" }, "name": "get_screenshot_by_domain_and_date", "op": { "load": { "input": "data", "name": "load", "points": [{ "active": true, "args": { "params": [{ "active": true, "example": "2026-02", "kind": "param", "name": "date", "orig": "date", "reqd": true, "type": "`$STRING`", "index$": 0 }, { "active": true, "example": "bbc.co.uk", "kind": "param", "name": "domain", "orig": "domain", "reqd": true, "type": "`$STRING`", "index$": 1 }], "query": [{ "active": true, "example": "png", "kind": "query", "name": "f", "orig": "f", "reqd": false, "type": "`$STRING`", "index$": 0 }, { "active": true, "example": 2048, "kind": "query", "name": "s", "orig": "s", "reqd": false, "type": "`$INTEGER`", "index$": 1 }] }, "contract": { "id": "GET /{domain}/{date}", "json": "{\"operationId\":\"getScreenshotByDomainAndDate\",\"parameters\":[{\"description\":\"The domain name to capture (e.g., bbc.co.uk)\",\"in\":\"path\",\"name\":\"domain\",\"required\":true,\"schema\":{\"example\":\"bbc.co.uk\",\"type\":\"string\"}},{\"description\":\"Date in YYYY-MM format (e.g., 2024-01, 2026-02)\",\"in\":\"path\",\"name\":\"date\",\"required\":true,\"schema\":{\"example\":\"2026-02\",\"pattern\":\"^\\\\d{4}-(0[1-9]|1[0-2])$\",\"type\":\"string\"}},{\"description\":\"Size of the screenshot in pixels (width)\",\"in\":\"query\",\"name\":\"s\",\"required\":false,\"schema\":{\"default\":2048,\"enum\":[128,256,512,2048],\"type\":\"integer\"}},{\"description\":\"Format of the response\",\"in\":\"query\",\"name\":\"f\",\"required\":false,\"schema\":{\"default\":\"png\",\"enum\":[\"png\",\"md\",\"json\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"date\":{\"description\":\"The date of the screenshot in YYYY-MM format\",\"type\":\"string\"},\"domain\":{\"description\":\"The requested domain\",\"type\":\"string\"},\"screenshot_url\":{\"description\":\"URL to the screenshot image\",\"type\":\"string\"},\"size\":{\"description\":\"Size of the screenshot\",\"type\":\"integer\"},\"timestamp\":{\"description\":\"When the screenshot was taken\",\"type\":\"string\"}},\"type\":\"object\"}},\"image/png\":{\"schema\":{\"format\":\"binary\",\"type\":\"string\"}},\"text/markdown\":{\"schema\":{\"description\":\"Markdown representation of the screenshot information\",\"type\":\"string\"}}},\"description\":\"Successful response with screenshot from the specified date\"},\"404\":{\"description\":\"Domain not found or screenshot not available for the specified date\"},\"429\":{\"description\":\"Rate limit exceeded (1,000 requests per day without API key)\"}},\"securitySource\":\"unspecified\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "GET", "orig": "/{domain}/{date}", "segments": [{ "var": "domain" }, { "var": "date" }], "select": { "exist": ["date", "domain", "f", "s"] }, "transform": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "get_screenshot_by_domain_and_date", "name__orig": "get_screenshot_by_domain_and_date", "Name": "GetScreenshotByDomainAndDate", "name_": "get_screenshot_by_domain_and_date", "name-": "get-screenshot-by-domain-and-date", "NAME": "GET_SCREENSHOT_BY_DOMAIN_AND_DATE", "index$": 1 }, { "active": true, "entity": "get_screenshot_by_domain_and_date", "key$": "BasicGetScreenshotByDomainAndDateFlow", "kind": "basic", "name": "BasicGetScreenshotByDomainAndDateFlow", "param": {}, "step": [{ "active": true, "data": {}, "input": { "ref": "get_screenshot_by_domain_and_date_ref01", "srcdatavar": "get_screenshot_by_domain_and_date_ref01_data", "suffix": "_dt0" }, "match": { "domain": "domain01", "id": "get_screenshot_by_domain_and_date01" }, "op": "load", "spec": [], "valid": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-get_screenshot_by_domain_and_date_ref01" } }], "index$": 0 }] }, 'GetScreenshotByDomainAndDate');
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -103,12 +101,6 @@ function basicSetup(extra) {
                 '`$VAL`': ['`$FORMAT`', 'upper', '`$COPY`']
             }]
     });
-    // Detect whether the user provided a real ENTID JSON via env var. The
-    // basic flow consumes synthetic IDs from the fixture file; without an
-    // override those synthetic IDs reach the live API and 4xx. Surface this
-    // to the test so it can skip rather than fail.
-    const idmapEnvVal = process.env['HOMEPAGE_SCREENSHOT_TEST_GET_SCREENSHOT_BY_DOMAIN_AND_DATE_ENTID'];
-    const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{');
     const env = (0, utility_1.envOverride)({
         'HOMEPAGE_SCREENSHOT_TEST_GET_SCREENSHOT_BY_DOMAIN_AND_DATE_ENTID': idmap,
         'HOMEPAGE_SCREENSHOT_TEST_LIVE': 'FALSE',
@@ -116,7 +108,13 @@ function basicSetup(extra) {
     });
     idmap = env['HOMEPAGE_SCREENSHOT_TEST_GET_SCREENSHOT_BY_DOMAIN_AND_DATE_ENTID'];
     const live = 'TRUE' === env.HOMEPAGE_SCREENSHOT_TEST_LIVE;
+    const transport = (0, live_runner_1.createLiveTransport)();
     if (live) {
+        const rawIds = process.env['HOMEPAGE_SCREENSHOT_TEST_GET_SCREENSHOT_BY_DOMAIN_AND_DATE_ENTID'];
+        idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {};
+        if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+            throw new Error('Live ENTID must be a JSON object');
+        }
         client = new __1.HomepageScreenshotSDK(merge([
             // FIRST, so the generated fields below win: sdk-test-control.json's
             // test.client.options adds to the live client, it does not redirect it.
@@ -127,7 +125,8 @@ function basicSetup(extra) {
             // argument at all - so a bare 'extra' silently discarded the apikey
             // and server values above and handed the SDK undefined. Harmless
             // while there was nothing in that object; not harmless now.
-            extra || {}
+            extra || {},
+            { system: { fetch: transport.fetch } }
         ]));
     }
     const setup = {
@@ -139,7 +138,7 @@ function basicSetup(extra) {
         data: entityData,
         explain: 'TRUE' === env.HOMEPAGE_SCREENSHOT_TEST_EXPLAIN,
         live,
-        syntheticOnly: live && !idmapOverridden,
+        transport,
         now: Date.now(),
     };
     return setup;

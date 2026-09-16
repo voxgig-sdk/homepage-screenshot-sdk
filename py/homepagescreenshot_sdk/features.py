@@ -1,12 +1,18 @@
 # HomepageScreenshot SDK feature factory
 
 from homepagescreenshot_sdk.feature.base_feature import HomepageScreenshotBaseFeature
+from homepagescreenshot_sdk.feature.ratelimit_feature import HomepageScreenshotRatelimitFeature
+from homepagescreenshot_sdk.feature.retry_feature import HomepageScreenshotRetryFeature
 from homepagescreenshot_sdk.feature.test_feature import HomepageScreenshotTestFeature
+from homepagescreenshot_sdk.feature.timeout_feature import HomepageScreenshotTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: HomepageScreenshotBaseFeature(),
+    "ratelimit": lambda: HomepageScreenshotRatelimitFeature(),
+    "retry": lambda: HomepageScreenshotRetryFeature(),
     "test": lambda: HomepageScreenshotTestFeature(),
+    "timeout": lambda: HomepageScreenshotTimeoutFeature(),
 }
 
 

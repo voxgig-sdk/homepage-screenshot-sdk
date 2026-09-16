@@ -100,6 +100,12 @@ main: kit: entity: get_screenshot_by_domain_and_date: {
               }
             ]
           }
+          contract: {
+            id: "GET /{domain}/{date}"
+            json: "{\"operationId\":\"getScreenshotByDomainAndDate\",\"parameters\":[{\"description\":\"The domain name to capture (e.g., bbc.co.uk)\",\"in\":\"path\",\"name\":\"domain\",\"required\":true,\"schema\":{\"example\":\"bbc.co.uk\",\"type\":\"string\"}},{\"description\":\"Date in YYYY-MM format (e.g., 2024-01, 2026-02)\",\"in\":\"path\",\"name\":\"date\",\"required\":true,\"schema\":{\"example\":\"2026-02\",\"pattern\":\"^\\\\d{4}-(0[1-9]|1[0-2])$\",\"type\":\"string\"}},{\"description\":\"Size of the screenshot in pixels (width)\",\"in\":\"query\",\"name\":\"s\",\"required\":false,\"schema\":{\"default\":2048,\"enum\":[128,256,512,2048],\"type\":\"integer\"}},{\"description\":\"Format of the response\",\"in\":\"query\",\"name\":\"f\",\"required\":false,\"schema\":{\"default\":\"png\",\"enum\":[\"png\",\"md\",\"json\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"date\":{\"description\":\"The date of the screenshot in YYYY-MM format\",\"type\":\"string\"},\"domain\":{\"description\":\"The requested domain\",\"type\":\"string\"},\"screenshot_url\":{\"description\":\"URL to the screenshot image\",\"type\":\"string\"},\"size\":{\"description\":\"Size of the screenshot\",\"type\":\"integer\"},\"timestamp\":{\"description\":\"When the screenshot was taken\",\"type\":\"string\"}},\"type\":\"object\"}},\"image/png\":{\"schema\":{\"format\":\"binary\",\"type\":\"string\"}},\"text/markdown\":{\"schema\":{\"description\":\"Markdown representation of the screenshot information\",\"type\":\"string\"}}},\"description\":\"Successful response with screenshot from the specified date\"},\"404\":{\"description\":\"Domain not found or screenshot not available for the specified date\"},\"429\":{\"description\":\"Rate limit exceeded (1,000 requests per day without API key)\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/{domain}/{date}"
           segments: [

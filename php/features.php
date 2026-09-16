@@ -4,7 +4,10 @@ declare(strict_types=1);
 // HomepageScreenshot SDK feature factory
 
 require_once __DIR__ . '/feature/BaseFeature.php';
+require_once __DIR__ . '/feature/RatelimitFeature.php';
+require_once __DIR__ . '/feature/RetryFeature.php';
 require_once __DIR__ . '/feature/TestFeature.php';
+require_once __DIR__ . '/feature/TimeoutFeature.php';
 
 
 class HomepageScreenshotFeatures
@@ -14,8 +17,14 @@ class HomepageScreenshotFeatures
         switch ($name) {
             case "base":
                 return new HomepageScreenshotBaseFeature();
+            case "ratelimit":
+                return new HomepageScreenshotRatelimitFeature();
+            case "retry":
+                return new HomepageScreenshotRetryFeature();
             case "test":
                 return new HomepageScreenshotTestFeature();
+            case "timeout":
+                return new HomepageScreenshotTimeoutFeature();
             default:
                 return new HomepageScreenshotBaseFeature();
         }
@@ -31,7 +40,10 @@ class HomepageScreenshotFeatures
     {
         switch ($name) {
             case "base":
+            case "ratelimit":
+            case "retry":
             case "test":
+            case "timeout":
                 return true;
             default:
                 return false;
