@@ -105,12 +105,12 @@ local result, err = client:GetScreenshotByDomain():load({ id = "test01" })
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/homepage-screenshot-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/homepage-screenshot-sdk/releases) |
-| Python | `voxgig-sdk-homepage-screenshot` | publish pending — [install from git tag](https://github.com/voxgig-sdk/homepage-screenshot-sdk/releases) |
-| PHP | `voxgig-sdk/homepage-screenshot` | publish pending — [install from git tag](https://github.com/voxgig-sdk/homepage-screenshot-sdk/releases) |
+| TypeScript | `@voxgig-sdk/homepage-screenshot-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/homepage-screenshot-sdk/tags) |
+| Python | `voxgig-sdk-homepage-screenshot` | publish pending — [install from git tag](https://github.com/voxgig-sdk/homepage-screenshot-sdk/tags) |
+| PHP | `voxgig-sdk/homepage-screenshot` | publish pending — [install from git tag](https://github.com/voxgig-sdk/homepage-screenshot-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/homepage-screenshot-sdk/go` | `go get github.com/voxgig-sdk/homepage-screenshot-sdk/go@latest` |
-| Ruby | `voxgig-sdk-homepage-screenshot` | publish pending — [install from git tag](https://github.com/voxgig-sdk/homepage-screenshot-sdk/releases) |
-| Lua | `voxgig-sdk-homepage-screenshot` | publish pending — [install from git tag](https://github.com/voxgig-sdk/homepage-screenshot-sdk/releases) |
+| Ruby | `voxgig-sdk-homepage-screenshot` | publish pending — [install from git tag](https://github.com/voxgig-sdk/homepage-screenshot-sdk/tags) |
+| Lua | `voxgig-sdk-homepage-screenshot` | publish pending — [install from git tag](https://github.com/voxgig-sdk/homepage-screenshot-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/homepage-screenshot-sdk/go-cli` | `go install github.com/voxgig-sdk/homepage-screenshot-sdk/go-cli/cmd/homepage-screenshot@latest` |
 | Go MCP server | `github.com/voxgig-sdk/homepage-screenshot-sdk/go-mcp` | `go get github.com/voxgig-sdk/homepage-screenshot-sdk/go-mcp@latest` |
 

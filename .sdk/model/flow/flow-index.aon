@@ -1,4 +1,4 @@
 # Flows
 
-@"BasicGetScreenshotByDomainAndDateFlow.aon"
-@"BasicGetScreenshotByDomainFlow.aon"
+@"./BasicGetScreenshotByDomainAndDateFlow.aon"
+@"./BasicGetScreenshotByDomainFlow.aon"

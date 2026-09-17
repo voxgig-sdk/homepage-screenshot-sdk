@@ -127,12 +127,12 @@ class Config {
 
     entity: {
       
-      get_screenshot_by_domain: {
-      },
-
-      get_screenshot_by_domain_and_date: {
-      },
-
+        get_screenshot_by_domain: {
+        },
+  
+        get_screenshot_by_domain_and_date: {
+        },
+  
     }
   }
 
