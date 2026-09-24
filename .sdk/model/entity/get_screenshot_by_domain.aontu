@@ -1,0 +1,120 @@
+# Entity: get_screenshot_by_domain
+
+main: kit: entity: get_screenshot_by_domain: {
+
+  alias: field: {}
+
+  fields: {
+    domain: {
+      h: "Domain"
+      n: "domain"
+      r: false
+      sh: "The requested domain"
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+    screenshot_url: {
+      h: "Screenshot Url"
+      n: "screenshot_url"
+      r: false
+      sh: "URL to the screenshot image"
+      t: "`$STRING`"
+    }
+    size: {
+      h: "Size"
+      n: "size"
+      r: false
+      sh: "Size of the screenshot"
+      t: "`$INTEGER`"
+    }
+    timestamp: {
+      h: "Timestamp"
+      n: "timestamp"
+      r: false
+      sh: "When the screenshot was taken"
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "get_screenshot_by_domain"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /{domain}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "bbc.co.uk"
+                k: "param"
+                n: "id"
+                or: "domain"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "png"
+                k: "query"
+                n: "f"
+                or: "f"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: 2048
+                k: "query"
+                n: "s"
+                or: "s"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/{domain}"
+          q: {
+            exist: [
+              "f"
+              "id"
+              "s"
+            ]
+          }
+          r: {
+            param: {
+              domain: "id"
+            }
+          }
+          s: [
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

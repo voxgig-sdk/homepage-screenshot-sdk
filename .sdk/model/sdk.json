@@ -24,48 +24,119 @@
         "repr": "auto"
       },
       "contributor": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "published": false,
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
       "entity": {
         "get_screenshot_by_domain": {
           "active": true,
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "domain",
-              "req": false,
-              "short": "The requested domain",
-              "type": "`$STRING`"
+          "fields": {
+            "domain": {
+              "a": true,
+              "h": "Domain",
+              "n": "domain",
+              "r": false,
+              "sh": "The requested domain",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "id",
-              "req": false,
-              "type": "`$STRING`"
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "screenshot_url",
-              "req": false,
-              "short": "URL to the screenshot image",
-              "type": "`$STRING`"
+            "screenshot_url": {
+              "a": true,
+              "h": "Screenshot Url",
+              "n": "screenshot_url",
+              "r": false,
+              "sh": "URL to the screenshot image",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "size",
-              "req": false,
-              "short": "Size of the screenshot",
-              "type": "`$INTEGER`"
+            "size": {
+              "a": true,
+              "h": "Size",
+              "n": "size",
+              "r": false,
+              "sh": "Size of the screenshot",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "timestamp",
-              "req": false,
-              "short": "When the screenshot was taken",
-              "type": "`$STRING`"
+            "timestamp": {
+              "a": true,
+              "h": "Timestamp",
+              "n": "timestamp",
+              "r": false,
+              "sh": "When the screenshot was taken",
+              "t": "`$STRING`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -77,67 +148,66 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /{domain}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "example": "bbc.co.uk",
-                        "kind": "param",
-                        "name": "id",
-                        "orig": "domain",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "bbc.co.uk",
+                        "k": "param",
+                        "n": "id",
+                        "or": "domain",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ],
                     "query": [
                       {
-                        "active": true,
-                        "example": "png",
-                        "kind": "query",
-                        "name": "f",
-                        "orig": "f",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "png",
+                        "k": "query",
+                        "n": "f",
+                        "or": "f",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": 2048,
-                        "kind": "query",
-                        "name": "s",
-                        "orig": "s",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "ex": 2048,
+                        "k": "query",
+                        "n": "s",
+                        "or": "s",
+                        "r": false,
+                        "t": "`$INTEGER`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /{domain}",
-                    "json": "{\"operationId\":\"getScreenshotByDomain\",\"parameters\":[{\"description\":\"The domain name to capture (e.g., bbc.co.uk)\",\"in\":\"path\",\"name\":\"domain\",\"required\":true,\"schema\":{\"example\":\"bbc.co.uk\",\"type\":\"string\"}},{\"description\":\"Size of the screenshot in pixels (width)\",\"in\":\"query\",\"name\":\"s\",\"required\":false,\"schema\":{\"default\":2048,\"enum\":[128,256,512,2048],\"type\":\"integer\"}},{\"description\":\"Format of the response\",\"in\":\"query\",\"name\":\"f\",\"required\":false,\"schema\":{\"default\":\"png\",\"enum\":[\"png\",\"md\",\"json\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"domain\":{\"description\":\"The requested domain\",\"type\":\"string\"},\"screenshot_url\":{\"description\":\"URL to the screenshot image\",\"type\":\"string\"},\"size\":{\"description\":\"Size of the screenshot\",\"type\":\"integer\"},\"timestamp\":{\"description\":\"When the screenshot was taken\",\"type\":\"string\"}},\"type\":\"object\"}},\"image/png\":{\"schema\":{\"format\":\"binary\",\"type\":\"string\"}},\"text/markdown\":{\"schema\":{\"description\":\"Markdown representation of the screenshot information\",\"type\":\"string\"}}},\"description\":\"Successful response with screenshot\"},\"404\":{\"description\":\"Domain not found or screenshot not available\"},\"429\":{\"description\":\"Rate limit exceeded (1,000 requests per day without API key)\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/{domain}",
-                  "rename": {
-                    "param": {
-                      "domain": "id"
-                    }
-                  },
-                  "segments": [
-                    {
-                      "var": "id"
-                    }
-                  ],
-                  "select": {
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/{domain}",
+                  "q": {
                     "exist": [
                       "f",
                       "id",
                       "s"
                     ]
                   },
-                  "transform": {
+                  "r": {
+                    "param": {
+                      "domain": "id"
+                    }
+                  },
+                  "s": [
+                    {
+                      "var": "id"
+                    }
+                  ],
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -154,49 +224,55 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "date",
-              "req": false,
-              "short": "The date of the screenshot in YYYY-MM format",
-              "type": "`$STRING`"
+          "fields": {
+            "date": {
+              "a": true,
+              "h": "Date",
+              "n": "date",
+              "r": false,
+              "sh": "The date of the screenshot in YYYY-MM format",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "domain",
-              "req": false,
-              "short": "The requested domain",
-              "type": "`$STRING`"
+            "domain": {
+              "a": true,
+              "h": "Domain",
+              "n": "domain",
+              "r": false,
+              "sh": "The requested domain",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "id",
-              "req": false,
-              "type": "`$STRING`"
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "screenshot_url",
-              "req": false,
-              "short": "URL to the screenshot image",
-              "type": "`$STRING`"
+            "screenshot_url": {
+              "a": true,
+              "h": "Screenshot Url",
+              "n": "screenshot_url",
+              "r": false,
+              "sh": "URL to the screenshot image",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "size",
-              "req": false,
-              "short": "Size of the screenshot",
-              "type": "`$INTEGER`"
+            "size": {
+              "a": true,
+              "h": "Size",
+              "n": "size",
+              "r": false,
+              "sh": "Size of the screenshot",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "timestamp",
-              "req": false,
-              "short": "When the screenshot was taken",
-              "type": "`$STRING`"
+            "timestamp": {
+              "a": true,
+              "h": "Timestamp",
+              "n": "timestamp",
+              "r": false,
+              "sh": "When the screenshot was taken",
+              "t": "`$STRING`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "from": {
@@ -217,67 +293,58 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /{domain}/{date}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "example": "2026-02",
-                        "kind": "param",
-                        "name": "date",
-                        "orig": "date",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "2026-02",
+                        "k": "param",
+                        "n": "date",
+                        "or": "date",
+                        "r": true,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": "bbc.co.uk",
-                        "kind": "param",
-                        "name": "domain",
-                        "orig": "domain",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "bbc.co.uk",
+                        "k": "param",
+                        "n": "domain",
+                        "or": "domain",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ],
                     "query": [
                       {
-                        "active": true,
-                        "example": "png",
-                        "kind": "query",
-                        "name": "f",
-                        "orig": "f",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "png",
+                        "k": "query",
+                        "n": "f",
+                        "or": "f",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": 2048,
-                        "kind": "query",
-                        "name": "s",
-                        "orig": "s",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "ex": 2048,
+                        "k": "query",
+                        "n": "s",
+                        "or": "s",
+                        "r": false,
+                        "t": "`$INTEGER`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /{domain}/{date}",
-                    "json": "{\"operationId\":\"getScreenshotByDomainAndDate\",\"parameters\":[{\"description\":\"The domain name to capture (e.g., bbc.co.uk)\",\"in\":\"path\",\"name\":\"domain\",\"required\":true,\"schema\":{\"example\":\"bbc.co.uk\",\"type\":\"string\"}},{\"description\":\"Date in YYYY-MM format (e.g., 2024-01, 2026-02)\",\"in\":\"path\",\"name\":\"date\",\"required\":true,\"schema\":{\"example\":\"2026-02\",\"pattern\":\"^\\\\d{4}-(0[1-9]|1[0-2])$\",\"type\":\"string\"}},{\"description\":\"Size of the screenshot in pixels (width)\",\"in\":\"query\",\"name\":\"s\",\"required\":false,\"schema\":{\"default\":2048,\"enum\":[128,256,512,2048],\"type\":\"integer\"}},{\"description\":\"Format of the response\",\"in\":\"query\",\"name\":\"f\",\"required\":false,\"schema\":{\"default\":\"png\",\"enum\":[\"png\",\"md\",\"json\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"date\":{\"description\":\"The date of the screenshot in YYYY-MM format\",\"type\":\"string\"},\"domain\":{\"description\":\"The requested domain\",\"type\":\"string\"},\"screenshot_url\":{\"description\":\"URL to the screenshot image\",\"type\":\"string\"},\"size\":{\"description\":\"Size of the screenshot\",\"type\":\"integer\"},\"timestamp\":{\"description\":\"When the screenshot was taken\",\"type\":\"string\"}},\"type\":\"object\"}},\"image/png\":{\"schema\":{\"format\":\"binary\",\"type\":\"string\"}},\"text/markdown\":{\"schema\":{\"description\":\"Markdown representation of the screenshot information\",\"type\":\"string\"}}},\"description\":\"Successful response with screenshot from the specified date\"},\"404\":{\"description\":\"Domain not found or screenshot not available for the specified date\"},\"429\":{\"description\":\"Rate limit exceeded (1,000 requests per day without API key)\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/{domain}/{date}",
-                  "segments": [
-                    {
-                      "var": "domain"
-                    },
-                    {
-                      "var": "date"
-                    }
-                  ],
-                  "select": {
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/{domain}/{date}",
+                  "q": {
                     "exist": [
                       "date",
                       "domain",
@@ -285,7 +352,16 @@
                       "s"
                     ]
                   },
-                  "transform": {
+                  "r": {},
+                  "s": [
+                    {
+                      "var": "domain"
+                    },
+                    {
+                      "var": "date"
+                    }
+                  ],
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -714,20 +790,20 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "get_screenshot_by_domain_and_date_ref01",
                 "srcdatavar": "get_screenshot_by_domain_and_date_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {
+              "m": {
                 "domain": "domain01",
                 "id": "get_screenshot_by_domain_and_date01"
               },
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -747,19 +823,19 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "get_screenshot_by_domain_ref01",
                 "srcdatavar": "get_screenshot_by_domain_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {
+              "m": {
                 "id": "get_screenshot_by_domain01"
               },
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {

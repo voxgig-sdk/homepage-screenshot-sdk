@@ -1,7 +1,7 @@
 // Typed models for the HomepageScreenshot SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
@@ -14,11 +14,6 @@ import (
 
 // GetScreenshotByDomain is the typed data model for the get_screenshot_by_domain entity.
 type GetScreenshotByDomain struct {
-	Domain *string `json:"domain,omitempty"`
-	Id *string `json:"id,omitempty"`
-	ScreenshotUrl *string `json:"screenshot_url,omitempty"`
-	Size *int `json:"size,omitempty"`
-	Timestamp *string `json:"timestamp,omitempty"`
 }
 
 // GetScreenshotByDomainLoadMatch is the typed request payload for GetScreenshotByDomain.LoadTyped.
@@ -30,12 +25,6 @@ type GetScreenshotByDomainLoadMatch struct {
 
 // GetScreenshotByDomainAndDate is the typed data model for the get_screenshot_by_domain_and_date entity.
 type GetScreenshotByDomainAndDate struct {
-	Date *string `json:"date,omitempty"`
-	Domain *string `json:"domain,omitempty"`
-	Id *string `json:"id,omitempty"`
-	ScreenshotUrl *string `json:"screenshot_url,omitempty"`
-	Size *int `json:"size,omitempty"`
-	Timestamp *string `json:"timestamp,omitempty"`
 }
 
 // GetScreenshotByDomainAndDateLoadMatch is the typed request payload for GetScreenshotByDomainAndDate.LoadTyped.

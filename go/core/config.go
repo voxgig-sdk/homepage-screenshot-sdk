@@ -92,27 +92,32 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "domain",
-						"short": "The requested domain",
+						"title": "Domain",
 						"type": "`$STRING`",
+						"short": "The requested domain",
 					},
 					map[string]any{
 						"name": "id",
+						"title": "Id",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "screenshot_url",
-						"short": "URL to the screenshot image",
+						"title": "Screenshot Url",
 						"type": "`$STRING`",
+						"short": "URL to the screenshot image",
 					},
 					map[string]any{
 						"name": "size",
-						"short": "Size of the screenshot",
+						"title": "Size",
 						"type": "`$INTEGER`",
+						"short": "Size of the screenshot",
 					},
 					map[string]any{
 						"name": "timestamp",
-						"short": "When the screenshot was taken",
+						"title": "Timestamp",
 						"type": "`$STRING`",
+						"short": "When the screenshot was taken",
 					},
 				},
 				"id": map[string]any{
@@ -126,45 +131,52 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"example": "bbc.co.uk",
-											"kind": "param",
-											"name": "id",
-											"orig": "domain",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"example": "png",
-											"kind": "query",
-											"name": "f",
-											"orig": "f",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": 2048,
-											"kind": "query",
-											"name": "s",
-											"orig": "s",
-											"type": "`$INTEGER`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/{domain}",
+								"segments": []any{
+									map[string]any{
+										"var": "id",
+									},
+								},
+								"parts": []any{
+									"{id}",
+								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"domain": "id",
 									},
 								},
-								"segments": []any{
-									map[string]any{
-										"var": "id",
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "domain",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "bbc.co.uk",
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "f",
+											"orig": "f",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "png",
+										},
+										map[string]any{
+											"name": "s",
+											"orig": "s",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 2048,
+										},
 									},
 								},
 								"select": map[string]any{
@@ -173,13 +185,6 @@ func MakeConfig() map[string]any {
 										"id",
 										"s",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"{id}",
 								},
 							},
 						},
@@ -193,32 +198,38 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "date",
-						"short": "The date of the screenshot in YYYY-MM format",
+						"title": "Date",
 						"type": "`$STRING`",
+						"short": "The date of the screenshot in YYYY-MM format",
 					},
 					map[string]any{
 						"name": "domain",
-						"short": "The requested domain",
+						"title": "Domain",
 						"type": "`$STRING`",
+						"short": "The requested domain",
 					},
 					map[string]any{
 						"name": "id",
+						"title": "Id",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "screenshot_url",
-						"short": "URL to the screenshot image",
+						"title": "Screenshot Url",
 						"type": "`$STRING`",
+						"short": "URL to the screenshot image",
 					},
 					map[string]any{
 						"name": "size",
-						"short": "Size of the screenshot",
+						"title": "Size",
 						"type": "`$INTEGER`",
+						"short": "Size of the screenshot",
 					},
 					map[string]any{
 						"name": "timestamp",
-						"short": "When the screenshot was taken",
+						"title": "Timestamp",
 						"type": "`$STRING`",
+						"short": "When the screenshot was taken",
 					},
 				},
 				"id": map[string]any{
@@ -241,42 +252,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"example": "2026-02",
-											"kind": "param",
-											"name": "date",
-											"orig": "date",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "bbc.co.uk",
-											"kind": "param",
-											"name": "domain",
-											"orig": "domain",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"example": "png",
-											"kind": "query",
-											"name": "f",
-											"orig": "f",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": 2048,
-											"kind": "query",
-											"name": "s",
-											"orig": "s",
-											"type": "`$INTEGER`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/{domain}/{date}",
@@ -288,6 +263,51 @@ func MakeConfig() map[string]any {
 										"var": "date",
 									},
 								},
+								"parts": []any{
+									"{domain}",
+									"{date}",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "date",
+											"orig": "date",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "2026-02",
+										},
+										map[string]any{
+											"name": "domain",
+											"orig": "domain",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "bbc.co.uk",
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "f",
+											"orig": "f",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "png",
+										},
+										map[string]any{
+											"name": "s",
+											"orig": "s",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 2048,
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"date",
@@ -295,14 +315,6 @@ func MakeConfig() map[string]any {
 										"f",
 										"s",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"{domain}",
-									"{date}",
 								},
 							},
 						},

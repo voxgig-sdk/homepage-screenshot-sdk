@@ -100,27 +100,32 @@ module HomepageScreenshotConfig
           "fields" => [
             {
               "name" => "domain",
-              "short" => "The requested domain",
+              "title" => "Domain",
               "type" => "`$STRING`",
+              "short" => "The requested domain",
             },
             {
               "name" => "id",
+              "title" => "Id",
               "type" => "`$STRING`",
             },
             {
               "name" => "screenshot_url",
-              "short" => "URL to the screenshot image",
+              "title" => "Screenshot Url",
               "type" => "`$STRING`",
+              "short" => "URL to the screenshot image",
             },
             {
               "name" => "size",
-              "short" => "Size of the screenshot",
+              "title" => "Size",
               "type" => "`$INTEGER`",
+              "short" => "Size of the screenshot",
             },
             {
               "name" => "timestamp",
-              "short" => "When the screenshot was taken",
+              "title" => "Timestamp",
               "type" => "`$STRING`",
+              "short" => "When the screenshot was taken",
             },
           ],
           "id" => {
@@ -134,47 +139,54 @@ module HomepageScreenshotConfig
               "name" => "load",
               "points" => [
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "example" => "bbc.co.uk",
-                        "kind" => "param",
-                        "name" => "id",
-                        "orig" => "domain",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                    "query" => [
-                      {
-                        "example" => "png",
-                        "kind" => "query",
-                        "name" => "f",
-                        "orig" => "f",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "example" => 2048,
-                        "kind" => "query",
-                        "name" => "s",
-                        "orig" => "s",
-                        "type" => "`$INTEGER`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{domain}",
-                  "rename" => {
-                    "param" => {
-                      "domain" => "id",
-                    },
-                  },
                   "segments" => [
                     {
                       "var" => "id",
                     },
                   ],
+                  "parts" => [
+                    "{id}",
+                  ],
+                  "rename" => {
+                    "param" => {
+                      "domain" => "id",
+                    },
+                  },
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "id",
+                        "orig" => "domain",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                        "example" => "bbc.co.uk",
+                      },
+                    ],
+                    "query" => [
+                      {
+                        "name" => "f",
+                        "orig" => "f",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "png",
+                      },
+                      {
+                        "name" => "s",
+                        "orig" => "s",
+                        "type" => "`$INTEGER`",
+                        "kind" => "query",
+                        "example" => 2048,
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "f",
@@ -182,13 +194,6 @@ module HomepageScreenshotConfig
                       "s",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "{id}",
-                  ],
                 },
               ],
             },
@@ -201,32 +206,38 @@ module HomepageScreenshotConfig
           "fields" => [
             {
               "name" => "date",
-              "short" => "The date of the screenshot in YYYY-MM format",
+              "title" => "Date",
               "type" => "`$STRING`",
+              "short" => "The date of the screenshot in YYYY-MM format",
             },
             {
               "name" => "domain",
-              "short" => "The requested domain",
+              "title" => "Domain",
               "type" => "`$STRING`",
+              "short" => "The requested domain",
             },
             {
               "name" => "id",
+              "title" => "Id",
               "type" => "`$STRING`",
             },
             {
               "name" => "screenshot_url",
-              "short" => "URL to the screenshot image",
+              "title" => "Screenshot Url",
               "type" => "`$STRING`",
+              "short" => "URL to the screenshot image",
             },
             {
               "name" => "size",
-              "short" => "Size of the screenshot",
+              "title" => "Size",
               "type" => "`$INTEGER`",
+              "short" => "Size of the screenshot",
             },
             {
               "name" => "timestamp",
-              "short" => "When the screenshot was taken",
+              "title" => "Timestamp",
               "type" => "`$STRING`",
+              "short" => "When the screenshot was taken",
             },
           ],
           "id" => {
@@ -249,42 +260,6 @@ module HomepageScreenshotConfig
               "name" => "load",
               "points" => [
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "example" => "2026-02",
-                        "kind" => "param",
-                        "name" => "date",
-                        "orig" => "date",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "example" => "bbc.co.uk",
-                        "kind" => "param",
-                        "name" => "domain",
-                        "orig" => "domain",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                    "query" => [
-                      {
-                        "example" => "png",
-                        "kind" => "query",
-                        "name" => "f",
-                        "orig" => "f",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "example" => 2048,
-                        "kind" => "query",
-                        "name" => "s",
-                        "orig" => "s",
-                        "type" => "`$INTEGER`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{domain}/{date}",
@@ -296,6 +271,51 @@ module HomepageScreenshotConfig
                       "var" => "date",
                     },
                   ],
+                  "parts" => [
+                    "{domain}",
+                    "{date}",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "date",
+                        "orig" => "date",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                        "example" => "2026-02",
+                      },
+                      {
+                        "name" => "domain",
+                        "orig" => "domain",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                        "example" => "bbc.co.uk",
+                      },
+                    ],
+                    "query" => [
+                      {
+                        "name" => "f",
+                        "orig" => "f",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "png",
+                      },
+                      {
+                        "name" => "s",
+                        "orig" => "s",
+                        "type" => "`$INTEGER`",
+                        "kind" => "query",
+                        "example" => 2048,
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "date",
@@ -304,14 +324,6 @@ module HomepageScreenshotConfig
                       "s",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "{domain}",
-                    "{date}",
-                  ],
                 },
               ],
             },

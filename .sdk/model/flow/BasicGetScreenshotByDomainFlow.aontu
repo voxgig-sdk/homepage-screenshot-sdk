@@ -1,0 +1,32 @@
+# BasicGetScreenshotByDomainFlow
+
+main: kit: flow: BasicGetScreenshotByDomainFlow:
+{
+  entity: "get_screenshot_by_domain",
+  kind: "basic",
+  name: "BasicGetScreenshotByDomainFlow",
+  step: [
+    {
+      i: {
+        ref: "get_screenshot_by_domain_ref01",
+        srcdatavar: "get_screenshot_by_domain_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "get_screenshot_by_domain01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-get_screenshot_by_domain_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicGetScreenshotByDomainFlow"
+}
