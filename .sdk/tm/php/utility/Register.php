@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 HomepageScreenshotUtility::setRegistrar(function (HomepageScreenshotUtility $u): void {
     $u->clean = [HomepageScreenshotClean::class, 'call'];
+    $u->clean_add = [HomepageScreenshotClean::class, 'add'];
+    $u->clean_explain = [HomepageScreenshotDone::class, 'clean_explain'];
     $u->done = [HomepageScreenshotDone::class, 'call'];
     $u->make_error = [HomepageScreenshotMakeError::class, 'call'];
     $u->feature_add = [HomepageScreenshotFeatureAdd::class, 'call'];

@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 HomepageScreenshotUtility.registrar = ->(u) {
   u.clean = HomepageScreenshotUtilities::Clean
+  u.clean_add = HomepageScreenshotUtilities::CleanAdd
+  u.clean_explain = HomepageScreenshotUtilities::CleanExplain
   u.done = HomepageScreenshotUtilities::Done
   u.make_error = HomepageScreenshotUtilities::MakeError
   u.feature_add = HomepageScreenshotUtilities::FeatureAdd
