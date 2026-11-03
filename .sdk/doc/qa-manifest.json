@@ -3,5 +3,18 @@
     "SUMMARY.md"
   ],
   "config": ".sdk/doc/qa/vale.ini",
-  "routes": {}
+  "routes": {},
+  "quoted": {
+    "SUMMARY.md": [
+      "Production server",
+      "Size of the screenshot",
+      "Successful response with screenshot",
+      "Successful response with screenshot from the specified date",
+      "The date of the screenshot in YYYY-MM format",
+      "The requested domain",
+      "This API provides fast and efficient screenshots of specified web pages. Users can request screenshots for various dates, sizes, and formats, making it ideal for web monitoring and analysis. Screenshots of homepages not in the top ~1 million websites will be generated on demand and may take a few seconds. Free tier allows up to 1,000 requests per day without an API key.",
+      "URL to the screenshot image",
+      "When the screenshot was taken"
+    ]
+  }
 }

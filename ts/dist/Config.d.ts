@@ -57,6 +57,7 @@ declare class Config {
             };
             optspec: {
                 clearTimer: string;
+                now: string;
                 setTimer: string;
             };
             strict: boolean;
@@ -75,17 +76,12 @@ declare class Config {
     };
     entity: {
         get_screenshot_by_domain: {
-            fields: ({
+            fields: {
                 name: string;
                 title: string;
                 type: string;
                 short: string;
-            } | {
-                name: string;
-                title: string;
-                type: string;
-                short?: undefined;
-            })[];
+            }[];
             id: {
                 field: string;
                 name: string;
@@ -137,6 +133,22 @@ declare class Config {
                         };
                         select: {
                             exist: string[];
+                        };
+                        response: {
+                            alternatives: ({
+                                binary: boolean;
+                                kind: string;
+                                media: string;
+                            } | {
+                                kind: string;
+                                media: string;
+                                binary?: undefined;
+                            })[];
+                            kind: string;
+                            media: string;
+                        };
+                        alias: {
+                            id: string;
                         };
                     }[];
                 };
@@ -210,6 +222,19 @@ declare class Config {
                         };
                         select: {
                             exist: string[];
+                        };
+                        response: {
+                            alternatives: ({
+                                binary: boolean;
+                                kind: string;
+                                media: string;
+                            } | {
+                                kind: string;
+                                media: string;
+                                binary?: undefined;
+                            })[];
+                            kind: string;
+                            media: string;
                         };
                     }[];
                 };

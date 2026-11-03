@@ -96,6 +96,7 @@ def make_config():
         },
         "optspec": {
           "clearTimer": "`$FUNCTION`",
+          "now": "`$FUNCTION`",
           "setTimer": "`$FUNCTION`",
         },
         "strict": False,
@@ -122,11 +123,6 @@ def make_config():
             "short": "The requested domain",
           },
           {
-            "name": "id",
-            "title": "Id",
-            "type": "`$STRING`",
-          },
-          {
             "name": "screenshot_url",
             "title": "Screenshot Url",
             "type": "`$STRING`",
@@ -146,7 +142,7 @@ def make_config():
           },
         ],
         "id": {
-          "field": "id",
+          "field": "domain",
           "name": "id",
         },
         "name": "get_screenshot_by_domain",
@@ -206,10 +202,26 @@ def make_config():
                 },
                 "select": {
                   "exist": [
-                    "f",
                     "id",
-                    "s",
                   ],
+                },
+                "response": {
+                  "alternatives": [
+                    {
+                      "binary": True,
+                      "kind": "raw",
+                      "media": "image/png",
+                    },
+                    {
+                      "kind": "raw",
+                      "media": "text/markdown",
+                    },
+                  ],
+                  "kind": "json",
+                  "media": "application/json",
+                },
+                "alias": {
+                  "id": "domain",
                 },
               },
             ],
@@ -337,9 +349,22 @@ def make_config():
                   "exist": [
                     "date",
                     "domain",
-                    "f",
-                    "s",
                   ],
+                },
+                "response": {
+                  "alternatives": [
+                    {
+                      "binary": True,
+                      "kind": "raw",
+                      "media": "image/png",
+                    },
+                    {
+                      "kind": "raw",
+                      "media": "text/markdown",
+                    },
+                  ],
+                  "kind": "json",
+                  "media": "application/json",
                 },
               },
             ],

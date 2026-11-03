@@ -117,9 +117,22 @@ main: kit: entity: get_screenshot_by_domain_and_date: {
             exist: [
               "date"
               "domain"
-              "f"
-              "s"
             ]
+          }
+          rs: {
+            alternatives: [
+              {
+                binary: true
+                kind: "raw"
+                media: "image/png"
+              }
+              {
+                kind: "raw"
+                media: "text/markdown"
+              }
+            ]
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

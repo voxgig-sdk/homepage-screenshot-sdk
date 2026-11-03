@@ -13,7 +13,12 @@ type Context = core.Context
 type Utility = core.Utility
 type Feature = core.Feature
 type Entity = core.Entity
-type HomepageScreenshotEntity = core.HomepageScreenshotEntity
+type HomepageScreenshotEntityBase = core.HomepageScreenshotEntityBase
+
+// Deprecated: use HomepageScreenshotEntityBase.
+type HomepageScreenshotEntity = core.HomepageScreenshotEntityBase
+
+type StreamItem = core.StreamItem
 type FetcherFunc = core.FetcherFunc
 type Spec = core.Spec
 type Result = core.Result
@@ -41,10 +46,10 @@ func init() {
 	core.NewTimeoutFeatureFunc = func() core.Feature {
 		return feature.NewTimeoutFeature()
 	}
-	core.NewGetScreenshotByDomainEntityFunc = func(client *core.HomepageScreenshotSDK, entopts map[string]any) core.HomepageScreenshotEntity {
+	core.NewGetScreenshotByDomainEntityFunc = func(client *core.HomepageScreenshotSDK, entopts map[string]any) core.HomepageScreenshotEntityBase {
 		return entity.NewGetScreenshotByDomainEntity(client, entopts)
 	}
-	core.NewGetScreenshotByDomainAndDateEntityFunc = func(client *core.HomepageScreenshotSDK, entopts map[string]any) core.HomepageScreenshotEntity {
+	core.NewGetScreenshotByDomainAndDateEntityFunc = func(client *core.HomepageScreenshotSDK, entopts map[string]any) core.HomepageScreenshotEntityBase {
 		return entity.NewGetScreenshotByDomainAndDateEntity(client, entopts)
 	}
 }

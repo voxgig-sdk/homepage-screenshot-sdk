@@ -15,6 +15,13 @@ import (
 	vs "github.com/voxgig-sdk/homepage-screenshot-sdk/go/utility/struct"
 )
 
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const get_screenshot_by_domain_and_dateEntityLiveStrict = true
+
+
 func TestGetScreenshotByDomainAndDateEntity(t *testing.T) {
 	t.Run("instance", func(t *testing.T) {
 		testsdk := sdk.TestSDK(nil, nil)
@@ -24,7 +31,21 @@ func TestGetScreenshotByDomainAndDateEntity(t *testing.T) {
 		}
 	})
 
-	t.Run("basic", func(t *testing.T) {
+	t.Run("validate", func(t *testing.T) {
+		if !fhHasFeature("validate") {
+			t.Skip("feature not present in this SDK: validate")
+		}
+		client := sdk.TestSDK(nil, map[string]any{
+			"feature": map[string]any{"validate": map[string]any{"active": true}},
+		})
+		_, err := client.GetScreenshotByDomainAndDate(nil).Load(map[string]any{"date": 1, "domain": "x"}, nil)
+		if sdkerr, ok := err.(*core.HomepageScreenshotError); !ok || "validate_failed" != sdkerr.Code {
+			t.Fatalf("expected validate_failed, got %v", err)
+		}
+	})
+
+	t.Run("basic", func(tt *testing.T) {
+		var t testing.TB = tt
 		setup := get_screenshot_by_domain_and_dateBasicSetup(nil)
 		// Per-op sdk-test-control.json skip — basic test exercises a flow
 		// with multiple ops; skipping any op skips the whole flow.
@@ -32,7 +53,7 @@ func TestGetScreenshotByDomainAndDateEntity(t *testing.T) {
 		if setup.live {
 			_mode = "live"
 		}
-		for _, _op := range []string{"load"} {
+		for _, _op := range []string{} {
 			if _shouldSkip, _reason := isControlSkipped("entityOp", "get_screenshot_by_domain_and_date." + _op, _mode); _shouldSkip {
 				if _reason == "" {
 					_reason = "skipped via sdk-test-control.json"
@@ -41,13 +62,10 @@ func TestGetScreenshotByDomainAndDateEntity(t *testing.T) {
 				return
 			}
 		}
-		// The basic flow consumes synthetic IDs from the fixture. In live mode
-		// without an *_ENTID env override, those IDs hit the live API and 4xx.
-		if setup.syntheticOnly {
-			t.Skip("live entity test uses synthetic IDs from fixture — set HOMEPAGE_SCREENSHOT_TEST_GET_SCREENSHOT_BY_DOMAIN_AND_DATE_ENTID JSON to run live")
+		if setup.live {
+			t.Skip("Live coverage incomplete: the flow has no step to run")
 			return
 		}
-		client := setup.client
 
 		// Bootstrap entity data from existing test data (no create step in flow).
 		getScreenshotByDomainAndDateRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.get_screenshot_by_domain_and_date")))
@@ -58,23 +76,6 @@ func TestGetScreenshotByDomainAndDateEntity(t *testing.T) {
 		// Discard guards against Go's unused-var check when the flow's steps
 		// happen not to consume the bootstrap data (e.g. list-only flows).
 		_ = getScreenshotByDomainAndDateRef01Data
-
-		// LOAD
-		getScreenshotByDomainAndDateRef01Ent := client.GetScreenshotByDomainAndDate(nil)
-		getScreenshotByDomainAndDateRef01MatchDt0 := map[string]any{
-			"id": getScreenshotByDomainAndDateRef01Data["id"],
-		}
-		getScreenshotByDomainAndDateRef01DataDt0Loaded, err := getScreenshotByDomainAndDateRef01Ent.Load(getScreenshotByDomainAndDateRef01MatchDt0, nil)
-		if err != nil {
-			t.Fatalf("load failed: %v", err)
-		}
-		getScreenshotByDomainAndDateRef01DataDt0LoadResult := core.ToMapAny(entityData(getScreenshotByDomainAndDateRef01DataDt0Loaded))
-		if getScreenshotByDomainAndDateRef01DataDt0LoadResult == nil {
-			t.Fatal("expected load result to be a map")
-		}
-		if getScreenshotByDomainAndDateRef01DataDt0LoadResult["id"] != getScreenshotByDomainAndDateRef01Data["id"] {
-			t.Fatal("expected load result id to match")
-		}
 
 	})
 }
@@ -104,7 +105,7 @@ func get_screenshot_by_domain_and_dateBasicSetup(extra map[string]any) *entityTe
 
 	// Generate idmap via transform, matching TS pattern.
 	idmap, _ := vs.Transform(
-		[]any{"get_screenshot_by_domain_and_date01", "get_screenshot_by_domain_and_date02", "get_screenshot_by_domain_and_date03", "domain01"},
+		[]any{"get_screenshot_by_domain_and_date01", "get_screenshot_by_domain_and_date02", "get_screenshot_by_domain_and_date03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
 				"`$KEY`": "`$COPY`",
@@ -113,9 +114,8 @@ func get_screenshot_by_domain_and_dateBasicSetup(extra map[string]any) *entityTe
 		},
 	)
 
-	// Detect ENTID env override before envOverride consumes it. When live
-	// mode is on without a real override, the basic test runs against synthetic
-	// IDs from the fixture and 4xx's. Surface this so the test can skip.
+	// Whether *_ENTID supplied the idmap, read before envOverride consumes it:
+	// without it, the ids a live flow binds are the fixture's synthetic ones.
 	entidEnvRaw := os.Getenv("HOMEPAGE_SCREENSHOT_TEST_GET_SCREENSHOT_BY_DOMAIN_AND_DATE_ENTID")
 	idmapOverridden := entidEnvRaw != "" && strings.HasPrefix(strings.TrimSpace(entidEnvRaw), "{")
 

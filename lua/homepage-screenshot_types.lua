@@ -8,7 +8,6 @@
 
 ---@class GetScreenshotByDomain
 ---@field domain? string
----@field id? string
 ---@field screenshot_url? string
 ---@field size? number
 ---@field timestamp? string

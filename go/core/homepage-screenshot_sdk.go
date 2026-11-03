@@ -146,6 +146,14 @@ func (sdk *HomepageScreenshotSDK) Prepare(fetchargs map[string]any) (map[string]
 	if method == "" {
 		method = "GET"
 	}
+	method = strings.ToUpper(method)
+
+	allowMethodVal := vs.GetPath(options, []any{"allow", "method"})
+	if !Allowed(allowMethodVal, method) {
+		allowMethod, _ := allowMethodVal.(string)
+		return nil, ctx.MakeError("spec_method_allow",
+			"Method \""+method+"\" not allowed by SDK option allow.method value: \""+allowMethod+"\"")
+	}
 
 	params := ToMapAny(vs.GetProp(fetchargs, "params"))
 	if params == nil {
@@ -205,8 +213,7 @@ func (sdk *HomepageScreenshotSDK) Direct(fetchargs map[string]any) (map[string]a
 
 // Is this raw-access op permitted by the SDK's allow.op option?
 func (sdk *HomepageScreenshotSDK) opAllowed(op string) bool {
-	allowOp, _ := vs.GetPath(sdk.options, []any{"allow", "op"}).(string)
-	return strings.Contains(allowOp, op)
+	return Allowed(vs.GetPath(sdk.options, []any{"allow", "op"}), op)
 }
 
 func (sdk *HomepageScreenshotSDK) opDenied(op string) map[string]any {
@@ -278,20 +285,34 @@ func (sdk *HomepageScreenshotSDK) rawRequest(fetchargs map[string]any) (map[stri
 		noBody := status == 204 || status == 304 || contentLength == "0"
 
 		var jsonData any
+		var bodyErr error
 		if !noBody {
 			if jf := vs.GetProp(fm, "json"); jf != nil {
 				if f, ok := jf.(func() any); ok {
 					jsonData = f()
 				}
 			}
+			if unreadable, _ := vs.GetProp(fm, "unreadable").(bool); unreadable {
+				var failed error
+				if status < 200 || status >= 300 {
+					failed = ctx.MakeError("request_status",
+						fmt.Sprintf("request: %d: %v", status, vs.GetProp(fm, "statusText")))
+				}
+				bodyErr = UnreadableBody(ctx, status, headers, vs.GetProp(fm, "body"),
+					fetchdef["headers"], failed)
+			}
 		}
 
-		return map[string]any{
-			"ok":      status >= 200 && status < 300,
+		out := map[string]any{
+			"ok":      bodyErr == nil && status >= 200 && status < 300,
 			"status":  status,
 			"headers": headers,
 			"data":    jsonData,
-		}, nil
+		}
+		if bodyErr != nil {
+			out["err"] = sdk.cleanErr(ctx, bodyErr)
+		}
+		return out, nil
 	}
 
 	return map[string]any{"ok": false, "err": ctx.MakeError("direct_invalid", "invalid response type")}, nil
@@ -354,7 +375,7 @@ func (sdk *HomepageScreenshotSDK) Graphql(
 // GetScreenshotByDomain returns a GetScreenshotByDomain entity bound to this client.
 // Idiomatic usage: client.GetScreenshotByDomain(nil).List(nil, nil) or
 // client.GetScreenshotByDomain(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *HomepageScreenshotSDK) GetScreenshotByDomain(data map[string]any) HomepageScreenshotEntity {
+func (sdk *HomepageScreenshotSDK) GetScreenshotByDomain(data map[string]any) HomepageScreenshotEntityBase {
 	return NewGetScreenshotByDomainEntityFunc(sdk, data)
 }
 
@@ -362,7 +383,7 @@ func (sdk *HomepageScreenshotSDK) GetScreenshotByDomain(data map[string]any) Hom
 // GetScreenshotByDomainAndDate returns a GetScreenshotByDomainAndDate entity bound to this client.
 // Idiomatic usage: client.GetScreenshotByDomainAndDate(nil).List(nil, nil) or
 // client.GetScreenshotByDomainAndDate(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *HomepageScreenshotSDK) GetScreenshotByDomainAndDate(data map[string]any) HomepageScreenshotEntity {
+func (sdk *HomepageScreenshotSDK) GetScreenshotByDomainAndDate(data map[string]any) HomepageScreenshotEntityBase {
 	return NewGetScreenshotByDomainAndDateEntityFunc(sdk, data)
 }
 

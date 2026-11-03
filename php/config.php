@@ -93,6 +93,7 @@ class HomepageScreenshotConfig
           ],
           'optspec' => [
             'clearTimer' => '`$FUNCTION`',
+            'now' => '`$FUNCTION`',
             'setTimer' => '`$FUNCTION`',
           ],
           'strict' => false,
@@ -119,11 +120,6 @@ class HomepageScreenshotConfig
               'short' => 'The requested domain',
             ],
             [
-              'name' => 'id',
-              'title' => 'Id',
-              'type' => '`$STRING`',
-            ],
-            [
               'name' => 'screenshot_url',
               'title' => 'Screenshot Url',
               'type' => '`$STRING`',
@@ -143,7 +139,7 @@ class HomepageScreenshotConfig
             ],
           ],
           'id' => [
-            'field' => 'id',
+            'field' => 'domain',
             'name' => 'id',
           ],
           'name' => 'get_screenshot_by_domain',
@@ -203,10 +199,26 @@ class HomepageScreenshotConfig
                   ],
                   'select' => [
                     'exist' => [
-                      'f',
                       'id',
-                      's',
                     ],
+                  ],
+                  'response' => [
+                    'alternatives' => [
+                      [
+                        'binary' => true,
+                        'kind' => 'raw',
+                        'media' => 'image/png',
+                      ],
+                      [
+                        'kind' => 'raw',
+                        'media' => 'text/markdown',
+                      ],
+                    ],
+                    'kind' => 'json',
+                    'media' => 'application/json',
+                  ],
+                  'alias' => [
+                    'id' => 'domain',
                   ],
                 ],
               ],
@@ -334,9 +346,22 @@ class HomepageScreenshotConfig
                     'exist' => [
                       'date',
                       'domain',
-                      'f',
-                      's',
                     ],
+                  ],
+                  'response' => [
+                    'alternatives' => [
+                      [
+                        'binary' => true,
+                        'kind' => 'raw',
+                        'media' => 'image/png',
+                      ],
+                      [
+                        'kind' => 'raw',
+                        'media' => 'text/markdown',
+                      ],
+                    ],
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],

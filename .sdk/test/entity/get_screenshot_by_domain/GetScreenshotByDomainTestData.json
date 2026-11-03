@@ -2,35 +2,35 @@
   "existing": {
     "get_screenshot_by_domain": {
       "GET_SCREENSHOT_BY_DOMAIN00": {
-        "domain": "s32",
-        "id": "GET_SCREENSHOT_BY_DOMAIN00",
-        "screenshot_url": "s34",
-        "size": 53,
-        "timestamp": "s36"
+        "domain": "s28",
+        "screenshot_url": "s29",
+        "size": 42,
+        "timestamp": "s2b",
+        "id": "GET_SCREENSHOT_BY_DOMAIN00"
       },
       "GET_SCREENSHOT_BY_DOMAIN01": {
-        "domain": "s64",
-        "id": "GET_SCREENSHOT_BY_DOMAIN01",
-        "screenshot_url": "s66",
-        "size": 103,
-        "timestamp": "s68"
+        "domain": "s50",
+        "screenshot_url": "s51",
+        "size": 82,
+        "timestamp": "s53",
+        "id": "GET_SCREENSHOT_BY_DOMAIN01"
       },
       "GET_SCREENSHOT_BY_DOMAIN02": {
-        "domain": "s96",
-        "id": "GET_SCREENSHOT_BY_DOMAIN02",
-        "screenshot_url": "s98",
-        "size": 153,
-        "timestamp": "s9a"
+        "domain": "s78",
+        "screenshot_url": "s79",
+        "size": 122,
+        "timestamp": "s7b",
+        "id": "GET_SCREENSHOT_BY_DOMAIN02"
       }
     }
   },
   "new": {
     "get_screenshot_by_domain": {
       "get_screenshot_by_domain_ref01": {
-        "domain": "sc8",
-        "screenshot_url": "sca",
-        "size": 203,
-        "timestamp": "scc"
+        "domain": "sa0",
+        "screenshot_url": "sa1",
+        "size": 162,
+        "timestamp": "sa3"
       }
     }
   },

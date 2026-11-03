@@ -75,7 +75,7 @@ func runOp(client *sdk.HomepageScreenshotSDK, op string, query *eng.Value, entit
 
 // entityFor dispatches on the lowercase entity name. The generator
 // emits one `case "<name>":` per entity defined in the SDK model.
-func entityFor(client *sdk.HomepageScreenshotSDK, name string) (sdk.HomepageScreenshotEntity, error) {
+func entityFor(client *sdk.HomepageScreenshotSDK, name string) (sdk.HomepageScreenshotEntityBase, error) {
 	switch strings.ToLower(name) {
 	case "get_screenshot_by_domain":
 		return client.GetScreenshotByDomain(nil), nil

@@ -71,6 +71,7 @@ func MakeConfig() map[string]any {
 				},
 				"optspec": map[string]any{
 					"clearTimer": "`$FUNCTION`",
+					"now": "`$FUNCTION`",
 					"setTimer": "`$FUNCTION`",
 				},
 				"strict": false,
@@ -97,11 +98,6 @@ func MakeConfig() map[string]any {
 						"short": "The requested domain",
 					},
 					map[string]any{
-						"name": "id",
-						"title": "Id",
-						"type": "`$STRING`",
-					},
-					map[string]any{
 						"name": "screenshot_url",
 						"title": "Screenshot Url",
 						"type": "`$STRING`",
@@ -121,7 +117,7 @@ func MakeConfig() map[string]any {
 					},
 				},
 				"id": map[string]any{
-					"field": "id",
+					"field": "domain",
 					"name": "id",
 				},
 				"name": "get_screenshot_by_domain",
@@ -181,10 +177,26 @@ func MakeConfig() map[string]any {
 								},
 								"select": map[string]any{
 									"exist": []any{
-										"f",
 										"id",
-										"s",
 									},
+								},
+								"response": map[string]any{
+									"alternatives": []any{
+										map[string]any{
+											"binary": true,
+											"kind": "raw",
+											"media": "image/png",
+										},
+										map[string]any{
+											"kind": "raw",
+											"media": "text/markdown",
+										},
+									},
+									"kind": "json",
+									"media": "application/json",
+								},
+								"alias": map[string]any{
+									"id": "domain",
 								},
 							},
 						},
@@ -312,9 +324,22 @@ func MakeConfig() map[string]any {
 									"exist": []any{
 										"date",
 										"domain",
-										"f",
-										"s",
 									},
+								},
+								"response": map[string]any{
+									"alternatives": []any{
+										map[string]any{
+											"binary": true,
+											"kind": "raw",
+											"media": "image/png",
+										},
+										map[string]any{
+											"kind": "raw",
+											"media": "text/markdown",
+										},
+									},
+									"kind": "json",
+									"media": "application/json",
 								},
 							},
 						},

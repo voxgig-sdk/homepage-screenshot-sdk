@@ -97,7 +97,6 @@ $get_screenshot_by_domain = $client->GetScreenshotByDomain();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `domain` | `string` | No | The requested domain |
-| `id` | `string` | No |  |
 | `screenshot_url` | `string` | No | URL to the screenshot image |
 | `size` | `int` | No | Size of the screenshot |
 | `timestamp` | `string` | No | When the screenshot was taken |
@@ -106,7 +105,7 @@ $get_screenshot_by_domain = $client->GetScreenshotByDomain();
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria. Throws on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and throws on error.
 
 ```php
 $result = $client->GetScreenshotByDomain()->load(["id" => "get_screenshot_by_domain_id"]);
@@ -163,7 +162,7 @@ $get_screenshot_by_domain_and_date = $client->GetScreenshotByDomainAndDate();
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria. Throws on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and throws on error.
 
 ```php
 $result = $client->GetScreenshotByDomainAndDate()->load(["date" => "date", "domain" => "domain"]);
@@ -356,6 +355,7 @@ Timeout.
 | Option | Type |
 |---|---|
 | `clearTimer` | function |
+| `now` | function |
 | `setTimer` | function |
 
 These take no default: the feature behaves one way when you supply them and

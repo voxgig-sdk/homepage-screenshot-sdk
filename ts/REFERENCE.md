@@ -99,8 +99,10 @@ Make a direct HTTP request to any API endpoint.
 | `fetchargs.headers` | `object` | Request headers (merged with defaults). |
 | `fetchargs.body` | `any` | Request body (objects are JSON-serialized). |
 | `fetchargs.ctrl` | `object` | Control options (e.g. `{ explain: true }`). |
+| `fetchargs.ctrl.signal` | `AbortSignal` | Aborts the request in flight: `ok` is then `false` and `err.code` is `request_aborted`. |
 
-**Returns:** `Promise<{ ok, status, headers, data } | Error>`
+**Returns:** `Promise<{ ok, status, headers, data }>`. On a failure
+`ok` is `false` and `err` holds the error.
 
 #### `prepare(fetchargs?: object)`
 
@@ -114,6 +116,15 @@ same parameters as `direct()`.
 Alias for `HomepageScreenshotSDK.test()`.
 
 **Returns:** `HomepageScreenshotSDK` instance in test mode.
+
+#### Cancelling a call
+
+Every entity operation takes an optional `ctrl` object after its match or
+data, and an `AbortSignal` in `ctrl.signal` cancels the request in flight.
+The operation then rejects with an error whose `code` is
+`request_aborted` and whose `cause` is the signal's reason. A request
+whose signal has already aborted is not sent. `stream()` takes the signal
+as `callopts.signal`, and ends when it aborts.
 
 
 ---
@@ -129,7 +140,6 @@ const get_screenshot_by_domain = client.GetScreenshotByDomain()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `domain` | `string` | No | The requested domain |
-| `id` | `string` | No |  |
 | `screenshot_url` | `string` | No | URL to the screenshot image |
 | `size` | `number` | No | Size of the screenshot |
 | `timestamp` | `string` | No | When the screenshot was taken |
@@ -138,7 +148,7 @@ const get_screenshot_by_domain = client.GetScreenshotByDomain()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.GetScreenshotByDomain().load({ id: 'get_screenshot_by_domain_id' })
@@ -193,7 +203,7 @@ const get_screenshot_by_domain_and_date = client.GetScreenshotByDomainAndDate()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.GetScreenshotByDomainAndDate().load({ date: 'date', domain: 'domain' })
@@ -384,6 +394,7 @@ Timeout.
 | Option | Type |
 |---|---|
 | `clearTimer` | function |
+| `now` | function |
 | `setTimer` | function |
 
 These take no default: the feature behaves one way when you supply them and

@@ -12,7 +12,7 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `$
 
 ## Install
 This package is not yet published to Packagist. Install it from the
-GitHub release tag (`php/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/homepage-screenshot-sdk/releases)), or
+GitHub release tag (`php/vX.Y.Z`, see [Tags](https://github.com/voxgig-sdk/homepage-screenshot-sdk/tags)), or
 from a clone as a Composer path repository:
 
 ```bash
@@ -128,7 +128,7 @@ data via the `entity` option so offline calls resolve without a live server:
 
 ```php
 $client = HomepageScreenshotSDK::test([
-    "entity" => ["getscreenshotbydomain" => ["test01" => ["id" => "test01"]]],
+    "entity" => ["get_screenshot_by_domain" => ["test01" => ["id" => "test01"]]],
 ]);
 
 // Entity ops return the ENTITY (throws on error);
@@ -222,7 +222,7 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `($reqmatch, $ctrl): array` | Load a single entity by match criteria. |
+| `load` | `($reqmatch, $ctrl): mixed` | Load a single entity by match criteria, and return it. |
 | `data_get` | `(): array` | Get entity data. |
 | `data_set` | `($data): void` | Set entity data. |
 | `match_get` | `(): array` | Get entity match criteria. |
@@ -232,9 +232,9 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
-ops, a `list` for `list`) and throw on error. Wrap calls in
-`try`/`catch` to handle failures.
+Entity operations return the entity, and `list` an `array` of entities, one
+per record; an entity's `data_get()` reads its record (an `array`). They
+throw on error, so wrap calls in `try`/`catch` to handle failures.
 
 The `direct()` escape hatch never throws — it returns a result `array`
 you branch on via `$result["ok"]`:
@@ -255,7 +255,6 @@ On error, `ok` is `false` and `$err` contains the error value.
 | Field | Description |
 | --- | --- |
 | `domain` | The requested domain |
-| `id` |  |
 | `screenshot_url` | URL to the screenshot image |
 | `size` | Size of the screenshot |
 | `timestamp` | When the screenshot was taken |
@@ -299,7 +298,6 @@ Create an instance: `$get_screenshot_by_domain = $client->GetScreenshotByDomain(
 | Field | Type | Description |
 | --- | --- | --- |
 | `domain` | `string` | The requested domain |
-| `id` | `string` |  |
 | `screenshot_url` | `string` | URL to the screenshot image |
 | `size` | `int` | Size of the screenshot |
 | `timestamp` | `string` | When the screenshot was taken |

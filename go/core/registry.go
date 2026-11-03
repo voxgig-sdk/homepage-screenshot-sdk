@@ -12,7 +12,7 @@ var NewTestFeatureFunc func() Feature
 
 var NewTimeoutFeatureFunc func() Feature
 
-var NewGetScreenshotByDomainEntityFunc func(client *HomepageScreenshotSDK, entopts map[string]any) HomepageScreenshotEntity
+var NewGetScreenshotByDomainEntityFunc func(client *HomepageScreenshotSDK, entopts map[string]any) HomepageScreenshotEntityBase
 
-var NewGetScreenshotByDomainAndDateEntityFunc func(client *HomepageScreenshotSDK, entopts map[string]any) HomepageScreenshotEntity
+var NewGetScreenshotByDomainAndDateEntityFunc func(client *HomepageScreenshotSDK, entopts map[string]any) HomepageScreenshotEntityBase
 

@@ -11,11 +11,33 @@ use Voxgig\Struct\Struct as Vs;
 
 class GetScreenshotByDomainEntityTest extends TestCase
 {
+    // main.kit.test.live.strict is true (the default is true): a live
+    // request that fails, or a live test missing an input it needs,
+    // fails the test.
+    // An account with no record for a test to read skips it either way.
+    private const LIVE_STRICT = true;
+
     public function test_create_instance(): void
     {
         $testsdk = HomepageScreenshotSDK::test(null, null);
         $ent = $testsdk->GetScreenshotByDomain(null);
         $this->assertNotNull($ent);
+    }
+
+    public function test_validate(): void
+    {
+        $cfg = HomepageScreenshotConfig::shared_config();
+        if (!isset($cfg["feature"]["validate"])) {
+            $this->markTestSkipped('feature not present in this SDK: validate');
+        }
+        $client = HomepageScreenshotSDK::test(null, ["feature" => ["validate" => ["active" => true]]]);
+        $err = null;
+        try {
+            $client->GetScreenshotByDomain(null)->load(["id" => 1], null);
+        } catch (\Throwable $e) {
+            $err = $e;
+        }
+        $this->assertSame('validate_failed', $err->sdk_code ?? null);
     }
 
     public function test_basic_flow(): void
@@ -30,13 +52,18 @@ class GetScreenshotByDomainEntityTest extends TestCase
                 return;
             }
         }
-        // The basic flow consumes synthetic IDs from the fixture. In live mode
-        // without an *_ENTID env override, those IDs hit the live API and 4xx.
-        if (!empty($setup["synthetic_only"])) {
-            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set HOMEPAGE_SCREENSHOT_TEST_GET_SCREENSHOT_BY_DOMAIN_ENTID JSON to run live");
-            return;
+        if (!empty($setup["live"])) {
+            foreach (["get_screenshot_by_domain01" => 'bbc.co.uk'] as $_liveKey => $_liveEx) {
+                if (!empty($setup["synthetic_only"]) || null === ($setup["idmap"][$_liveKey] ?? null)) {
+                    $setup["idmap"][$_liveKey] = $_liveEx;
+                }
+            }
         }
         $client = $setup["client"];
+        if (!empty($setup["live"])) {
+            Runner::live_existing($setup, self::LIVE_STRICT, "get_screenshot_by_domain",
+                fn() => [["id" => $setup["idmap"]["get_screenshot_by_domain01"] ?? null]]);
+        }
 
         // Bootstrap entity data from existing test data.
         $get_screenshot_by_domain_ref01_data_raw = Vs::items(Helpers::to_map(
@@ -49,12 +76,12 @@ class GetScreenshotByDomainEntityTest extends TestCase
         // LOAD
         $get_screenshot_by_domain_ref01_ent = $client->GetScreenshotByDomain(null);
         $get_screenshot_by_domain_ref01_match_dt0 = [
-            "id" => $get_screenshot_by_domain_ref01_data["id"],
+            "id" => $get_screenshot_by_domain_ref01_data["domain"],
         ];
         $get_screenshot_by_domain_ref01_data_dt0_loaded = $get_screenshot_by_domain_ref01_ent->load($get_screenshot_by_domain_ref01_match_dt0, null);
         $get_screenshot_by_domain_ref01_data_dt0_load_result = Helpers::to_map(is_object($get_screenshot_by_domain_ref01_data_dt0_loaded) && method_exists($get_screenshot_by_domain_ref01_data_dt0_loaded, 'data_get') ? $get_screenshot_by_domain_ref01_data_dt0_loaded->data_get() : $get_screenshot_by_domain_ref01_data_dt0_loaded);
         $this->assertNotNull($get_screenshot_by_domain_ref01_data_dt0_load_result);
-        $this->assertEquals($get_screenshot_by_domain_ref01_data_dt0_load_result["id"], $get_screenshot_by_domain_ref01_data["id"]);
+        $this->assertEquals($get_screenshot_by_domain_ref01_data_dt0_load_result["domain"], $get_screenshot_by_domain_ref01_data["domain"]);
 
     }
 }
@@ -67,6 +94,12 @@ function get_screenshot_by_domain_basic_setup($extra)
     $entity_data_source = file_get_contents($entity_data_file);
     $entity_data = json_decode($entity_data_source, true);
 
+    foreach (($entity_data["existing"]["get_screenshot_by_domain"] ?? []) as $rec_key => $rec) {
+        if (is_array($rec) && isset($rec["id"])) {
+            $entity_data["existing"]["get_screenshot_by_domain"][$rec_key]["domain"] = $rec["id"];
+        }
+    }
+
     $options = [];
     $options["entity"] = $entity_data["existing"];
 
@@ -78,9 +111,8 @@ function get_screenshot_by_domain_basic_setup($extra)
         $idmap[$k] = strtoupper($k);
     }
 
-    // Detect ENTID env override before envOverride consumes it. When live
-    // mode is on without a real override, the basic test runs against synthetic
-    // IDs from the fixture and 4xx's. Surface this so the test can skip.
+    // Whether *_ENTID supplied the idmap, read before env_override consumes
+    // it: without it, the ids a live flow binds are the fixture's synthetic ones.
     $entid_env_raw = getenv("HOMEPAGE_SCREENSHOT_TEST_GET_SCREENSHOT_BY_DOMAIN_ENTID");
     $idmap_overridden = $entid_env_raw !== false && str_starts_with(trim($entid_env_raw), "{");
 

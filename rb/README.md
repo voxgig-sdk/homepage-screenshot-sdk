@@ -12,7 +12,7 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `c
 
 ## Install
 This package is not yet published to RubyGems. Install it from the
-GitHub release tag (`rb/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/homepage-screenshot-sdk/releases)), or
+GitHub release tag (`rb/vX.Y.Z`, see [Tags](https://github.com/voxgig-sdk/homepage-screenshot-sdk/tags)), or
 from a clone:
 
 ```bash
@@ -45,7 +45,7 @@ client = HomepageScreenshotSDK.new
 begin
   # load returns the ENTITY — call data_get for the GetScreenshotByDomain record (raises on error).
   getscreenshotbydomain = client.GetScreenshotByDomain.load({ "id" => "example_id" })
-  puts getscreenshotbydomain
+  puts getscreenshotbydomain.data_get
 rescue => err
   warn "load failed: #{err}"
 end
@@ -126,13 +126,13 @@ data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
 client = HomepageScreenshotSDK.test({
-  "entity" => { "getscreenshotbydomain" => { "test01" => { "id" => "test01" } } },
+  "entity" => { "get_screenshot_by_domain" => { "test01" => { "id" => "test01" } } },
 })
 
 # Entity ops return the ENTITY (raises on error);
-# call data_get for the mock record.
+# data_get reads its mock record.
 getscreenshotbydomain = client.GetScreenshotByDomain.load({ "id" => "test01" })
-puts getscreenshotbydomain
+puts getscreenshotbydomain.data_get
 ```
 
 ### Use a custom fetch function
@@ -217,7 +217,7 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
+| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria, and return it. Raises on error. |
 | `data_get` | `() -> Hash` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> Hash` | Get entity match criteria. |
@@ -227,9 +227,10 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the result data directly. On failure they
-raise a `HomepageScreenshotError` (a `StandardError` subclass), so wrap
-calls in `begin`/`rescue` where you need to handle errors.
+Entity operations return the entity, and `list` an `Array` of entities, one
+per record; an entity's `data_get` reads its record. On failure they raise a
+`HomepageScreenshotError` (a `StandardError` subclass), so wrap calls in
+`begin`/`rescue` where you need to handle errors.
 
 The `direct` escape hatch is the exception: it never raises and instead
 returns a result `Hash` with these keys:
@@ -249,7 +250,6 @@ returns a result `Hash` with these keys:
 | Field | Description |
 | --- | --- |
 | `domain` | The requested domain |
-| `id` |  |
 | `screenshot_url` | URL to the screenshot image |
 | `size` | Size of the screenshot |
 | `timestamp` | When the screenshot was taken |
@@ -293,7 +293,6 @@ Create an instance: `get_screenshot_by_domain = client.GetScreenshotByDomain`
 | Field | Type | Description |
 | --- | --- | --- |
 | `domain` | `String` | The requested domain |
-| `id` | `String` |  |
 | `screenshot_url` | `String` | URL to the screenshot image |
 | `size` | `Integer` | Size of the screenshot |
 | `timestamp` | `String` | When the screenshot was taken |

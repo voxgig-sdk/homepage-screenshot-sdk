@@ -92,16 +92,15 @@ get_screenshot_by_domain = client.GetScreenshotByDomain()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `domain` | `str` | No | The requested domain |
-| `id` | `str` | No |  |
 | `screenshot_url` | `str` | No | URL to the screenshot image |
 | `size` | `int` | No | Size of the screenshot |
 | `timestamp` | `str` | No | When the screenshot was taken |
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> dict`
+#### `load(reqmatch, ctrl=None) -> GetScreenshotByDomainEntity`
 
-Load a single entity matching the given criteria. Returns the entity data and raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and raises on error.
 
 ```python
 result = client.GetScreenshotByDomain().load({"id": "get_screenshot_by_domain_id"})
@@ -155,9 +154,9 @@ get_screenshot_by_domain_and_date = client.GetScreenshotByDomainAndDate()
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> dict`
+#### `load(reqmatch, ctrl=None) -> GetScreenshotByDomainAndDateEntity`
 
-Load a single entity matching the given criteria. Returns the entity data and raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and raises on error.
 
 ```python
 result = client.GetScreenshotByDomainAndDate().load({"date": "date", "domain": "domain"})
@@ -349,6 +348,7 @@ Timeout.
 | Option | Type |
 |---|---|
 | `clearTimer` | function |
+| `now` | function |
 | `setTimer` | function |
 
 These take no default: the feature behaves one way when you supply them and

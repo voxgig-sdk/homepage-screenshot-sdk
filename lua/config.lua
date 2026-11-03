@@ -67,6 +67,7 @@ local function make_config()
         },
         ["optspec"] = {
           ["clearTimer"] = "`$FUNCTION`",
+          ["now"] = "`$FUNCTION`",
           ["setTimer"] = "`$FUNCTION`",
         },
         ["strict"] = false,
@@ -93,11 +94,6 @@ local function make_config()
             ["short"] = "The requested domain",
           },
           {
-            ["name"] = "id",
-            ["title"] = "Id",
-            ["type"] = "`$STRING`",
-          },
-          {
             ["name"] = "screenshot_url",
             ["title"] = "Screenshot Url",
             ["type"] = "`$STRING`",
@@ -117,7 +113,7 @@ local function make_config()
           },
         },
         ["id"] = {
-          ["field"] = "id",
+          ["field"] = "domain",
           ["name"] = "id",
         },
         ["name"] = "get_screenshot_by_domain",
@@ -177,10 +173,26 @@ local function make_config()
                 },
                 ["select"] = {
                   ["exist"] = {
-                    "f",
                     "id",
-                    "s",
                   },
+                },
+                ["response"] = {
+                  ["alternatives"] = {
+                    {
+                      ["binary"] = true,
+                      ["kind"] = "raw",
+                      ["media"] = "image/png",
+                    },
+                    {
+                      ["kind"] = "raw",
+                      ["media"] = "text/markdown",
+                    },
+                  },
+                  ["kind"] = "json",
+                  ["media"] = "application/json",
+                },
+                ["alias"] = {
+                  ["id"] = "domain",
                 },
               },
             },
@@ -308,9 +320,22 @@ local function make_config()
                   ["exist"] = {
                     "date",
                     "domain",
-                    "f",
-                    "s",
                   },
+                },
+                ["response"] = {
+                  ["alternatives"] = {
+                    {
+                      ["binary"] = true,
+                      ["kind"] = "raw",
+                      ["media"] = "image/png",
+                    },
+                    {
+                      ["kind"] = "raw",
+                      ["media"] = "text/markdown",
+                    },
+                  },
+                  ["kind"] = "json",
+                  ["media"] = "application/json",
                 },
               },
             },

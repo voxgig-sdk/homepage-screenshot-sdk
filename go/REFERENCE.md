@@ -47,11 +47,11 @@ client := sdk.TestSDK(testopts, sdkopts)
 
 ### Instance Methods
 
-#### `GetScreenshotByDomain(data map[string]any) HomepageScreenshotEntity`
+#### `GetScreenshotByDomain(data map[string]any) HomepageScreenshotEntityBase`
 
 Create a new `GetScreenshotByDomain` entity instance. Pass `nil` for no initial data.
 
-#### `GetScreenshotByDomainAndDate(data map[string]any) HomepageScreenshotEntity`
+#### `GetScreenshotByDomainAndDate(data map[string]any) HomepageScreenshotEntityBase`
 
 Create a new `GetScreenshotByDomainAndDate` entity instance. Pass `nil` for no initial data.
 
@@ -103,7 +103,6 @@ fmt.Println(getScreenshotByDomain.GetName()) // "get_screenshot_by_domain"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `domain` | `string` | No | The requested domain |
-| `id` | `string` | No |  |
 | `screenshot_url` | `string` | No | URL to the screenshot image |
 | `size` | `int` | No | Size of the screenshot |
 | `timestamp` | `string` | No | When the screenshot was taken |
@@ -112,14 +111,14 @@ fmt.Println(getScreenshotByDomain.GetName()) // "get_screenshot_by_domain"
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity, whose record `Data()` reads; `err` is non-nil on failure.
 
 ```go
 result, err := client.GetScreenshotByDomain(nil).Load(map[string]any{"id": "get_screenshot_by_domain_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(result)
+fmt.Println(result.(sdk.Entity).Data())
 ```
 
 ### Common Methods
@@ -138,6 +137,14 @@ Get or set the entity match criteria. Works the same as `Data()`.
 
 Create a new `GetScreenshotByDomainEntity` instance with the same client and
 options.
+
+#### `Stream(action string, args map[string]any, callopts map[string]any) <-chan StreamItem`
+
+Run an operation through the pipeline and send its result items on the
+returned channel, which closes when the stream ends. A `StreamItem` holds
+one item in `Item`, or in `Err` the error that ended the stream: the
+error the operation itself would return, sent as the last value. Under
+`throw: false` in `callopts["ctrl"]`, no error is sent.
 
 #### `GetName() string`
 
@@ -168,14 +175,14 @@ fmt.Println(getScreenshotByDomainAndDate.GetName()) // "get_screenshot_by_domain
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity, whose record `Data()` reads; `err` is non-nil on failure.
 
 ```go
 result, err := client.GetScreenshotByDomainAndDate(nil).Load(map[string]any{"date": "date", "domain": "domain"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(result)
+fmt.Println(result.(sdk.Entity).Data())
 ```
 
 ### Common Methods
@@ -194,6 +201,14 @@ Get or set the entity match criteria. Works the same as `Data()`.
 
 Create a new `GetScreenshotByDomainAndDateEntity` instance with the same client and
 options.
+
+#### `Stream(action string, args map[string]any, callopts map[string]any) <-chan StreamItem`
+
+Run an operation through the pipeline and send its result items on the
+returned channel, which closes when the stream ends. A `StreamItem` holds
+one item in `Item`, or in `Err` the error that ended the stream: the
+error the operation itself would return, sent as the last value. Under
+`throw: false` in `callopts["ctrl"]`, no error is sent.
 
 #### `GetName() string`
 
@@ -359,6 +374,7 @@ Timeout.
 | Option | Type |
 |---|---|
 | `clearTimer` | function |
+| `now` | function |
 | `setTimer` | function |
 
 These take no default: the feature behaves one way when you supply them and

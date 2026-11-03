@@ -1,6 +1,5 @@
 export interface GetScreenshotByDomain {
     domain?: string;
-    id?: string;
     screenshot_url?: string;
     size?: number;
     timestamp?: string;

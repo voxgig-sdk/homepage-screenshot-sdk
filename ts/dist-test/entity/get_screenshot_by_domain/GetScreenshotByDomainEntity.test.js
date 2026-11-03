@@ -54,6 +54,14 @@ const utility_1 = require("../../utility");
         const ent = testsdk.GetScreenshotByDomain();
         (0, node_assert_1.default)(null != ent);
     });
+    (0, node_test_1.test)('validate', async (t) => {
+        if (null == __1.config.feature?.validate) {
+            t.skip('feature not present in this SDK: validate');
+            return;
+        }
+        const client = __1.HomepageScreenshotSDK.test(undefined, { feature: { validate: { active: true } } });
+        await node_assert_1.default.rejects(client.GetScreenshotByDomain().load({ "id": 1 }), (err) => 'validate_failed' === err.code);
+    });
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.HOMEPAGE_SCREENSHOT_TEST_LIVE;
         for (const op of ['load']) {
@@ -62,7 +70,7 @@ const utility_1 = require("../../utility");
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "domain": { "a": true, "h": "Domain", "n": "domain", "r": false, "sh": "The requested domain", "t": "`$STRING`", "key$": "domain", "index$": 0 }, "id": { "a": true, "h": "Id", "n": "id", "r": false, "t": "`$STRING`", "key$": "id", "index$": 1 }, "screenshot_url": { "a": true, "h": "Screenshot Url", "n": "screenshot_url", "r": false, "sh": "URL to the screenshot image", "t": "`$STRING`", "key$": "screenshot_url", "index$": 2 }, "size": { "a": true, "h": "Size", "n": "size", "r": false, "sh": "Size of the screenshot", "t": "`$INTEGER`", "key$": "size", "index$": 3 }, "timestamp": { "a": true, "h": "Timestamp", "n": "timestamp", "r": false, "sh": "When the screenshot was taken", "t": "`$STRING`", "key$": "timestamp", "index$": 4 } }, "id": { "field": "id", "name": "id" }, "name": "get_screenshot_by_domain", "op": { "load": { "input": "data", "name": "load", "points": [{ "a": true, "co": { "id": "GET /{domain}", "source": "openapi3", "version": 2 }, "g": { "params": [{ "a": true, "ex": "bbc.co.uk", "k": "param", "n": "id", "or": "domain", "r": true, "t": "`$STRING`", "index$": 0 }], "query": [{ "a": true, "ex": "png", "k": "query", "n": "f", "or": "f", "r": false, "t": "`$STRING`", "index$": 0 }, { "a": true, "ex": 2048, "k": "query", "n": "s", "or": "s", "r": false, "t": "`$INTEGER`", "index$": 1 }] }, "k": "http", "m": "GET", "o": "/{domain}", "q": { "exist": ["f", "id", "s"] }, "r": { "param": { "domain": "id" } }, "s": [{ "var": "id" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "get_screenshot_by_domain", "name__orig": "get_screenshot_by_domain", "Name": "GetScreenshotByDomain", "name_": "get_screenshot_by_domain", "name-": "get-screenshot-by-domain", "NAME": "GET_SCREENSHOT_BY_DOMAIN", "index$": 0 }, { "active": true, "entity": "get_screenshot_by_domain", "key$": "BasicGetScreenshotByDomainFlow", "kind": "basic", "name": "BasicGetScreenshotByDomainFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": { "ref": "get_screenshot_by_domain_ref01", "srcdatavar": "get_screenshot_by_domain_ref01_data", "suffix": "_dt0" }, "m": { "id": "get_screenshot_by_domain01" }, "o": "load", "s": [], "v": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-get_screenshot_by_domain_ref01" } }], "index$": 0 }] }, 'GetScreenshotByDomain', { "GET /{domain}": { "protocol": "http", "parameters": [{ "name": "domain", "in": "path", "description": "The domain name to capture (e.g., bbc.co.uk)", "required": true, "schema": { "type": "string", "example": "bbc.co.uk" }, "index$": 0 }, { "name": "s", "in": "query", "description": "Size of the screenshot in pixels (width)", "required": false, "schema": { "type": "integer", "enum": [128, 256, 512, 2048], "default": 2048 }, "index$": 1 }, { "name": "f", "in": "query", "description": "Format of the response", "required": false, "schema": { "type": "string", "enum": ["png", "md", "json"], "default": "png" }, "index$": 2 }] } });
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "domain": { "a": true, "h": "Domain", "n": "domain", "r": false, "sh": "The requested domain", "t": "`$STRING`", "key$": "domain", "index$": 0 }, "screenshot_url": { "a": true, "h": "Screenshot Url", "n": "screenshot_url", "r": false, "sh": "URL to the screenshot image", "t": "`$STRING`", "key$": "screenshot_url", "index$": 1 }, "size": { "a": true, "h": "Size", "n": "size", "r": false, "sh": "Size of the screenshot", "t": "`$INTEGER`", "key$": "size", "index$": 2 }, "timestamp": { "a": true, "h": "Timestamp", "n": "timestamp", "r": false, "sh": "When the screenshot was taken", "t": "`$STRING`", "key$": "timestamp", "index$": 3 } }, "id": { "field": "domain", "name": "id" }, "name": "get_screenshot_by_domain", "op": { "load": { "input": "data", "name": "load", "points": [{ "a": true, "co": { "id": "GET /{domain}", "source": "openapi3", "version": 2 }, "g": { "params": [{ "a": true, "ex": "bbc.co.uk", "k": "param", "n": "id", "or": "domain", "r": true, "t": "`$STRING`", "index$": 0 }], "query": [{ "a": true, "ex": "png", "k": "query", "n": "f", "or": "f", "r": false, "t": "`$STRING`", "index$": 0 }, { "a": true, "ex": 2048, "k": "query", "n": "s", "or": "s", "r": false, "t": "`$INTEGER`", "index$": 1 }] }, "k": "http", "m": "GET", "o": "/{domain}", "q": { "exist": ["id"] }, "r": { "param": { "domain": "id" } }, "rs": { "alternatives": [{ "binary": true, "kind": "raw", "media": "image/png" }, { "kind": "raw", "media": "text/markdown" }], "kind": "json", "media": "application/json" }, "s": [{ "var": "id" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "get_screenshot_by_domain", "name__orig": "get_screenshot_by_domain", "Name": "GetScreenshotByDomain", "name_": "get_screenshot_by_domain", "name-": "get-screenshot-by-domain", "NAME": "GET_SCREENSHOT_BY_DOMAIN", "index$": 0 }, { "active": true, "entity": "get_screenshot_by_domain", "key$": "BasicGetScreenshotByDomainFlow", "kind": "basic", "name": "BasicGetScreenshotByDomainFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": { "ref": "get_screenshot_by_domain_ref01", "srcdatavar": "get_screenshot_by_domain_ref01_data", "suffix": "_dt0" }, "m": { "id": "get_screenshot_by_domain01" }, "o": "load", "s": [], "v": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-get_screenshot_by_domain_ref01" } }], "index$": 0, "route": "GET /{domain}", "record": {} }] }, 'GetScreenshotByDomain', { "GET /{domain}": { "protocol": "http", "parameters": [{ "name": "domain", "in": "path", "description": "The domain name to capture (e.g., bbc.co.uk)", "required": true, "schema": { "type": "string", "example": "bbc.co.uk" }, "index$": 0 }, { "name": "s", "in": "query", "description": "Size of the screenshot in pixels (width)", "required": false, "schema": { "type": "integer", "enum": [128, 256, 512, 2048], "default": 2048 }, "index$": 1 }, { "name": "f", "in": "query", "description": "Format of the response", "required": false, "schema": { "type": "string", "enum": ["png", "md", "json"], "default": "png" }, "index$": 2 }] } }, { strict: LIVE_STRICT, t });
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -72,11 +80,16 @@ const utility_1 = require("../../utility");
         // LOAD
         const get_screenshot_by_domain_ref01_ent = client.GetScreenshotByDomain();
         const get_screenshot_by_domain_ref01_match_dt0 = {};
-        get_screenshot_by_domain_ref01_match_dt0.id = get_screenshot_by_domain_ref01_data.id;
+        get_screenshot_by_domain_ref01_match_dt0.id = get_screenshot_by_domain_ref01_data.domain;
         const get_screenshot_by_domain_ref01_data_dt0 = (await get_screenshot_by_domain_ref01_ent.load(get_screenshot_by_domain_ref01_match_dt0)).data();
-        (0, node_assert_1.default)(get_screenshot_by_domain_ref01_data_dt0.id === get_screenshot_by_domain_ref01_data.id);
+        (0, node_assert_1.default)(get_screenshot_by_domain_ref01_data_dt0.domain === get_screenshot_by_domain_ref01_data.domain);
     });
 });
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true;
 function basicSetup(extra) {
     // TODO: fix test def options
     const options = {}; // null
@@ -86,6 +99,10 @@ function basicSetup(extra) {
     const entityDataSource = Fs.readFileSync(entityDataFile).toString('utf8');
     // TODO: need a xlang JSON parse utility in voxgig/struct with better error msgs
     const entityData = JSON.parse(entityDataSource);
+    for (const rec of Object.values(entityData.existing?.["get_screenshot_by_domain"] ?? {})) {
+        if (null != rec?.id)
+            rec.domain = rec.id;
+    }
     options.entity = entityData.existing;
     let client = __1.HomepageScreenshotSDK.test(options, extra);
     const struct = client.utility().struct;

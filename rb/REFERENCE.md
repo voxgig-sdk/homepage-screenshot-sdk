@@ -98,7 +98,6 @@ get_screenshot_by_domain = client.GetScreenshotByDomain
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `domain` | `String` | No | The requested domain |
-| `id` | `String` | No |  |
 | `screenshot_url` | `String` | No | URL to the screenshot image |
 | `size` | `Integer` | No | Size of the screenshot |
 | `timestamp` | `String` | No | When the screenshot was taken |
@@ -107,7 +106,7 @@ get_screenshot_by_domain = client.GetScreenshotByDomain
 
 #### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria. Raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get` reads, and raises on error.
 
 ```ruby
 result = client.GetScreenshotByDomain.load({ "id" => "get_screenshot_by_domain_id" })
@@ -164,7 +163,7 @@ get_screenshot_by_domain_and_date = client.GetScreenshotByDomainAndDate
 
 #### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria. Raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get` reads, and raises on error.
 
 ```ruby
 result = client.GetScreenshotByDomainAndDate.load({ "date" => "date", "domain" => "domain" })
@@ -357,6 +356,7 @@ Timeout.
 | Option | Type |
 |---|---|
 | `clearTimer` | function |
+| `now` | function |
 | `setTimer` | function |
 
 These take no default: the feature behaves one way when you supply them and

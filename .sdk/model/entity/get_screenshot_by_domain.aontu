@@ -12,12 +12,6 @@ main: kit: entity: get_screenshot_by_domain: {
       sh: "The requested domain"
       t: "`$STRING`"
     }
-    id: {
-      h: "Id"
-      n: "id"
-      r: false
-      t: "`$STRING`"
-    }
     screenshot_url: {
       h: "Screenshot Url"
       n: "screenshot_url"
@@ -42,7 +36,7 @@ main: kit: entity: get_screenshot_by_domain: {
   }
 
   id: {
-    field: "id"
+    field: "domain"
     name: "id"
   }
 
@@ -91,15 +85,28 @@ main: kit: entity: get_screenshot_by_domain: {
           o: "/{domain}"
           q: {
             exist: [
-              "f"
               "id"
-              "s"
             ]
           }
           r: {
             param: {
               domain: "id"
             }
+          }
+          rs: {
+            alternatives: [
+              {
+                binary: true
+                kind: "raw"
+                media: "image/png"
+              }
+              {
+                kind: "raw"
+                media: "text/markdown"
+              }
+            ]
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

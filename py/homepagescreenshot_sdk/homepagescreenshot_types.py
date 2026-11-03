@@ -18,7 +18,6 @@ from typing import TypedDict, Any
 
 class GetScreenshotByDomain(TypedDict, total=False):
     domain: str
-    id: str
     screenshot_url: str
     size: int
     timestamp: str

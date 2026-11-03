@@ -95,7 +95,6 @@ local get_screenshot_by_domain = client:GetScreenshotByDomain(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `domain` | `string` | No | The requested domain |
-| `id` | `string` | No |  |
 | `screenshot_url` | `string` | No | URL to the screenshot image |
 | `size` | `number` | No | Size of the screenshot |
 | `timestamp` | `string` | No | When the screenshot was taken |
@@ -104,7 +103,7 @@ local get_screenshot_by_domain = client:GetScreenshotByDomain(nil)
 
 #### `load(reqmatch, ctrl) -> any, err`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:GetScreenshotByDomain():load({ id = "get_screenshot_by_domain_id" })
@@ -161,7 +160,7 @@ local get_screenshot_by_domain_and_date = client:GetScreenshotByDomainAndDate(ni
 
 #### `load(reqmatch, ctrl) -> any, err`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:GetScreenshotByDomainAndDate():load({ date = "date", domain = "domain" })
@@ -354,6 +353,7 @@ Timeout.
 | Option | Type |
 |---|---|
 | `clearTimer` | function |
+| `now` | function |
 | `setTimer` | function |
 
 These take no default: the feature behaves one way when you supply them and

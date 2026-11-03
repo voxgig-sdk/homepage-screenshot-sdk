@@ -22,13 +22,29 @@ const PLAN = [
             }
         ],
         "select": {
-            "f": "v1",
-            "s": "v1"
+            "f": "png",
+            "s": 2048
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "image/png",
+            "text/markdown",
+            "application/json"
+        ],
         "query": [
             "s",
             "f"
+        ],
+        "queryArgs": [
+            {
+                "name": "f",
+                "wire": "f"
+            },
+            {
+                "name": "s",
+                "wire": "s"
+            }
         ],
         "auth": null,
         "status": 200,
@@ -38,7 +54,7 @@ const PLAN = [
             "size": 1,
             "timestamp": "x"
         },
-        "idField": "id"
+        "idField": "domain"
     },
     {
         "entity": "get_screenshot_by_domain_and_date",
@@ -59,13 +75,29 @@ const PLAN = [
             }
         ],
         "select": {
-            "f": "v1",
-            "s": "v1"
+            "f": "png",
+            "s": 2048
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "image/png",
+            "text/markdown",
+            "application/json"
+        ],
         "query": [
             "s",
             "f"
+        ],
+        "queryArgs": [
+            {
+                "name": "f",
+                "wire": "f"
+            },
+            {
+                "name": "s",
+                "wire": "s"
+            }
         ],
         "auth": null,
         "status": 200,
